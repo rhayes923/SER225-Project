@@ -92,6 +92,8 @@ public class Menu {
 			b7.setText("Host");
 			Button b8 = new Button(850, 300, 350, 100);
 			b8.setText("Join");
+			Button b9 = new Button(1000, 450, 200, 100);
+			b9.setText("E J");
 			
 			Font font = new Font("Amoebic", 1, 80);
 			g.setFont(font);
@@ -106,6 +108,8 @@ public class Menu {
 			b6.render(g);
 			b7.render(g);
 			b8.render(g);
+			b9.render(g);
+			
 		} else if (game.gameState == STATE.Help) {// if the user clicks on
 			// "help"
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
@@ -223,6 +227,31 @@ public class Menu {
 			g.setColor(Color.white);
 			g.drawRect(566, 650, 133, 42);
 			g.drawString("Back", 613, 680);
+		}
+		//if the user clicks on the enemy journal button
+		else if (game.gameState == STATE.EnemyJournal) {
+			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+			handler.render(g);	
+			img = null;
+
+			try {
+				URL imageURL = Game.class.getResource("images/dust-particles.png");
+				img = Toolkit.getDefaultToolkit().getImage(imageURL);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Font font = new Font("impact", 1, 33);
+			Font font2 = new Font("impact", 1, 20);
+			
+			g.setFont(font);
+			g.setColor(Color.WHITE);
+			g.drawString("Enemy Journal", 540, 46);
+			
+			g.setFont(font2);
+			g.drawRect(566, 590, 133, 42);
+			g.drawString("Back", 613, 620);
+			
 		}
 	}
 }
