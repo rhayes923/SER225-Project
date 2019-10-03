@@ -22,8 +22,6 @@ import mainGame.gfx.*;
  */
 
 public class Menu {
-	
-	//Test
 
 	private Game game;
 	private Handler handler;
