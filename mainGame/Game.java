@@ -277,6 +277,10 @@ public class Game extends Canvas implements Runnable {
 			if (!soundplayer.isPaused())
 				soundplayer.pause();
 		}
+		
+		if(gameState == STATE.Menu)
+			player.resetVel();
+		
 	}
 
 	/**
