@@ -138,7 +138,7 @@ public class SpawnMultiplayer {
 				handler.addObject(new EnemyMiniShooter(Game.clampX(x, 75), Game.clampY(y, 75), 75, 75, -10, type, handler, this.game));
 				break;
 			case PickupHealth:
-				handler.addPickup(new PickupHealth(Game.clampX(x, 35), Game.clampY(y, 75), ID.HealthPickup, "images/ham.png", this.handler));
+				handler.addPickup(new PickupHealth(Game.clampX(x, 35), Game.clampY(y, 75), ID.PickupHealth, "images/ham.png", this.handler));
 				break;
 		}
 	}

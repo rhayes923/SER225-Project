@@ -152,17 +152,17 @@ public class SpawnSurvival {
 			} else if (spawnNum == 9) {
 				//spawns Health pickup
 
-				handler.addPickup(new PickupHealth(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.HealthPickup, "images/ham.png", this.handler));
+				handler.addPickup(new PickupHealth(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupHealth, "images/ham.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 10) {
-				//spawns Health pickup
+				//spawns Speed pickup
 
-				handler.addPickup(new PickupSpeed(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.SpeedPickup, "images/ham.png", this.handler));
+				handler.addPickup(new PickupSpeed(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupSpeed, "images/ham.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 11) {
-				//spawns Health pickup
+				//spawns Score pickup
 
-				handler.addPickup(new PickupScore(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.ScorePickup, "images/coin.png", this.handler));
+				handler.addPickup(new PickupScore(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupScore, "images/coin.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 12) {
 				//spawns enemy move left and right

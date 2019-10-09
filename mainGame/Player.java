@@ -178,7 +178,7 @@ public class Player extends GameObject {
 		for (int i = 0; i < handler.pickups.size(); i++) {
 			Pickup tempPickup = handler.pickups.get(i);
 
-			if (tempPickup.getId() == ID.HealthPickup) {
+			if (tempPickup.getId() == ID.PickupHealth) {
 
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					if(hud.getHealthMax() - hud.health > 25) {
@@ -188,12 +188,12 @@ public class Player extends GameObject {
 					}
 					handler.removePickup(tempPickup);
 				}
-			} else if (tempPickup.getId() == ID.SpeedPickup) {
+			} else if (tempPickup.getId() == ID.PickupSpeed) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					playerSpeed += 1;
 					handler.removePickup(tempPickup);
 				}
-			} else if (tempPickup.getId() == ID.ScorePickup) {
+			} else if (tempPickup.getId() == ID.PickupScore) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					hud.setScore(hud.getScore()+1000);
 					handler.removePickup(tempPickup);
