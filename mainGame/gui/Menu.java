@@ -147,10 +147,13 @@ public class Menu {
 			g.setFont(font2);
 			g.drawString(" Within Survival, your goal is to survive as long as possible while enemies spawn and try to kill you. Poewr-ups are available",
 					100, 480);
-			g.drawString(" to help you stay alive. If you pick up a ham, you regain health, if you pick up shoes, you earn a light speed boost and if you ",
+			g.drawString(" to help you stay alive. If you pick up a ham, you regain health, if you pick up shoes, you earn a light speed boost, if you ",
 					100, 510);
-			g.drawString("pick up a coin, you earn \"add 1000\" points to your score.", 100, 540);
-			g.drawString("To mute the sound in game press the m key" , 100, 590);
+			g.drawString("pick up a coin, you earn \"add 1000\" points to your score, if you pick up double points, you get double points for a limited ", 
+					100, 540);
+			g.drawString("time, and if you pick up a nuke, all enemies get cleared off of the screen.",
+					100, 570);
+			g.drawString("To mute the sound in game press the m key" , 100, 610);
 			g.setFont(font2);
 			g.setColor(Color.white);
 			g.drawRect(566, 590, 133, 42);

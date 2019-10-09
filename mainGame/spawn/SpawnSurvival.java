@@ -40,10 +40,12 @@ public class SpawnSurvival {
 		hud.health = 100;
 		hud.setScore(0);
 		hud.setLevel(1);
+		Player.doublePointsActive = false;
+		
 		spawnTimer = 0;
 		r = new Random();
 		//different types of enemies added
-		differentEntities = 13;	
+		differentEntities = 15;	
 		trackerTimer = 1000;
 		trackerColor = Color.blue;
 		count = 0;
@@ -149,27 +151,44 @@ public class SpawnSurvival {
 				
 				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
 				spawnTimer = 0;
+				
 			} else if (spawnNum == 9) {
-				//spawns Health pickup
-
-				handler.addPickup(new PickupHealth(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupHealth, "images/ham.png", this.handler));
-				spawnTimer = 0;
-			} else if (spawnNum == 10) {
-				//spawns Speed pickup
-
-				handler.addPickup(new PickupSpeed(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupSpeed, "images/ham.png", this.handler));
-				spawnTimer = 0;
-			} else if (spawnNum == 11) {
-				//spawns Score pickup
-
-				handler.addPickup(new PickupScore(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupScore, "images/coin.png", this.handler));
-				spawnTimer = 0;
-			} else if (spawnNum == 12) {
 				//spawns enemy move left and right
 				
 				handler.addObject(new EnemyMoveLeft(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
 				handler.addObject(new EnemyMoveRight(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
 				spawnTimer = 0;
+				
+			} else if (spawnNum == 10) {
+				//spawns Health pickup
+
+				handler.addPickup(new PickupHealth(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupHealth, "images/ham.png", this.handler));
+				spawnTimer = 0;
+			} else if (spawnNum == 11) {
+				//spawns Speed pickup
+
+				handler.addPickup(new PickupSpeed(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupSpeed, "images/ham.png", this.handler));
+				spawnTimer = 0;
+			} else if (spawnNum == 12) {
+				//spawns Score pickup
+
+				handler.addPickup(new PickupScore(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupScore, "images/coin.png", this.handler));
+				spawnTimer = 0;
+				
+				
+			} else if (spawnNum == 13) {
+				//spawns Double Points pickup
+
+				handler.addPickup(new PickupDoublePoints(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupDoublePoints, "images/doublepoints.png", this.handler));
+				spawnTimer = 0;
+
+		
+			} else if (spawnNum == 14) {
+				//spawns Nuke pickup
+
+				handler.addPickup(new PickupNuke(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.PickupNuke, "images/doublepoints.png", this.handler));
+				spawnTimer = 0;
+
 			}
 		}
 		spawnTimer++;
@@ -187,5 +206,6 @@ public class SpawnSurvival {
 		hud.health=100;
 		player.resetVel();
 		player.resetLoc();
+		Player.doublePointsActive = false;
 	}
 }

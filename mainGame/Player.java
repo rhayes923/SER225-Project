@@ -32,6 +32,7 @@ public class Player extends GameObject {
 	private Color color;
 	private Color tailcolor;
 	private boolean isOpponent;
+	public static boolean doublePointsActive = false;
 	int count;
 	private static Image img = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/test_pixelart.png"));
 
@@ -179,7 +180,6 @@ public class Player extends GameObject {
 			Pickup tempPickup = handler.pickups.get(i);
 
 			if (tempPickup.getId() == ID.PickupHealth) {
-
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					if(hud.getHealthMax() - hud.health > 25) {
 						hud.health += 25;
@@ -196,6 +196,20 @@ public class Player extends GameObject {
 			} else if (tempPickup.getId() == ID.PickupScore) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					hud.setScore(hud.getScore()+1000);
+					handler.removePickup(tempPickup);
+				}
+			} else if (tempPickup.getId() == ID.PickupDoublePoints) {
+				if (getBounds().intersects(tempPickup.getBounds())) {
+					if (doublePointsActive = true) {
+						HUD.doublePointsTimer = 1000;
+					} else {
+						doublePointsActive = true;
+					}
+					handler.removePickup(tempPickup);
+				}
+			} else if (tempPickup.getId() == ID.PickupNuke) {
+				if(getBounds().intersects(tempPickup.getBounds())) {
+					handler.clearEnemies();
 					handler.removePickup(tempPickup);
 				}
 			}

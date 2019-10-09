@@ -249,6 +249,7 @@ public class MouseListener extends MouseAdapter {
 				hud.setHealth(100);
 				hud.setLevel(1);
 				hud.setExtraLives(0);
+				Player.doublePointsActive = false;
 				// These methods make it so that when the player quits and plays survival, the player is on level 1
 				upgrades.resetUpgrades();
 				spawner.restart();
