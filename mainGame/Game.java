@@ -104,7 +104,7 @@ public class Game extends Canvas implements Runnable {
 		leaderboard = new Leaderboard(this, hud, leaderboardList);
 		leaderboardDisplay = new LeaderboardDisplay(this.leaderboard, this);
 		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawner, 
-				this.spawner2, this.spawnSurvival, this.upgradeScreen, this.spawnMultiplayer, this.player, 
+				this.spawner2, this.spawnSurvival, this.upgradeScreen, this.player, 
 				this.upgrades, leaderboard, this.spawnBosses, this.leaderboardDisplay);
 		this.addKeyListener(new KeyInput(this.handler, this, this.hud, this.player, this.spawner, this.upgrades, this.leaderboard));
 		this.addMouseListener(mouseListener);
@@ -115,8 +115,7 @@ public class Game extends Canvas implements Runnable {
 		soundClip = new SoundClip("sounds/damage.mp3", 1.0);
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
-		colorScreen = new ColorPickerScreen(player, this);
-		
+		colorScreen = new ColorPickerScreen(player, this);		
 
 		this.op = op;
 		this.addr = addr;
