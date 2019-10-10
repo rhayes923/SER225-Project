@@ -11,7 +11,7 @@ import mainGame.gui.*;
 
 public class Spawn1to5 {
 
-	public static int LEVEL_SET = 3;
+	public static int LEVEL_SET = 1;
 	private Handler handler;
 	private HUD hud;
 	private Game game;
@@ -326,7 +326,7 @@ public class Spawn1to5 {
 				tempCounter++;
 			}
 			if (spawnTimer == 0) {
-				handler.addObject(new EnemyMoveRight(35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
+				handler.addObject(new EnemyMoveRight(-35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
 				handler.addObject(new EnemyMoveLeft(Game.WIDTH - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
 				spawnTimer = 60;
 			}
