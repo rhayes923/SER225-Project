@@ -27,8 +27,8 @@ public class MouseListener extends MouseAdapter {
 	private LeaderboardDisplay leaderboardDisplay;
 
 	public MouseListener(Game game, Handler handler, HUD hud, Spawn1to5 spawner, 
-			Spawn5to10 spawner2, SpawnSurvival spawnSurvival, UpgradeScreen upgradeScreen, 
-			SpawnMultiplayer spawnM, Player player, Upgrades upgrades, 
+			Spawn5to10 spawner2, SpawnSurvival spawnSurvival, UpgradeScreen upgradeScreen
+			, Player player, Upgrades upgrades, 
 			Leaderboard leaderboard, SpawnBosses spawnBosses, 
 			LeaderboardDisplay leaderboardDisplay) {
 		this.game = game;
@@ -40,7 +40,6 @@ public class MouseListener extends MouseAdapter {
 		this.player = player;
 		this.upgrades = upgrades;
 		this.spawnSurvival = spawnSurvival;
-		this.spawnMulti = spawnM;
 		this.leaderboard = leaderboard;
 		this.spawnBosses = spawnBosses;
 		this.leaderboardDisplay = leaderboardDisplay;
@@ -139,14 +138,6 @@ public class MouseListener extends MouseAdapter {
 				// Quit Button
 				else if (mouseOver(mx, my, 450, 450, 350, 100)) {
 					System.exit(1);
-				}
-				//Multiplayer Host Button
-				else if (mouseOver(mx, my, 850, 150, 350, 100)) {
-					game.gameState = STATE.Host;
-				}
-				//Multiplayer Join Button
-				else if (mouseOver(mx, my, 850, 300, 350, 100)) {
-					game.gameState = STATE.Join;
 				}
 				// Color Picker Mode
 				else if (mouseOver(mx, my, 850, 450, 100, 100)) {
@@ -299,4 +290,3 @@ public class MouseListener extends MouseAdapter {
 			return false;
 	}
 }
-

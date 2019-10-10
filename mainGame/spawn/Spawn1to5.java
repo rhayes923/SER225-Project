@@ -27,6 +27,9 @@ public class Spawn1to5 {
 	private int trackerTimer;
 	private int differentEnemies;
 	private Player player;
+	private int randomInt;
+	private int tempRandomInt;
+	private int checkRandomInt;
 	
 	public Spawn1to5(Handler handler, HUD hud, Game game, Player player) {
 		this.handler = handler;
@@ -396,8 +399,15 @@ public class Spawn1to5 {
 	}
 	
 	public int rand() {
-		return r.nextInt(differentEnemies);
+		randomInt=r.nextInt(differentEnemies);
+		tempRandomInt=randomInt;
+		checkRandomInt=tempRandomInt;
+		if(checkRandomInt==randomInt) {
+			return r.nextInt(differentEnemies);
+		}
+		else{
+			return randomInt;	
+		}
 	}
 
 }
-
