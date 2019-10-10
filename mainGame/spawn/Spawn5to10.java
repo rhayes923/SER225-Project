@@ -36,6 +36,9 @@ public class Spawn5to10 {
 	private int trackerTimer;
 	private int differentEnemies;
 	private Player player;
+	private int randomInt;
+	private int tempRandomInt;
+	private int checkRandomInt;
 	
 	public Spawn5to10(Handler handler, HUD hud, Spawn1to5 spawner, Game game, Player player) {
 		restart();
@@ -92,7 +95,7 @@ public class Spawn5to10 {
 			}
 			if (timer == 0) {
 				handler.addObject(
-						new EnemyBasic(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 13, 13, ID.EnemyBasic, handler));
+						new EnemyBasic(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 13, 13, ID.EnemyBasic, handler));
 				timer = 80;
 			}
 			if (levelTimer == 0) {
@@ -116,16 +119,16 @@ public class Spawn5to10 {
 			}
 			if (timer == 30) {
 				handler.addObject(
-						new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 20, 2, ID.EnemySweep, handler));
+						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, 2, ID.EnemySweep, handler));
 			} else if (timer == 20) {
 				handler.addObject(
-						new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 20, -2, ID.EnemySweep, handler));
+						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, -2, ID.EnemySweep, handler));
 			} else if (timer == 10) {
 				handler.addObject(
-						new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 20, 4, ID.EnemySweep, handler));
+						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, 4, ID.EnemySweep, handler));
 			} else if (timer == 0) {
 				handler.addObject(
-						new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 20, -4, ID.EnemySweep, handler));
+						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, -4, ID.EnemySweep, handler));
 				timer = 45;
 			}
 
@@ -149,7 +152,7 @@ public class Spawn5to10 {
 			}
 			if (timer == 0) {
 				handler.addObject(
-						new EnemySmart(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, -7, ID.EnemySmart, handler));
+						new EnemySmart(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), -7, ID.EnemySmart, handler));
 				timer = 60;
 			}
 			if (levelTimer == 0) {
@@ -167,7 +170,7 @@ public class Spawn5to10 {
 		} else if (levelNumber == 3) {
 			levelTimer--;
 			if (tempCounter < 1) {
-				handler.addObject(new EnemyShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100,
+				handler.addObject(new EnemyShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100,
 							-30, ID.EnemyShooter, this.handler));
 				levelTimer = 1200;
 				tempCounter++;
@@ -226,7 +229,7 @@ public class Spawn5to10 {
 			trackerTimer--;
 			if(timer == 0) {
 				handler.addObject(
-						new EnemyTracker(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, -5, ID.EnemyTracker, handler, trackerColor, trackerTimer, game));
+						new EnemyTracker(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), -5, ID.EnemyTracker, handler, trackerColor, trackerTimer, game));
 				timer = 100;
 			} 
 
@@ -254,7 +257,7 @@ public class Spawn5to10 {
 				tempCounter++;
 			}
 			if (timer == 0) {
-				handler.addObject(new EnemyExpand(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyExpand, this.handler));
+				handler.addObject(new EnemyExpand(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyExpand, this.handler));
 				timer = 300;
 				levelTimer = 1300;
 			} 
@@ -280,9 +283,9 @@ public class Spawn5to10 {
 				tempCounter++;
 			}
 			if(timer == 0) {
-				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
@@ -304,8 +307,8 @@ public class Spawn5to10 {
 				tempCounter++;
 			}
 			if(timer == 0) {
-				handler.addObject(new EnemyPorcupine(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
-				handler.addObject(new EnemyPorcupine(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
@@ -376,8 +379,15 @@ public class Spawn5to10 {
 	}
 	
 	public int rand() {
-		return (int) (Math.random() * differentEnemies);
+		randomInt=r.nextInt(differentEnemies);
+		tempRandomInt=randomInt;
+		checkRandomInt=tempRandomInt;
+		if(checkRandomInt==randomInt) {
+			return r.nextInt(differentEnemies);
+		}
+		else{
+			return randomInt;	
+		}
 	}
 
 }
-

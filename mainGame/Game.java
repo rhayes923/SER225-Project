@@ -114,9 +114,8 @@ public class Game extends Canvas implements Runnable {
 		soundplayer = new SoundPlayer("sounds/main.mp3", true);
 		soundClip = new SoundClip("sounds/damage.mp3", 1.0);
 		soundplayer.start();
-		new Window(WIDTH, HEIGHT, "PlayerKnown's BattleLands", this);
-		colorScreen = new ColorPickerScreen(player, this);
-		
+		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
+		colorScreen = new ColorPickerScreen(player, this);		
 
 		this.op = op;
 		this.addr = addr;
@@ -185,6 +184,22 @@ public class Game extends Canvas implements Runnable {
 	 * health, appearance, etc).
 	 */
 	private void tick() {
+	//	// if the arguments are given, go straight for multiplayer
+	//	if (!op.equals("none")) {
+	//		try {
+	//			spawnMultiplayer.createClient(addr, port);
+	//			if (op.equals("host")) {
+	//				spawnMultiplayer.getClient().host_game(room, pass);
+	//			} else if (op.equals("join")) {
+	//				spawnMultiplayer.getClient().join_game(room, pass);
+	//			}
+	//			gameState = STATE.Multiplayer;
+	//			op = "none";
+	//		} catch (Exception e) {
+	//			gameState = STATE.Menu;
+	//			op = "none";
+	//		}
+	//	}
 
 		if (!isPaused()) { // only tick the game modes and stuff if the game is not paused
 			handler.tick();// ALWAYS TICK HANDLER, NO MATTER IF MENU OR GAME
