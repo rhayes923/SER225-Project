@@ -27,6 +27,9 @@ public class Spawn15to20 {
 	private int differentEnemies;
 	private Player player;
 	private BossSeparates finalBoss;
+	private int randomInt;
+	private int tempRandomInt;
+	private int checkRandomInt;
 
 	public Spawn15to20(Handler handler, HUD hud, Game game, Player player) {
 		restart();
@@ -404,7 +407,15 @@ public class Spawn15to20 {
 	}
 	
 	public int rand() {
-		return (int) (Math.random() * differentEnemies);
+		randomInt=r.nextInt(differentEnemies);
+		tempRandomInt=randomInt;
+		checkRandomInt=tempRandomInt;
+		if(checkRandomInt==randomInt) {
+			return r.nextInt(differentEnemies);
+		}
+		else{
+			return randomInt;	
+		}
 	}
 
 }
