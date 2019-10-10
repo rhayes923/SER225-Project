@@ -109,7 +109,7 @@ public class Menu {
 			b7.render(g);
 			b8.render(g);
 			b9.render(g);
-			
+
 		} else if (game.gameState == STATE.Help) {// if the user clicks on
 			// "help"
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
