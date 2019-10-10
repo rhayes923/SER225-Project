@@ -56,7 +56,6 @@ public class Game extends Canvas implements Runnable {
 	private boolean isPaused = false;
 	private boolean isMusicPlaying = true;
 	private ColorPickerScreen colorScreen;
-	private ConnectScreen connectScreen;
 	private LeaderboardDisplay leaderboardDisplay;
 	public String [][] leaderboardList;
 
@@ -117,7 +116,6 @@ public class Game extends Canvas implements Runnable {
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
 		colorScreen = new ColorPickerScreen(player, this);
-		connectScreen = new ConnectScreen(this,this.spawnMultiplayer);
 		
 
 		this.op = op;
