@@ -188,7 +188,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void tick() {
 		// if the arguments are given, go straight for multiplayer
-		/*
+		
 		if (!op.equals("none")) {
 			try {
 				spawnMultiplayer.createClient(addr, port);
@@ -204,7 +204,6 @@ public class Game extends Canvas implements Runnable {
 				op = "none";
 			}
 		}
-		*/
 
 		if (!isPaused()) { // only tick the game modes and stuff if the game is not paused
 			handler.tick();// ALWAYS TICK HANDLER, NO MATTER IF MENU OR GAME
