@@ -274,6 +274,7 @@ public class Game extends Canvas implements Runnable {
 			if (!soundplayer.isPaused())
 				soundplayer.pause();
 		}
+		
 	}
 
 	/**

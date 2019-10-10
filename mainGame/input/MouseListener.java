@@ -107,18 +107,21 @@ public class MouseListener extends MouseAdapter {
 			else if (game.gameState == STATE.Menu) {
 				// Waves Button
 				if (mouseOver(mx, my, 50, 150, 350, 100)) {
+					player.reset();
 					handler.object.clear();
 					game.gameState = STATE.Wave;
 					handler.addObject(player);
 				}
 				// Bosses Mode
 				else if (mouseOver(mx, my, 50, 300, 350, 100)) {
+					player.reset();
 					handler.object.clear();
 					game.gameState = STATE.Bosses;
 					handler.addObject(player);
 				}
 				// Survival Mode
 				else if (mouseOver(mx, my, 50, 450, 350, 100)) {
+					player.reset();
 					hud.setScore(0);
 					handler.object.clear();
 					game.gameState = STATE.Survival;
@@ -287,4 +290,3 @@ public class MouseListener extends MouseAdapter {
 			return false;
 	}
 }
-

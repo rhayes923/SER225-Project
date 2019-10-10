@@ -95,8 +95,8 @@ public class Spawn5to10 {
 			}
 			if (timer == 0) {
 				handler.addObject(
-						new EnemyBasic(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 13, 13, ID.EnemyBasic, handler));
-				timer = 80;
+						new EnemyBasic(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 12, 12, ID.EnemyBasic, handler));
+				timer = 100;
 			}
 			if (levelTimer == 0) {
 				handler.clearEnemies();
@@ -117,19 +117,19 @@ public class Spawn5to10 {
 				levelTimer = 1200;
 				tempCounter++;
 			}
-			if (timer == 30) {
+			if (timer == 90) {
 				handler.addObject(
 						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, 2, ID.EnemySweep, handler));
-			} else if (timer == 20) {
+			} else if (timer == 60) {
 				handler.addObject(
 						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, -2, ID.EnemySweep, handler));
-			} else if (timer == 10) {
+			} else if (timer == 30) {
 				handler.addObject(
 						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, 4, ID.EnemySweep, handler));
 			} else if (timer == 0) {
 				handler.addObject(
 						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 20, -4, ID.EnemySweep, handler));
-				timer = 45;
+				timer = 120;
 			}
 
 			if (levelTimer == 0) {
@@ -258,8 +258,8 @@ public class Spawn5to10 {
 			}
 			if (timer == 0) {
 				handler.addObject(new EnemyExpand(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyExpand, this.handler));
-				timer = 300;
-				levelTimer = 1300;
+				timer = 35;
+				//levelTimer = 1300;
 			} 
 
 			if (levelTimer == 0) {
@@ -283,9 +283,9 @@ public class Spawn5to10 {
 				tempCounter++;
 			}
 			if(timer == 0) {
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -20, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -20, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -20, ID.EnemyMiniShooter, this.handler, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
@@ -307,8 +307,8 @@ public class Spawn5to10 {
 				tempCounter++;
 			}
 			if(timer == 0) {
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -2, -20, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -2, -20, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
