@@ -225,5 +225,31 @@ public class Menu {
 			g.drawRect(566, 650, 133, 42);
 			g.drawString("Back", 613, 680);
 		}
+		
+		//if the user clicks on the enemy journal button
+		else if (game.gameState == STATE.EnemyJournal) {
+			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+			handler.render(g);	
+			img = null;
+
+			try {
+				URL imageURL = Game.class.getResource("images/dust-particles.png");
+				img = Toolkit.getDefaultToolkit().getImage(imageURL);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+					
+			Font font = new Font("impact", 1, 33);
+			Font font2 = new Font("impact", 1, 20);
+					
+			g.setFont(font);
+			g.setColor(Color.WHITE);
+			g.drawString("Enemy Journal", 540, 46);
+					
+			g.setFont(font2);
+			g.drawRect(566, 590, 133, 42);
+			g.drawString("Back", 613, 620);
+					
+		}
 	}
 }
