@@ -164,31 +164,31 @@ public class SpawnSurvival {
 			} else if (spawnNum == 10) {
 				//spawns Health pickup
 
-				handler.addPickup(new PickupHealth(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.HealthPickup, "images/ham.png", this.handler));
+				handler.addPickup(new PickupHealth(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupHealth, "images/ham.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 11) {
 				//spawns Speed pickup
 
-				handler.addPickup(new PickupSpeed(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.SpeedPickup, "images/shoesAreForCasuals.png", this.handler));
+				handler.addPickup(new PickupSpeed(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupSpeed, "images/shoesAreForCasuals.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 12) {
 				//spawns Score pickup
 
-				handler.addPickup(new PickupScore(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.ScorePickup, "images/coin.png", this.handler));
+				handler.addPickup(new PickupScore(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupScore, "images/coin.png", this.handler));
 				spawnTimer = 0;
 				
 				
 			} else if (spawnNum == 13) {
 				//spawns Double Points pickup
 
-				handler.addPickup(new PickupDoublePoints(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.ScorePickup, "images/doublepoints.png", this.handler));
+				handler.addPickup(new PickupDoublePoints(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupDoublePoints, "images/doublepoints.png", this.handler));
 				spawnTimer = 0;
 
 		
 			} else if (spawnNum == 14) {
 				//spawns Nuke pickup
 
-				handler.addPickup(new PickupNuke(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.ScorePickup, "images/nuke.png", this.handler));
+				handler.addPickup(new PickupNuke(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupNuke, "images/nuke.png", this.handler));
 				spawnTimer = 0;
 
 			}
