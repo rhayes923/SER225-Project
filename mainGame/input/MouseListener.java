@@ -169,25 +169,15 @@ public class MouseListener extends MouseAdapter {
 				int x = 0;
 				int y = 0;
 				if(mouseOver(mx, my,x+70, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/test_pixelart.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/ship.png")), null);
 				} else if(mouseOver(mx, my, x+320, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/mario.gif")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/purpleShip.png")), null);
 				} else if(mouseOver(mx, my, x+570, y+75, 160, 160)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/saitamaONE.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/orangeShip1.png")), null);
 				} else if(mouseOver(mx, my,x+820, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/pikachu.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redGrayShip.png")), null);
 				} else if(mouseOver(mx, my,x+1070, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/octocat.png")), null);
-				} else if(mouseOver(mx, my,x+70, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redit.png")), null);
-				} else if(mouseOver(mx, my,x+320, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/abra.gif")), null);
-				} else if(mouseOver(mx, my,x+570, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/giphy.gif")), null);
-				} else if(mouseOver(mx, my,x+820, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/kingdom.png")), null);
-				} else if(mouseOver(mx, my,x+1070, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/cat.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/greenShip.png")), null);
 				} else if(mouseOver(mx, my,x+70, y+440, 125, 125)) {
 					player.updateColors(null, new Color(255,255,255,90));
 				} else if(mouseOver(mx, my, x+320, y+440, 125, 125)) {

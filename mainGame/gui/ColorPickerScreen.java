@@ -22,28 +22,24 @@ public class ColorPickerScreen {
 	private Game game;
 	private int x,y;
 	private Image img;
-	private Image ship = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/test_pixelart.png"));
-	private Image mario = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/mario.gif"));
-	private Image octocat = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/octocat.png"));
-	private Image saitama = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/saitamaONE.png"));
-	private Image pikachu = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/pikachu.png"));
-	private Image abra = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/abra.gif"));
-	private Image redit = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redit.png"));
-	private Image giphy = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/giphy.gif"));
-	private Image kingdom = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/kingdom.png"));
-	private Image cat = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/cat.png"));
+	private Image ship = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/ship.png"));
+	private Image purpleShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/purpleShip.png"));
+	private Image greenShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/greenShip.png"));
+	private Image orangeShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/orangeShip1.png"));
+	private Image redGrayShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redGrayShip.png"));
+
 	public ColorPickerScreen(Player player, Game game) {
 		this.player = player;
 		this.game = game;
 		x = 0;
 		y = 0;
 		img = null;
-		try {
-			URL imageURL = Game.class.getResource("images/colorpickerbackground.jpg");
-			img = Toolkit.getDefaultToolkit().getImage(imageURL);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			URL imageURL = Game.class.getResource("images/colorpickerbackground.jpg");
+//			img = Toolkit.getDefaultToolkit().getImage(imageURL);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	public void render(Graphics g) {
@@ -53,20 +49,15 @@ public class ColorPickerScreen {
 			Font font = new Font("Amoebic", 1, 80);
 			g.setFont(font);
 			g.setColor(Color.gray);
-			g.drawString("Character", 450, 65);
+			g.drawString("Character", 450, 75);
 			g.drawString("Tail Color", 450, 425);
 			
 			//Prints the images for the character in the character/color picker menu
-			g.drawImage(ship, x+70, y+75, 125, 125, null);			
-			g.drawImage(mario, x+320, y+75, 125, 125, null);					
-			g.drawImage(saitama, x+570, y+75, 125, 125, null);			
-			g.drawImage(pikachu, x+820, y+75, 125, 125, null);			
-			g.drawImage(octocat, x+1070, y+75, 125, 125, null);			
-			g.drawImage(redit, x+70, y+215, 125, 125, null);			
-			g.drawImage(abra, x+320, y+215, 125, 125, null);			
-			g.drawImage(giphy, x+570, y+215, 125, 125, null);
-			g.drawImage(kingdom, x+820, y+215, 125, 125, null);
-			g.drawImage(cat, x+1070, y+215, 125, 125, null);
+			g.drawImage(ship, x+70, y+120, 125, 125, null);			
+			g.drawImage(purpleShip, x+320, y+120, 125, 125, null);					
+			g.drawImage(orangeShip, x+570, y+120, 125, 125, null);			
+			g.drawImage(redGrayShip, x+820, y+120, 125, 125, null);			
+			g.drawImage(greenShip, x+1070, y+120, 125, 125, null);			
 			
 			//Prints the ovals and for the tail color picker in the character/color picker menu
 			g.setColor(Color.white);

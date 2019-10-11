@@ -33,7 +33,7 @@ public class Player extends GameObject {
 	private Color tailcolor;
 	private boolean isOpponent;
 	int count;
-	private static Image img = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/test_pixelart.png"));
+	private static Image img = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/ship.png"));
 
 	/**
 	 * Use the other constructor unless this is an opponent in multiplayer.
