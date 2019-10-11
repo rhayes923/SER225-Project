@@ -27,8 +27,8 @@ public class MouseListener extends MouseAdapter {
 	private LeaderboardDisplay leaderboardDisplay;
 
 	public MouseListener(Game game, Handler handler, HUD hud, Spawn1to5 spawner, 
-			Spawn5to10 spawner2, SpawnSurvival spawnSurvival, UpgradeScreen upgradeScreen, 
-			SpawnMultiplayer spawnM, Player player, Upgrades upgrades, 
+			Spawn5to10 spawner2, SpawnSurvival spawnSurvival, UpgradeScreen upgradeScreen
+			, Player player, Upgrades upgrades, 
 			Leaderboard leaderboard, SpawnBosses spawnBosses, 
 			LeaderboardDisplay leaderboardDisplay) {
 		this.game = game;
@@ -40,7 +40,6 @@ public class MouseListener extends MouseAdapter {
 		this.player = player;
 		this.upgrades = upgrades;
 		this.spawnSurvival = spawnSurvival;
-		this.spawnMulti = spawnM;
 		this.leaderboard = leaderboard;
 		this.spawnBosses = spawnBosses;
 		this.leaderboardDisplay = leaderboardDisplay;
@@ -108,18 +107,21 @@ public class MouseListener extends MouseAdapter {
 			else if (game.gameState == STATE.Menu) {
 				// Waves Button
 				if (mouseOver(mx, my, 50, 150, 350, 100)) {
+					player.reset();
 					handler.object.clear();
 					game.gameState = STATE.Wave;
 					handler.addObject(player);
 				}
 				// Bosses Mode
 				else if (mouseOver(mx, my, 50, 300, 350, 100)) {
+					player.reset();
 					handler.object.clear();
 					game.gameState = STATE.Bosses;
 					handler.addObject(player);
 				}
 				// Survival Mode
 				else if (mouseOver(mx, my, 50, 450, 350, 100)) {
+					player.reset();
 					hud.setScore(0);
 					handler.object.clear();
 					game.gameState = STATE.Survival;
@@ -137,19 +139,15 @@ public class MouseListener extends MouseAdapter {
 				else if (mouseOver(mx, my, 450, 450, 350, 100)) {
 					System.exit(1);
 				}
-				//Multiplayer Host Button
-				else if (mouseOver(mx, my, 850, 150, 350, 100)) {
-					game.gameState = STATE.Host;
-				}
-				//Multiplayer Join Button
-				else if (mouseOver(mx, my, 850, 300, 350, 100)) {
-					game.gameState = STATE.Join;
-				}
 				// Color Picker Mode
 				else if (mouseOver(mx, my, 850, 450, 100, 100)) {
 					handler.object.clear();
 					game.gameState = STATE.Color;
 					handler.addObject(player);
+				}
+				// Enemy Journal Button
+				else if (mouseOver(mx, my, 850, 150, 350, 100)) {
+					game.gameState = STATE.EnemyJournal;
 				}
 			}
 			// Back Button for Help screen
@@ -159,6 +157,22 @@ public class MouseListener extends MouseAdapter {
 					return;
 				}
 			}
+			// Back Button for Credits screen
+			else if (game.gameState == STATE.Credits) {
+				if (mouseOver(mx, my, 566, 650, 133, 42)) {
+					game.gameState = STATE.Menu;
+					return;
+				}
+			}
+			
+			// Back Button for Enemy Journal
+			else if (game.gameState == STATE.EnemyJournal) {
+				if (mouseOver(mx, my, 566, 590, 133, 42)) {
+					game.gameState = STATE.Menu;
+					return;
+				}
+			}
+			
 			// Leaderboard screen
 			else if (game.gameState == STATE.Leaderboard) {
 				if(leaderboard.getUser() != "") {
@@ -169,11 +183,7 @@ public class MouseListener extends MouseAdapter {
 						return;
 					}
 				}
-			} else if (game.gameState == STATE.Credits) {
-				if (mouseOver(mx, my, 566, 650, 133, 42)) {
-					game.gameState = STATE.Menu;
-					return;
-				}
+
 			} else if(game.gameState == STATE.Color) {
 				int x = 0;
 				int y = 0;
@@ -297,4 +307,3 @@ public class MouseListener extends MouseAdapter {
 			return false;
 	}
 }
-

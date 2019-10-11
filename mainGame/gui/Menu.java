@@ -89,9 +89,7 @@ public class Menu {
 			Button b6 = new Button(450, 450, 350, 100);
 			b6.setText("Quit");
 			Button b7 = new Button(850, 150, 350, 100);
-			b7.setText("Host");
-			Button b8 = new Button(850, 300, 350, 100);
-			b8.setText("Join");
+			b7.setText("E J");
 			
 			Font font = new Font("Amoebic", 1, 80);
 			g.setFont(font);
@@ -105,7 +103,7 @@ public class Menu {
 			b5.render(g);
 			b6.render(g);
 			b7.render(g);
-			b8.render(g);
+      
 		} else if (game.gameState == STATE.Help) {// if the user clicks on
 			// "help"
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);

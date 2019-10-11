@@ -27,6 +27,9 @@ public class Spawn1to5 {
 	private int trackerTimer;
 	private int differentEnemies;
 	private Player player;
+	private int randomInt;
+	private int tempRandomInt;
+	private int checkRandomInt;
 	
 	public Spawn1to5(Handler handler, HUD hud, Game game, Player player) {
 		this.handler = handler;
@@ -97,7 +100,7 @@ public class Spawn1to5 {
 				handler.addObject(
 						new EnemyBasic(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 9, 9, ID.EnemyBasic, handler));
 				// add them to the handler, which handles all game objects
-				spawnTimer = 100;// reset the spawn timer
+				spawnTimer = 200;// reset the spawn timer
 			}
 			if (levelTimer == 0) {// level is over
 				handler.clearEnemies();// clear the enemies
@@ -121,18 +124,12 @@ public class Spawn1to5 {
 			}
 			if (spawnTimer == 30) {
 				handler.addObject(
-						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, 1, ID.EnemySweep, handler));
-			} else if (spawnTimer == 20) {
-				handler.addObject(
-						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, -1, ID.EnemySweep, handler));
-			} else if (spawnTimer == 10) {
-				handler.addObject(
 						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, 3, ID.EnemySweep, handler));
 			} else if (spawnTimer == 0) {
 				handler.addObject(
 						new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, -3, ID.EnemySweep, handler));
 				spawnTimer = 80;
-			}
+			} 
 
 			if (levelTimer == 0) {
 				handler.clearEnemies();
@@ -220,6 +217,7 @@ public class Spawn1to5 {
 				levelTimer = 1200;
 				tempCounter++;
 			}
+			
 			if(trackerTimer == 999) {
 				trackerColor = Color.blue;
 			} else if (trackerTimer == 500) {
@@ -228,6 +226,7 @@ public class Spawn1to5 {
 				trackerTimer = 1000;
 			}
 			trackerTimer--;
+			
 			if(spawnTimer == 0) {
 				handler.addObject(
 						new EnemyTracker(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), -5, ID.EnemyTracker, handler, trackerColor, trackerTimer, game));
@@ -306,8 +305,8 @@ public class Spawn1to5 {
 				tempCounter++;
 			}
 			if(spawnTimer == 0) {
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -10, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -10, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
@@ -330,9 +329,9 @@ public class Spawn1to5 {
 				tempCounter++;
 			}
 			if (spawnTimer == 0) {
-				handler.addObject(new EnemyMoveRight(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
-				handler.addObject(new EnemyMoveLeft(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
-				spawnTimer = 25;
+				handler.addObject(new EnemyMoveRight(-35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
+				handler.addObject(new EnemyMoveLeft(Game.WIDTH - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
+				spawnTimer = 60;
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
@@ -400,8 +399,15 @@ public class Spawn1to5 {
 	}
 	
 	public int rand() {
-		return r.nextInt(differentEnemies);
+		randomInt=r.nextInt(differentEnemies);
+		tempRandomInt=randomInt;
+		checkRandomInt=tempRandomInt;
+		if(checkRandomInt==randomInt) {
+			return r.nextInt(differentEnemies);
+		}
+		else{
+			return randomInt;	
+		}
 	}
 
 }
-
