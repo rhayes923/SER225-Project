@@ -142,6 +142,10 @@ public class MouseListener extends MouseAdapter {
 					game.gameState = STATE.Color;
 					handler.addObject(player);
 				}
+				// Enemy Journal Button
+				else if (mouseOver(mx, my, 1000, 450, 200, 100)) {
+					game.gameState = STATE.EnemyJournal;
+				}
 			}
 			// Back Button for Help screen
 			else if (game.gameState == STATE.Help) {
