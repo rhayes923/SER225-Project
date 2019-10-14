@@ -23,6 +23,7 @@ public class HUD {
 	private int level;
 	private boolean regen;
 	private int timer;
+	public static int doublePointsTimer;
 	private int healthBarWidth;
 	private int healthBarModifier;
 	private boolean doubleHealth;
@@ -42,6 +43,7 @@ public class HUD {
 		level = 0;
 		regen = false;
 		timer = 60;
+		doublePointsTimer = 1000;
 		healthBarWidth = 200;
 		healthBarModifier = 2;
 		doubleHealth = false;
@@ -57,7 +59,16 @@ public class HUD {
 
 		greenValue = Game.clamp(greenValue, 0, 255);
 
-		score++;
+		if (!Player.doublePointsActive) {
+			score++;
+		} else {
+			score = score + 2;
+			doublePointsTimer--;
+			if (doublePointsTimer == 0) {
+				Player.doublePointsActive = false;
+				doublePointsTimer = 1000;
+			}
+		}
 
 		if (regen) {// regenerates health if that ability has been unlocked
 			timer--;
@@ -80,7 +91,11 @@ public class HUD {
 
 		g.setFont(font);
 
-		g.drawString("Score: " + score, 15, 115);
+		if (!Player.doublePointsActive) {
+			g.drawString("Score: " + score, 15, 115);
+		} else {
+			g.drawString("Score: " + score + " [2X POINTS] " + doublePointsTimer, 15, 115);
+		}
 		if(game.getGameState() == STATE.Wave || game.getGameState() == STATE.Bosses) {
 			if(level != 101) {
 			g.drawString("Level: " + level, 15, 150);

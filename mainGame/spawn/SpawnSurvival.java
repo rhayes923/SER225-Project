@@ -40,10 +40,12 @@ public class SpawnSurvival {
 		hud.health = 100;
 		hud.setScore(0);
 		hud.setLevel(1);
+		Player.doublePointsActive = false;
+		
 		spawnTimer = 0;
 		r = new Random();
 		//different types of enemies added
-		differentEntities = 13;	
+		differentEntities = 15;	
 		trackerTimer = 1000;
 		trackerColor = Color.blue;
 		count = 0;
@@ -84,7 +86,7 @@ public class SpawnSurvival {
 				//spawns Basic enemy
 				
 				handler.addObject(
-						new EnemyBasic(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 9, 9, ID.EnemyBasic, handler));
+						new EnemyBasic(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50 , r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 9, 9, ID.EnemyBasic, handler));
 				spawnTimer = 0;
 
 			} else if(spawnNum == 1) {
@@ -100,16 +102,16 @@ public class SpawnSurvival {
 				int sweepTemp = (int) (Math.random()*4);
 				if (sweepTemp == 0) {
 					handler.addObject(
-							new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, 1, ID.EnemySweep, handler));
+							new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 15, 1, ID.EnemySweep, handler));
 				} else if (sweepTemp == 1) {
 					handler.addObject(
-							new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, -1, ID.EnemySweep, handler));
+							new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 15, -1, ID.EnemySweep, handler));
 				} else if (sweepTemp == 2) {
 					handler.addObject(
-							new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, 3, ID.EnemySweep, handler));
+							new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 15, 3, ID.EnemySweep, handler));
 				} else if (sweepTemp == 3) {
 					handler.addObject(
-							new EnemySweep(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), 15, -3, ID.EnemySweep, handler));
+							new EnemySweep(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 15, -3, ID.EnemySweep, handler));
 				}
 				spawnTimer = 0;
 
@@ -117,59 +119,78 @@ public class SpawnSurvival {
 				//spawns Smart enemy
 
 				handler.addObject(
-						new EnemySmart(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), -5, ID.EnemySmart, handler));
+						new EnemySmart(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, -5, ID.EnemySmart, handler));
 				spawnTimer = 0;
 
 			} else if(spawnNum == 4) {
 				//spawns Shooter enemy
 
 				handler.addObject(
-						new EnemyShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100,-20, ID.EnemyShooter, this.handler));
+						new EnemyShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100,-20, ID.EnemyShooter, this.handler));
 				spawnTimer = 0;
+        
 			} else if(spawnNum == 5) {
 				//spawns Tracker enemy
 
 				count = 1;
 				handler.addObject(
-						new EnemyTracker(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), -5, ID.EnemyTracker, handler, trackerColor, trackerTimer, game));
+						new EnemyTracker(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, -5, ID.EnemyTracker, handler, trackerColor, trackerTimer, game));
 				spawnTimer = 0;
 			} else if (spawnNum == 6) {
 				//spawns Expansion enemy
 
-				handler.addObject(new EnemyExpand(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyExpand, this.handler));
+				handler.addObject(new EnemyExpand(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyExpand, this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 7) {
 				//spawns Minishooter enemy
 
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -10, ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -10, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -10, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -10, ID.EnemyMiniShooter, this.handler, this.game));
 				spawnTimer = 0;
+        
 			} else if (spawnNum == 8) {
 				//spawns Porcupine enemy
 				
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
 				spawnTimer = 0;
+				
 			} else if (spawnNum == 9) {
-				//spawns Health pickup
-
-				handler.addPickup(new PickupHealth(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.HealthPickup, "images/ham.png", this.handler));
+				//spawns enemy move left and right
+				
+				handler.addObject(new EnemyMoveLeft(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, ID.EnemyMove, this.handler));
+				handler.addObject(new EnemyMoveRight(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, ID.EnemyMove, this.handler));
 				spawnTimer = 0;
+				
 			} else if (spawnNum == 10) {
 				//spawns Health pickup
 
-				handler.addPickup(new PickupSpeed(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.SpeedPickup, "images/ham.png", this.handler));
+				handler.addPickup(new PickupHealth(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupHealth, "images/ham.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 11) {
-				//spawns Health pickup
+				//spawns Speed pickup
 
-				handler.addPickup(new PickupScore(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, ID.ScorePickup, "images/coin.png", this.handler));
+				handler.addPickup(new PickupSpeed(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupSpeed, "images/shoesAreForCasuals.png", this.handler));
 				spawnTimer = 0;
 			} else if (spawnNum == 12) {
-				//spawns enemy move left and right
-				
-				handler.addObject(new EnemyMoveLeft(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
-				handler.addObject(new EnemyMoveRight(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, ID.EnemyMove, this.handler));
+				//spawns Score pickup
+
+				handler.addPickup(new PickupScore(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupScore, "images/coin.png", this.handler));
 				spawnTimer = 0;
+				
+				
+			} else if (spawnNum == 13) {
+				//spawns Double Points pickup
+
+				handler.addPickup(new PickupDoublePoints(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupDoublePoints, "images/doublepoints.png", this.handler));
+				spawnTimer = 0;
+
+		
+			} else if (spawnNum == 14) {
+				//spawns Nuke pickup
+
+				handler.addPickup(new PickupNuke(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupNuke, "images/nuke.png", this.handler));
+				spawnTimer = 0;
+
 			}
 		}
 		spawnTimer++;
@@ -187,5 +208,6 @@ public class SpawnSurvival {
 		hud.health=100;
 		player.resetVel();
 		player.resetLoc();
+		Player.doublePointsActive = false;
 	}
 }

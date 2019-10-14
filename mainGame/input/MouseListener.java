@@ -178,6 +178,7 @@ public class MouseListener extends MouseAdapter {
 					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redGrayShip.png")), null);
 				} else if(mouseOver(mx, my,x+1070, y+75, 125, 125)) {
 					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/greenShip.png")), null);
+//				}  	
 				} else if(mouseOver(mx, my,x+70, y+440, 125, 125)) {
 					player.updateColors(null, new Color(255,255,255,90));
 				} else if(mouseOver(mx, my, x+320, y+440, 125, 125)) {

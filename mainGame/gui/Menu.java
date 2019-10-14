@@ -88,7 +88,8 @@ public class Menu {
 			b5.setText("Help");
 			Button b6 = new Button(450, 450, 350, 100);
 			b6.setText("Quit");
-
+			Button b7 = new Button(850, 150, 350, 100);
+			b7.setText("E J");
 			
 			Font font = new Font("Amoebic", 1, 80);
 			g.setFont(font);
@@ -101,7 +102,8 @@ public class Menu {
 			b4.render(g);
 			b5.render(g);
 			b6.render(g);
-
+			b7.render(g);
+      
 		} else if (game.gameState == STATE.Help) {// if the user clicks on
 			// "help"
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
@@ -143,10 +145,13 @@ public class Menu {
 			g.setFont(font2);
 			g.drawString(" Within Survival, your goal is to survive as long as possible while enemies spawn and try to kill you. Poewr-ups are available",
 					100, 480);
-			g.drawString(" to help you stay alive. If you pick up a ham, you regain health, if you pick up shoes, you earn a light speed boost and if you ",
+			g.drawString(" to help you stay alive. If you pick up a ham, you regain health, if you pick up shoes, you earn a light speed boost, if you ",
 					100, 510);
-			g.drawString("pick up a coin, you earn \"add 1000\" points to your score.", 100, 540);
-			g.drawString("To mute the sound in game press the m key" , 100, 590);
+			g.drawString("pick up a coin, you earn \"add 1000\" points to your score, if you pick up double points, you get double points for a limited ", 
+					100, 540);
+			g.drawString("time, and if you pick up a nuke, all enemies get cleared off of the screen.",
+					100, 570);
+			g.drawString("To mute the sound in game press the m key" , 100, 610);
 			g.setFont(font2);
 			g.setColor(Color.white);
 			g.drawRect(566, 590, 133, 42);
@@ -219,6 +224,32 @@ public class Menu {
 			g.setColor(Color.white);
 			g.drawRect(566, 650, 133, 42);
 			g.drawString("Back", 613, 680);
+		}
+		
+		//if the user clicks on the enemy journal button
+		else if (game.gameState == STATE.EnemyJournal) {
+			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+			handler.render(g);	
+			img = null;
+
+			try {
+				URL imageURL = Game.class.getResource("images/dust-particles.png");
+				img = Toolkit.getDefaultToolkit().getImage(imageURL);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+					
+			Font font = new Font("impact", 1, 33);
+			Font font2 = new Font("impact", 1, 20);
+					
+			g.setFont(font);
+			g.setColor(Color.WHITE);
+			g.drawString("Enemy Journal", 540, 46);
+					
+			g.setFont(font2);
+			g.drawRect(566, 590, 133, 42);
+			g.drawString("Back", 613, 620);
+					
 		}
 	}
 }

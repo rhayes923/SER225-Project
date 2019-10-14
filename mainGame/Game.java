@@ -72,7 +72,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	public enum STATE {
 		Menu, Help, Join, Host, Wave, GameOver, Upgrade, Bosses, Survival, Multiplayer, 
-		Leaderboard, Color, LeaderboardDisplay, Credits, WonWaves
+		Leaderboard, Color, LeaderboardDisplay, Credits, WonWaves, EnemyJournal
 	};
 
 	/**
@@ -114,9 +114,8 @@ public class Game extends Canvas implements Runnable {
 		soundplayer = new SoundPlayer("sounds/main.mp3", true);
 		soundClip = new SoundClip("sounds/damage.mp3", 1.0);
 		soundplayer.start();
-		new Window(WIDTH, HEIGHT, "PlayerKnown's BattleLands", this);
-		colorScreen = new ColorPickerScreen(player, this);
-		
+		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
+		colorScreen = new ColorPickerScreen(player, this);		
 
 		this.op = op;
 		this.addr = addr;
@@ -185,6 +184,22 @@ public class Game extends Canvas implements Runnable {
 	 * health, appearance, etc).
 	 */
 	private void tick() {
+	//	// if the arguments are given, go straight for multiplayer
+	//	if (!op.equals("none")) {
+	//		try {
+	//			spawnMultiplayer.createClient(addr, port);
+	//			if (op.equals("host")) {
+	//				spawnMultiplayer.getClient().host_game(room, pass);
+	//			} else if (op.equals("join")) {
+	//				spawnMultiplayer.getClient().join_game(room, pass);
+	//			}
+	//			gameState = STATE.Multiplayer;
+	//			op = "none";
+	//		} catch (Exception e) {
+	//			gameState = STATE.Menu;
+	//			op = "none";
+	//		}
+	//	}
 
 		if (!isPaused()) { // only tick the game modes and stuff if the game is not paused
 			handler.tick();// ALWAYS TICK HANDLER, NO MATTER IF MENU OR GAME
@@ -259,6 +274,7 @@ public class Game extends Canvas implements Runnable {
 			if (!soundplayer.isPaused())
 				soundplayer.pause();
 		}
+		
 	}
 
 	/**
@@ -298,8 +314,8 @@ public class Game extends Canvas implements Runnable {
 						|| gameState == STATE.Bosses || gameState == STATE.Survival) {
 					// user is playing game, draw game objects
 					hud.render(g);
-				} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Credits) {
-					// user is in help or the menu or the credits, draw the menu and help objects
+				} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Credits || gameState == STATE.EnemyJournal) {
+					// user is in the main menu, help, credits, or enemy journal, draw the menu and help objects
 					menu.render(g);
 				} else if (gameState == STATE.Upgrade) {// user is on the upgrade
 					// screen, draw the upgrade
