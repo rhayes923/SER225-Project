@@ -143,7 +143,7 @@ public class MouseListener extends MouseAdapter {
 					handler.addObject(player);
 				}
 				// Enemy Journal Button
-				else if (mouseOver(mx, my, 1000, 450, 200, 100)) {
+				else if (mouseOver(mx, my, 850, 150, 350, 100)) {
 					game.gameState = STATE.EnemyJournal;
 				}
 			}
@@ -154,6 +154,15 @@ public class MouseListener extends MouseAdapter {
 					return;
 				}
 			}
+			
+			// Back Button for Enemy Journal
+			else if (game.gameState == STATE.EnemyJournal) {
+				if (mouseOver(mx, my, 566, 590, 133, 42)) {
+					game.gameState = STATE.Menu;
+					return;
+				}
+			}
+			
 			// Leaderboard screen
 			else if (game.gameState == STATE.Leaderboard) {
 				if(leaderboard.getUser() != "") {
@@ -164,6 +173,8 @@ public class MouseListener extends MouseAdapter {
 						return;
 					}
 				}
+				
+			//Back button for credits
 			} else if (game.gameState == STATE.Credits) {
 				if (mouseOver(mx, my, 566, 650, 133, 42)) {
 					game.gameState = STATE.Menu;
