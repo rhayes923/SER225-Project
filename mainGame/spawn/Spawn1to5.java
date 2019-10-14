@@ -27,9 +27,7 @@ public class Spawn1to5 {
 	private int trackerTimer;
 	private int differentEnemies;
 	private Player player;
-	private int randomInt;
-	private int tempRandomInt;
-	private int checkRandomInt;
+	private int randIntHolder;
 	
 	public Spawn1to5(Handler handler, HUD hud, Game game, Player player) {
 		this.handler = handler;
@@ -49,6 +47,7 @@ public class Spawn1to5 {
 		trackerColor = Color.blue;
 		trackerTimer = 1000;
 		differentEnemies = 10;
+		randIntHolder = 50;
 		addLevels();
 	}
 
@@ -401,8 +400,23 @@ public class Spawn1to5 {
 		levelTimer = 150;
 		levelsRemaining = 5;
 	}
-	
+		
 	public int rand() {
+		int randomInt = r.nextInt(differentEnemies);
+		if (randIntHolder == randomInt) {
+			randIntHolder = r.nextInt(differentEnemies);
+			while (randIntHolder == randomInt) {
+				randIntHolder = r.nextInt(differentEnemies);
+			}
+			return randIntHolder;
+		}
+		else {
+			randIntHolder = randomInt;
+			return randIntHolder;
+		}
+	}
+	
+	/*public int rand() {
 		randomInt=r.nextInt(differentEnemies);
 		tempRandomInt=randomInt;
 		checkRandomInt=tempRandomInt;
@@ -412,6 +426,6 @@ public class Spawn1to5 {
 		else{
 			return randomInt;	
 		}
-	}
+	}*/
 
 }
