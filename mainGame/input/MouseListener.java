@@ -240,6 +240,7 @@ public class MouseListener extends MouseAdapter {
 				handler.clearEnemies();
 				handler.clearPlayer();
 				handler.pickups.clear();
+				Player.doublePointsActive = false;
 				// These methods reset all of the HUD items
 				hud.setScore(0);
 				hud.updateScoreColor(Color.white);
