@@ -29,7 +29,7 @@ public class BossEye extends GameObject {
 	private int spawnOrder = 1;// make them begin moving from left to right, top to bottom
 	private int placement;// where they are in the 3x3 grid of eyes
 	private double speed;
-	private double[] speedTypes = { -5, -6, -7, -8, -9 };
+	private double[] speedTypes = { -6, -7, -8, -9, -10 };
 	private GameObject player;
 	private Handler handler;
 
