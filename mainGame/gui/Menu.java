@@ -249,7 +249,76 @@ public class Menu {
 			g.setFont(font2);
 			g.drawRect(566, 590, 133, 42);
 			g.drawString("Back", 613, 620);
-					
+			
+			//Enemy Basic
+			g.setColor(Color.red);
+			g.fillRect(100, 100, 11, 11);
+			//Enemy Burst
+			g.setColor(Color.orange);
+			g.fillRect(50, 175, 75, 75);
+			//Enemy Sweep
+			g.setColor(Color.cyan);
+			g.fillRect(100, 290, 16, 16);
+			//Enemy Smart
+			g.setColor(Color.green);
+			g.fillRect(100, 400, 16, 16);
+			//Enemy Shooter
+			g.setColor(Color.yellow);
+			g.fillRect(50, 470, 75, 75);
+			//Enemy Tracker
+			g.setColor(Color.blue);
+			g.fillRect(100, 600, 16, 16);
+			//Enemy Expansion
+			g.setColor(Color.pink);
+			g.fillRect(700, 65, 100, 100);
+			//Enemy Minishooter
+			g.setColor(Color.magenta);
+			g.fillRect(735, 200, 30, 30);
+			//Enemy Porcupine
+			g.setColor(Color.orange);
+			g.fillRect(715, 275, 75, 75);
+			//Enemy LeftRight
+			g.setColor(Color.yellow);
+			g.fillRect(705, 400, 40, 40);
+			g.setColor(Color.blue);
+			g.fillRect(755, 400, 40, 40);
+			
+			//Draw the text
+			g.setFont(font2);
+			g.setColor(Color.white);
+			
+			g.drawString("Basic: An enemy that will move diagonally and bounce off ", 150, 100);
+			g.drawString("of the sides of the screen", 150, 120);
+			
+			g.drawString("Burst: A large enemy that will come from a random direction.", 150, 200);
+			g.drawString("The edge of the screen that it comes from will flash orange ", 150, 220);
+			g.drawString("as a warning", 150, 240);
+			
+			g.drawString("Sweep: An enemy that will sweep side to side across the ", 150, 300);
+			g.drawString("screen and move vertically", 150, 320);
+			
+			g.drawString("Smart: An enemy that will follow the player", 150, 415);
+			
+			g.drawString("Shooter: A large stationary enemy that will shoot ", 150, 500);
+			g.drawString("projectiles at the player", 150, 520);
+			
+			g.drawString("Tracker: An enemy that will follow the player ", 150, 600);
+			g.drawString("but will either be blue or black", 150, 620);
+			
+			g.drawString("Expansion: An enemy that expands in size until ", 825, 100);
+			g.drawString("it eventually fades away", 825, 120);
+			
+			g.drawString("Minishooter: A stationary enemy that is a ", 825, 200);
+			g.drawString("smaller version of the shooter enemy ", 825, 220);
+			g.drawString("that shoots projectiles at the player", 825, 240);
+			
+			g.drawString("Porcupine: A large enemy that will follow the ", 825, 300);
+			g.drawString("player and shoot a large amount of projectiles ", 825, 320);
+			g.drawString("all at once at the player", 825, 340);
+			
+			g.drawString("Left/Right: Two enemies that will move in ", 825, 415);
+			g.drawString("opposite directions", 825, 435);
+			
 		}
 	}
 }
