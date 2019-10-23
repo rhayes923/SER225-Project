@@ -51,7 +51,6 @@ public class Game extends Canvas implements Runnable {
 
 	private WonWaves wonWaves;
 	private SpawnBosses spawnBosses;
-	private SpawnMultiplayer spawnMultiplayer;
 	private JFrame frame;
 	private boolean isPaused = false;
 	private boolean isMusicPlaying = true;
@@ -93,7 +92,6 @@ public class Game extends Canvas implements Runnable {
 		spawner4 = new Spawn15to20(this.handler, this.hud, this, player);
 		spawnSurvival = new SpawnSurvival(this.handler, this.hud, this, player);
 		spawnBosses = new SpawnBosses(this.handler, this.hud, this, this.player);
-		spawnMultiplayer = new SpawnMultiplayer(this.handler, this.hud, this, this.player);
 		menu = new Menu(this, this.handler, this.hud, this.spawner);
 		upgradeScreen = new UpgradeScreen(this, this.handler, this.hud);
 		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawner, this.spawner2, this.spawner3, this.spawner4);
@@ -184,23 +182,6 @@ public class Game extends Canvas implements Runnable {
 	 * health, appearance, etc).
 	 */
 	private void tick() {
-	//	// if the arguments are given, go straight for multiplayer
-	//	if (!op.equals("none")) {
-	//		try {
-	//			spawnMultiplayer.createClient(addr, port);
-	//			if (op.equals("host")) {
-	//				spawnMultiplayer.getClient().host_game(room, pass);
-	//			} else if (op.equals("join")) {
-	//				spawnMultiplayer.getClient().join_game(room, pass);
-	//			}
-	//			gameState = STATE.Multiplayer;
-	//			op = "none";
-	//		} catch (Exception e) {
-	//			gameState = STATE.Menu;
-	//			op = "none";
-	//		}
-	//	}
-
 		if (!isPaused()) { // only tick the game modes and stuff if the game is not paused
 			handler.tick();// ALWAYS TICK HANDLER, NO MATTER IF MENU OR GAME
 			// SCREEN
@@ -238,14 +219,6 @@ public class Game extends Canvas implements Runnable {
 			} else if (gameState == STATE.GameOver) {// game is over, update the
 				// game over screen
 				gameOver.tick();
-			} else if (gameState == STATE.Join) { // entering connection info for MP
-				// TODO: add a connect screen @chieco
-			} else if (gameState == STATE.Host) { // entering connection info for MP
-				// TODO: add a connect screen @chieco
-			} else if (gameState == STATE.Multiplayer) {
-				if (!handler.isMulti()) handler.setMulti(true);
-				// do not use HUD::tick() here, it's used inside the spawner
-				spawnMultiplayer.tick();
 			} else if (gameState == STATE.Bosses) {
 				hud.tick();
 				spawnBosses.tick();
@@ -419,14 +392,6 @@ public class Game extends Canvas implements Runnable {
 		isMusicPlaying = !isMusicPlaying;
 	}
 
-	/**
-	 * Updates the server with the player's position (only in multiplayer).
-	 */
-	public void updatePlayerPosition() {
-		if (gameState == STATE.Multiplayer) {
-			spawnMultiplayer.sendPos();
-		}
-	}
 
 	public void popup(String text) {
 		JOptionPane.showMessageDialog(this, text);

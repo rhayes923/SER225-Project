@@ -19,7 +19,6 @@ public class MouseListener extends MouseAdapter {
 	private Spawn5to10 spawner2;
 	private SpawnSurvival spawnSurvival;
 	private SpawnBosses spawnBosses;
-	private SpawnMultiplayer spawnMulti;
 	private UpgradeScreen upgradeScreen;
 	private Upgrades upgrades;
 	private Player player;
@@ -68,7 +67,6 @@ public class MouseListener extends MouseAdapter {
 					spawnBosses.restart();
 					game.gameState = STATE.Menu;
 				} else if (handler.isMulti()) {
-					spawnMulti.reset();
 					game.gameState = STATE.Menu;
 				}
 			} else if (game.gameState == STATE.WonWaves) {
