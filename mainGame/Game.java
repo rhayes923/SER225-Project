@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable {
 	private SpawnMultiplayer spawnMultiplayer;
 	private JFrame frame;
 	private boolean isPaused = false;
-	private boolean isMusicPlaying = true;
+	public static boolean isMusicPlaying = true;
 	private ColorPickerScreen colorScreen;
 	private LeaderboardDisplay leaderboardDisplay;
 	public String [][] leaderboardList;
@@ -267,13 +267,7 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 
-		if(isMusicPlaying) {
-			if (soundplayer.isPaused())
-				soundplayer.play();
-		} else {
-			if (!soundplayer.isPaused())
-				soundplayer.pause();
-		}
+		SoundPlayer.setVolume();
 		
 	}
 

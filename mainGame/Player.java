@@ -140,7 +140,9 @@ public class Player extends GameObject {
 				// collision code
 				if (getBounds().intersects(tempObject.getBounds())) {// player hit an enemy
 					hud.health -= damage;
-					game.soundClip.play();
+					if (game.isMusicPlaying) {
+						game.soundClip.play();
+					}
 					hud.updateScoreColor(Color.red);
 				}
 
