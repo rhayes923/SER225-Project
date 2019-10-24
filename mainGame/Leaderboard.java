@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 import java.net.URL;
 
 import javax.swing.JPanel;
-import mainGame.net.LBWorker;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import mainGame.gui.*;
@@ -26,7 +25,6 @@ public class Leaderboard extends JPanel {
 	private String user;
 	private Boolean full;
 	private HUD hud;
-	private LBWorker lbworker;
 	public String [][] leaderboard;
 	private int loc;
 	private int userpos = -1;
@@ -52,7 +50,6 @@ public class Leaderboard extends JPanel {
 		}
 		this.leaderboard = leaderboard;
 		this.hud = hud;
-		lbworker = new LBWorker("will.eccles.net", 25565);
 		loc = 0;
 	}
 
@@ -145,9 +142,6 @@ public class Leaderboard extends JPanel {
 	 */
 	public void loadLeaderboard(boolean isMenu) {
 		try {
-			lbworker.exchangeInfo(user, hud.getScore());
-			userpos = lbworker.getUserPosition();
-			scorelist = lbworker.getScoreList();
 			if (scorelist == null) {
 				for (int i = 0; i < 5; i++) {
 					leaderboard[i][0] = "";
