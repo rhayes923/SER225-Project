@@ -174,7 +174,6 @@ public class UpgradeScreen {
 			index2 = (int) (Math.random()*(differentUpgrades));
 			if(paths[index2] == null) {
 				index2 = (int) (Math.random()*(differentUpgrades));
-
 			}
 		}
 		index3 = (int) (Math.random()*(differentUpgrades));

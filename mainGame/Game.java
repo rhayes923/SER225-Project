@@ -168,7 +168,8 @@ public class Game extends Canvas implements Runnable {
 			if (running)
 				render();// 60 times a second, objects are being drawn
 			frames++;
-
+			//System.out.println(frames); DEBUG
+			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				frames = 0;
