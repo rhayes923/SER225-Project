@@ -48,17 +48,17 @@ public class Menu {
 		img2 = null;
 
 		try {
-			URL imageURL = Game.class.getResource("images/dust-particles.png");
+			URL imageURL = Game.class.getResource("images/mainMenu.png");
 			img = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		try {
-			URL imageURL = Game.class.getResource("images/paintbucket.png");
-			img2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			URL imageURL = Game.class.getResource("images/paintbucket.png");
+//			img2 = Toolkit.getDefaultToolkit().getImage(imageURL);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	public void tick() {
 		timer--;
@@ -76,6 +76,13 @@ public class Menu {
 			g.drawImage(img2, 850, 450, 100, 100, null);
 			handler.render(g);
 			
+			try {
+				URL imageURL = Game.class.getResource("images/mainMenu.png");
+				img = Toolkit.getDefaultToolkit().getImage(imageURL);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			Button b1 = new Button(50, 150, 350, 100);
 			b1.setText("Waves");
 			Button b2 = new Button(50, 300, 350, 100);
@@ -86,10 +93,10 @@ public class Menu {
 			b4.setText("Credits");
 			Button b5 = new Button(450, 300, 350, 100);
 			b5.setText("Help");
-			Button b6 = new Button(450, 450, 350, 100);
-			b6.setText("Quit");
-			Button b7 = new Button(850, 150, 350, 100);
-			b7.setText("E J");
+//			Button b6 = new Button(450, 450, 350, 100);
+//			b6.setText("Quit");
+//			Button b7 = new Button(850, 150, 350, 100);
+//			b7.setText("E J");
 			
 			Font font = new Font("Amoebic", 1, 80);
 			g.setFont(font);
@@ -101,8 +108,8 @@ public class Menu {
 			b3.render(g);
 			b4.render(g);
 			b5.render(g);
-			b6.render(g);
-			b7.render(g);
+//			b6.render(g);
+//			b7.render(g);
       
 		} else if (game.gameState == STATE.Help) {// if the user clicks on
 			// "help"
@@ -118,40 +125,54 @@ public class Menu {
 				e.printStackTrace();
 			}
 
-			Font font = new Font("impact", 1, 33);
-			Font font2 = new Font("impact", 1, 20);
+			Font help = new Font("arial black", 1, 50);
+			Font font = new Font("arial black", 1, 24);
+			Font font2 = new Font("arial", 1, 20);
 
-			g.setFont(font);
+			g.setFont(help);
 			g.setColor(Color.WHITE);
-			g.drawString("Help", 600, 46);
-
-			g.drawString("To move the player you use either the arrow keys or the WASD keys.", 100, 100);
+			g.drawString("Help", 550, 70);
+			
 			g.setFont(font);
-			g.drawString("Waves:", 100, 160);
+			g.drawString("Controls:", 100, 130);
 			g.setFont(font2);
-			g.drawString(" In this mode, your goal is to avoid enemies in order to advance levels, every 5th level you will encounter a boss, and ",
-					100, 190);
-			g.drawString(" exactly as the normal levels your goal is to avoid being hit by a boss for a certain period of time to advance a",
-					100, 220);
-			 g.drawString(" level. Upgrades obtained after completing a boss level can be used by pressing the shift key", 100, 250);
+			g.drawString(" Move: WASD or Arrow keys", 100, 160);
+			g.drawString(" ESC: pause", 100, 180);
+			g.drawString(" Shift: use item", 100, 200);
+			g.drawString(" Mute sounds: M " , 100, 220);
+			
 			g.setFont(font);
-			g.drawString("Bosses:", 100, 320);
+			g.drawString("Power-ups(Survival only): ", 900, 130);
 			g.setFont(font2);
-			g.drawString(" Within Bosses, your goal is similar to Waves but instead of having bosses every 5th level, every level will be a boss.",
-					100, 350);
-			g.drawString(" There is an unlimited ammount of bosses so your objective is to obtain the highest score by surviving the longest.", 100, 380);
+			g.drawString(" Ham bone: Increased health", 900, 160);
+			g.drawString(" Shoes: speed boost", 900, 180);
+			g.drawString(" Coin: +1000 points", 900, 200);
+			g.drawString(" x2: double points for a short time", 900, 220);
+			g.drawString(" Nuke: clears the screen", 900, 240);
+			
 			g.setFont(font);
-			g.drawString("Survival:", 100, 450);
+			g.drawString("Waves:", 100, 350);
 			g.setFont(font2);
-			g.drawString(" Within Survival, your goal is to survive as long as possible while enemies spawn and try to kill you. Poewr-ups are available",
-					100, 480);
-			g.drawString(" to help you stay alive. If you pick up a ham, you regain health, if you pick up shoes, you earn a light speed boost, if you ",
-					100, 510);
-			g.drawString("pick up a coin, you earn \"add 1000\" points to your score, if you pick up double points, you get double points for a limited ", 
-					100, 540);
-			g.drawString("time, and if you pick up a nuke, all enemies get cleared off of the screen.",
-					100, 570);
-			g.drawString("To mute the sound in game press the m key" , 100, 610);
+			g.drawString(" Avoid getting hit by the enemies as you", 100, 380);
+			g.drawString(" progress through the various waves", 100, 400);
+			g.drawString(" every 5 levels there will be a boss", 100, 420);
+			g.drawString(" beating the boss will earn you an upgrade", 100, 440);
+			
+			g.setFont(font);
+			g.drawString("Bosses:", 550, 350);
+			g.setFont(font2);
+			g.drawString(" Unlimited waves of bosses,", 550, 380);
+			g.drawString(" avoid getting hit for as long as", 550, 400);
+			g.drawString(" possible", 550, 420);
+	
+			g.setFont(font);
+			g.drawString("Survival:", 900, 350);
+			g.setFont(font2);
+			g.drawString(" Stay alive as long as possible", 900, 380);
+			g.drawString(" enemies will spawn endlessly", 900, 400);
+			g.drawString(" Power-ups will spawn to help you", 900, 420);
+			g.drawString(" stay alive.", 900, 440);
+			
 			g.setFont(font2);
 			g.setColor(Color.white);
 			g.drawRect(566, 590, 133, 42);
@@ -175,51 +196,45 @@ public class Menu {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			try {
-				URL imageURL = Game.class.getResource("images/drawing.png");
-				raytracing = Toolkit.getDefaultToolkit().getImage(imageURL);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				URL imageURL = Game.class.getResource("images/hoffmanpic.jpg");
-				hoffmanpic = Toolkit.getDefaultToolkit().getImage(imageURL);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+//			try {
+//				URL imageURL = Game.class.getResource("images/drawing.png");
+//				raytracing = Toolkit.getDefaultToolkit().getImage(imageURL);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			try {
+//				URL imageURL = Game.class.getResource("images/hoffmanpic.jpg");
+//				hoffmanpic = Toolkit.getDefaultToolkit().getImage(imageURL);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			
 			
-			Font font = new Font("impact", 1, 33);
-			Font font2 = new Font("impact", 1, 20);
+			Font font = new Font("arial black", 1, 33);
+			Font font2 = new Font("arial", 1, 20);
 
 			g.setFont(font);
 			g.setColor(Color.WHITE);
-			g.drawString("Credits", 575, 46);
+			g.drawString("Credits", 550, 70);
 
-			g.drawString("Team A1 - Can be found spending their hackathon prize money online.", 100, 100);
+			g.drawString("Team B2: Lego Kit Fisto", 420, 130);
+			
 			g.setFont(font);
-			g.drawString("Team Members:", 100, 160);
+			g.drawString("Team Managers:", 100, 200);
 			g.setFont(font2);
-						
-			g.drawString("Massimo \"Srum Master\" Angelillo - Huge fan of computer architecture class", 100, 190);
-			g.drawString("Can be found at home working on his ray tracing project in scala ---------------------------------->", 100, 220);
-						
-			g.drawString("Kevin \"Git-Master\" Sangurima - Can't wait for SSBU to come out", 100, 275);
-			g.drawString("Can be found in his room trying to learn new programming languages", 100, 305);
-						
-			g.drawString("Matthew \"The Quite One\" Crawford - Always came in clutch in the last minute", 100, 360);
-			g.drawString("Can be found getting a new computer", 100, 390);
-						
-			g.drawString("Charles \"The Drifting Wind/Team A1's Manager\" Zhu - Best manager a team could have", 100, 445);
-			g.drawString("Can be found enjoying his new car in QU's north lot", 100, 475);
-						
-			g.drawString("Mike Medvedev - Trying to record songs professionally", 100, 530);
-			g.drawString("Can be found in his room playing the guitar", 100, 560);
+			g.drawString("Kyle Gorman", 100, 230);
+			g.drawString("Will Eccles", 100, 250);
 			
-			g.drawString("Professor Hoffman - \"I LOVE CHARTS AND TABLES!!\"", 100, 615);
-			g.drawString("Thanks to: Matt Chieco, Will Eccles, Julio Argueta, Kyle Gorman, and Eamon Duffy for working ", 100, 640);
-			g.drawString("on this project the previous semester", 100, 665);
+			g.setFont(font);
+			g.drawString("Team Members:", 100, 300);
 			
+			g.setFont(font2);
+			g.drawString("Will Varsalona: Srum Master, Art and UI", 100, 330);				
+			g.drawString("Ryan: Sangurima: Programming and bug fixing", 100, 350);						
+			g.drawString("Henry: Level Balancing and bug fixing", 100, 370);			
+			g.drawString("Neel Bains: Programming and bug fixing", 100, 390);			
+			g.drawString("Rishi Parikh: Programming and Bug fixing", 100, 410);
+	
 			
 			g.setColor(Color.white);
 			g.drawRect(566, 650, 133, 42);
@@ -239,8 +254,8 @@ public class Menu {
 				e.printStackTrace();
 			}
 					
-			Font font = new Font("impact", 1, 33);
-			Font font2 = new Font("impact", 1, 20);
+			Font font = new Font("arial black", 1, 33);
+			Font font2 = new Font("arial", 1, 20);
 					
 			g.setFont(font);
 			g.setColor(Color.WHITE);

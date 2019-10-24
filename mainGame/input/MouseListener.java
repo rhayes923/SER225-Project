@@ -133,17 +133,17 @@ public class MouseListener extends MouseAdapter {
 					game.gameState = STATE.Help;
 				}
 				// Quit Button
-				else if (mouseOver(mx, my, 450, 450, 350, 100)) {
+				else if (mouseOver(mx, my, 350, 400, 295, 125)) {
 					System.exit(1);
 				}
 				// Color Picker Mode
-				else if (mouseOver(mx, my, 850, 450, 100, 100)) {
+				else if (mouseOver(mx, my, 830, 200, 280, 160)) {
 					handler.object.clear();
 					game.gameState = STATE.Color;
 					handler.addObject(player);
 				}
 				// Enemy Journal Button
-				else if (mouseOver(mx, my, 850, 150, 350, 100)) {
+				else if (mouseOver(mx, my, 600, 450, 290, 85)) {
 					game.gameState = STATE.EnemyJournal;
 				}
 			}
