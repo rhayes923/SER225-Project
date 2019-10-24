@@ -229,8 +229,8 @@ public class Menu {
 			g.drawString("Team Members:", 100, 300);
 			
 			g.setFont(font2);
-			g.drawString("Will Varsalona: Srum Master, Art and UI", 100, 330);				
-			g.drawString("Ryan: Sangurima: Programming and bug fixing", 100, 350);						
+			g.drawString("Will Varsalona: Scrum Master, Art and UI", 100, 330);				
+			g.drawString("Ryan: Programming and bug fixing", 100, 350);						
 			g.drawString("Henry: Level Balancing and bug fixing", 100, 370);			
 			g.drawString("Neel Bains: Programming and bug fixing", 100, 390);			
 			g.drawString("Rishi Parikh: Programming and Bug fixing", 100, 410);
