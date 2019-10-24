@@ -230,10 +230,10 @@ public class Menu {
 			
 			g.setFont(font2);
 			g.drawString("Will Varsalona: Scrum Master, Art and UI", 100, 330);				
-			g.drawString("Ryan: Programming and bug fixing", 100, 350);						
-			g.drawString("Henry: Level Balancing and bug fixing", 100, 370);			
-			g.drawString("Neel Bains: Programming and bug fixing", 100, 390);			
-			g.drawString("Rishi Parikh: Programming and Bug fixing", 100, 410);
+			g.drawString("Ryan Hayes: Programming and Bug Fixing", 100, 350);						
+			g.drawString("Henry Staunton: Level Balancing and Bug Fixing", 100, 370);			
+			g.drawString("Neel Bains: Programming and Bug Fixing", 100, 390);			
+			g.drawString("Rishi Parikh: Programming and Bug Fixing", 100, 410);
 	
 			
 			g.setColor(Color.white);
