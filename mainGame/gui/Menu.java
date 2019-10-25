@@ -255,7 +255,7 @@ public class Menu {
 			}
 					
 			Font font = new Font("arial black", 1, 33);
-			Font font2 = new Font("arial", 1, 20);
+			Font font2 = new Font("arial", 1, 18);
 					
 			g.setFont(font);
 			g.setColor(Color.WHITE);
@@ -317,7 +317,7 @@ public class Menu {
 			g.drawString("Shooter: A large stationary enemy that will shoot ", 150, 500);
 			g.drawString("projectiles at the player", 150, 520);
 			
-			g.drawString("Tracker: An enemy that will follow the player ", 150, 600);
+			g.drawString("Tracker: An enemy that will follow the player", 150, 600);
 			g.drawString("but will either be blue or black", 150, 620);
 			
 			g.drawString("Expansion: An enemy that expands in size until ", 825, 100);
