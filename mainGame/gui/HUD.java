@@ -33,6 +33,7 @@ public class HUD {
 	private int extraLives;
 	public Game game;
 	private Handler handler;
+	private double levelTimer;
 	
 	public HUD(Game game, Handler handler) {
 		this.game = game;
@@ -67,6 +68,13 @@ public class HUD {
 			if (doublePointsTimer == 0) {
 				Player.doublePointsActive = false;
 				doublePointsTimer = 1000;
+			}
+		}
+		
+		if (level != 101) {
+			levelTimer = levelTimer - .016666666;
+			if (Math.ceil(levelTimer) == -1) {
+				levelTimer = 19;
 			}
 		}
 
