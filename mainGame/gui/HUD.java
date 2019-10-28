@@ -99,6 +99,8 @@ public class HUD {
 
 		g.setFont(font);
 
+		g.drawString("Time left: " + (int)Math.ceil(levelTimer), 15, 215);
+		
 		if (!Player.doublePointsActive) {
 			g.drawString("Score: " + score, 15, 115);
 		} else {
