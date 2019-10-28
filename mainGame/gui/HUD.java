@@ -52,6 +52,7 @@ public class HUD {
 		abilityUses = 0;
 		scoreColor = Color.white;
 		extraLives = 0;
+		levelTimer = 22;
 	}
 	public void tick() {
 		health = Game.clamp(health, 0, health);
