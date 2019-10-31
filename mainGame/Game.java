@@ -284,7 +284,7 @@ public class Game extends Canvas implements Runnable {
 			}
 			Graphics g = bs.getDrawGraphics();
 
-			///////// Draw things below this/////////////
+			///////// Draw things below this /////////
 
 			if (gameState == STATE.Wave || gameState == STATE.Bosses || gameState == STATE.Survival) {
 				if (spaceYValue > HEIGHT) {
