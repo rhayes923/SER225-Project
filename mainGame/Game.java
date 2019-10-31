@@ -298,7 +298,6 @@ public class Game extends Canvas implements Runnable {
 				g.fillRect(0, 0, WIDTH, HEIGHT);
 			}
 			
-
 			// SCREEN
 			if (!isPaused()) {
 				if (gameState == STATE.Wave || gameState == STATE.Multiplayer 
