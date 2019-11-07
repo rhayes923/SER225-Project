@@ -19,29 +19,33 @@ public class EnemyPorcupine extends GameObject {
 	private int sizeX;
 	private int sizeY;
 	private int size;
-	private int timer;
+	private int updateTimer;
+	private int shootTimer;
 	private GameObject player;
 	private int speed;
 	private double bulletVelX;
 	private double bulletVelY;
 	private int bulletSpeed;
+	private int fireRate;
 	private double distance;
 	private double diffX;
 	private double diffY;
 	private Game game;
 
 	public EnemyPorcupine(double x, double y, int sizeX, int sizeY, ID id, 
-			Handler handler, int speed, int bulletSpeed, Game game) {
+			Handler handler, int speed, int bulletSpeed, int fireRate, Game game) {
 		super(x, y, id);
 		this.handler = handler;
 		this.velX = 0;
 		this.velY = 0;
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
-		this.timer = 60;
+		this.updateTimer = 60;
+		this.shootTimer = 60;
 		this.speed = speed;
 		this.size = sizeX;
 		this.bulletSpeed = bulletSpeed;
+		this.fireRate = fireRate;
 		this.game = game;
 
 		for (int i = 0; i < handler.object.size(); i++) {
@@ -75,13 +79,16 @@ public class EnemyPorcupine extends GameObject {
 
 		move();
 
-		timer--;
-		if (timer <= 0) {
+		updateTimer--;
+		shootTimer--;
+		if (shootTimer <= 0) {
 			shoot();
-			if(this.game.gameState == STATE.Survival) {
+			shootTimer = this.fireRate;
+		}
+		if(updateTimer <= 0) {
+			if(this.game.gameState == STATE.Survival)
 				updateEnemy();
-			}
-			timer = 10;
+			updateTimer = 10;
 		}
 
 	}
