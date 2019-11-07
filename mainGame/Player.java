@@ -166,7 +166,6 @@ public class Player extends GameObject {
 				if( getBounds().intersects(tempObject.getBounds()) && count > 120) {
 					hud.health -= damage;
 				}
-
 			}
 
 			if (tempObject.getId() == ID.BossEye) {
