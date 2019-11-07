@@ -146,6 +146,7 @@ public class MouseListener extends MouseAdapter {
 					game.gameState = STATE.Wave;
 					handler.object.clear();
 					handler.addObject(player);
+					
 				} //bosses button	
 				else if (mouseOver(mx, my, 495, 230, 290, 145)) {
 						handler.object.clear();
