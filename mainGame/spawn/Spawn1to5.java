@@ -169,7 +169,7 @@ public class Spawn1to5 {
 		} else if (levelNumber == 3) {
 			levelTimer--;
 			if (tempCounter < 1) {
-				handler.addObject(new EnemyShooter(r.nextInt(Game.WIDTH) - 100, r.nextInt(Game.HEIGHT) -100, 100, 100, -22+(levelsRemaining*3), ID.EnemyShooter, this.handler));
+				handler.addObject(new EnemyShooter(r.nextInt(Game.WIDTH) - 100, r.nextInt(Game.HEIGHT) -100, 100, 100, -25+(levelsRemaining*3), 10+(levelsRemaining*2), ID.EnemyShooter, this.handler));
 				levelTimer = 1200;
 				tempCounter++;
 			}
@@ -280,9 +280,9 @@ public class Spawn1to5 {
 				tempCounter++;
 			}
 			if(spawnTimer == 0) {
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15+(levelsRemaining*2), ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15+(levelsRemaining*2), ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -15+(levelsRemaining*2), ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -5, 20+(levelsRemaining*5), ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -5, 20+(levelsRemaining*5), ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 75, 75, -5, 20+(levelsRemaining*5), ID.EnemyMiniShooter, this.handler, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;
@@ -305,8 +305,8 @@ public class Spawn1to5 {
 				tempCounter++;
 			}
 			if(spawnTimer == 0) {
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -15+(levelsRemaining*2), this.game));
-				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -15+(levelsRemaining*2), this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -15+(levelsRemaining*2), 10, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(Game.WIDTH) - 35, r.nextInt(Game.HEIGHT) - 75, 100, 100, ID.EnemyPorcupine, this.handler, -1, -15+(levelsRemaining*2), 10, this.game));
 			}
 			if (levelTimer == 0) {
 				tempCounter = 0;

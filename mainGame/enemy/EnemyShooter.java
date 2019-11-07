@@ -18,22 +18,26 @@ public class EnemyShooter extends GameObject {
 	private Handler handler;
 	private int sizeX;
 	private int sizeY;
-	private int timer;
+	private int updateTimer;
+	private int shootTimer;
 	private GameObject player;
 	private GameObject opponent;
 	private double bulletVelX;
 	private double bulletVelY;
 	private int bulletSpeed;
+	private int fireRate;
 
-	public EnemyShooter(double x, double y, int sizeX, int sizeY, int bulletSpeed, ID id, Handler handler) {
+	public EnemyShooter(double x, double y, int sizeX, int sizeY, int bulletSpeed, int fireRate, ID id, Handler handler) {
 		super(Game.clampX(x, sizeX + 1), Game.clampY(y, sizeY + 1), id);
 		this.handler = handler;
 		this.velX = 0;
 		this.velY = 0;
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
-		this.timer = 60;
+		this.updateTimer = 60;
+		this.shootTimer = 60;
 		this.bulletSpeed = bulletSpeed;
+		this.fireRate = fireRate;
 
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player)
@@ -46,12 +50,16 @@ public class EnemyShooter extends GameObject {
 
 	@Override
 	public void tick() {
-		timer--;
+		updateTimer--;
+		shootTimer--;
 		handler.addObject(new Trail(x, y, ID.Trail, Color.yellow, this.sizeX, this.sizeY, 0.025, this.handler));
-		if (timer <= 0) {
+		if (shootTimer <= 0) {
 			shoot();
+			shootTimer = fireRate;
+		}
+		if (updateTimer <= 0) {
 			updateEnemy();
-			timer = 10;
+			updateTimer = 10;
 		}
 	}
 
@@ -65,7 +73,7 @@ public class EnemyShooter extends GameObject {
 		bulletVelX = ((this.bulletSpeed / distance) * diffX); // numerator affects speed of enemy
 		bulletVelY = ((this.bulletSpeed / distance) * diffY);// numerator affects speed of enemy
 
-		handler.addObject(new EnemyShooterBullet(this.x, this.y, bulletVelX, bulletVelY, ID.EnemyShooterBullet, this.handler, Color.yellow));
+		handler.addObject(new EnemyShooterBullet(this.x+(this.sizeX/2), this.y+(this.sizeY/2), bulletVelX, bulletVelY, ID.EnemyShooterBullet, this.handler, Color.yellow));
 
 		if (handler.isMulti()) {
 			diffX = this.x - opponent.getX() - 16;

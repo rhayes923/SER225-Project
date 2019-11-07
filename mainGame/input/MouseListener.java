@@ -158,7 +158,8 @@ public class MouseListener extends MouseAdapter {
 					handler.object.clear();
 					game.gameState = STATE.Survival;
 					handler.addObject(player);
-				}//back button for game mode screen
+				}
+				//back button for game mode screen
 				
 				else if (mouseOver(mx, my, 566, 590, 133, 42)) {
 					game.gameState = STATE.Menu;
