@@ -3,7 +3,10 @@ package mainGame;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
+import java.net.URL;
 import java.awt.Dimension;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.JFrame;
@@ -46,7 +49,7 @@ public class Game extends Canvas implements Runnable {
 	private PauseMenu pauseMenu;
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
-	public SoundClip soundClip;
+	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound;
 	private Leaderboard leaderboard;
 
 	private WonWaves wonWaves;
@@ -57,7 +60,9 @@ public class Game extends Canvas implements Runnable {
 	private ColorPickerScreen colorScreen;
 	private LeaderboardDisplay leaderboardDisplay;
 	public String [][] leaderboardList;
-
+	private Image spaceBackground1, spaceBackground2;
+	private int spaceYValue = 0;
+	
 
 	/* NOBODY TOUCH THESE VARS, THEY ARE FOR TESTING NETWORKING */
 	private String op;
@@ -110,10 +115,24 @@ public class Game extends Canvas implements Runnable {
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		JFXPanel jfxp = new JFXPanel(); // trust
 		soundplayer = new SoundPlayer("sounds/main.mp3", true);
-		soundClip = new SoundClip("sounds/damage.mp3", 1.0);
+		damageSound = new SoundClip("sounds/damage.mp3", 1.0);
+		healthSound = new SoundClip("sounds/health.mp3", 1.0);
+		speedSound = new SoundClip("sounds/speed.mp3", 1.0);
+		scoreSound = new SoundClip("sounds/points.mp3", 1.0);
+		dpSound = new SoundClip("sounds/doublepoints.mp3", 1.0);
+		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
+		
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
-		colorScreen = new ColorPickerScreen(player, this);		
+		colorScreen = new ColorPickerScreen(player, this);	
+		
+		try {
+			URL imgURL = Game.class.getResource("images/space.jpg");
+			spaceBackground1 = Toolkit.getDefaultToolkit().getImage(imgURL);
+			spaceBackground2 = Toolkit.getDefaultToolkit().getImage(imgURL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		this.op = op;
 		this.addr = addr;
@@ -271,11 +290,20 @@ public class Game extends Canvas implements Runnable {
 			}
 			Graphics g = bs.getDrawGraphics();
 
-			///////// Draw things below this/////////////
+			///////// Draw things below this /////////
 
-			g.setColor(Color.black);
-			g.fillRect(0, 0, WIDTH, HEIGHT);
-
+			if (gameState == STATE.Wave || gameState == STATE.Bosses || gameState == STATE.Survival) {
+				if (spaceYValue > HEIGHT) {
+					spaceYValue = 0;
+				}
+				g.drawImage(spaceBackground1, 0, spaceYValue, WIDTH, HEIGHT, null);
+				g.drawImage(spaceBackground2, 0, spaceYValue - HEIGHT, WIDTH, HEIGHT, null);
+				spaceYValue++;
+			} else {
+				g.setColor(Color.black);
+				g.fillRect(0, 0, WIDTH, HEIGHT);
+			}
+			
 			// SCREEN
 			if (!isPaused()) {
 				if (gameState == STATE.Wave || gameState == STATE.Multiplayer 
