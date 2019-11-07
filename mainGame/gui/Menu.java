@@ -53,12 +53,7 @@ public class Menu {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		try {
-//			URL imageURL = Game.class.getResource("images/paintbucket.png");
-//			img2 = Toolkit.getDefaultToolkit().getImage(imageURL);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+
 	}
 	public void tick() {
 		timer--;
@@ -83,39 +78,11 @@ public class Menu {
 				e.printStackTrace();
 			}
 			
-			Button b1 = new Button(50, 150, 350, 100);
-			b1.setText("Waves");
-			Button b2 = new Button(50, 300, 350, 100);
-			b2.setText("Bosses");
-			Button b3 = new Button(50, 450, 350, 100);
-			b3.setText("Survival");
-			Button b4 = new Button(450, 150, 350, 100);
-			b4.setText("Credits");
-			Button b5 = new Button(450, 300, 350, 100);
-			b5.setText("Help");
-//			Button b6 = new Button(450, 450, 350, 100);
-//			b6.setText("Quit");
-//			Button b7 = new Button(850, 150, 350, 100);
-//			b7.setText("E J");
-			
-			Font font = new Font("Amoebic", 1, 80);
-			g.setFont(font);
-			g.setColor(Color.WHITE);
-			g.drawString("Unknown Battleland", 200, 100);
-			
-			b1.render(g);
-			b2.render(g);
-			b3.render(g);
-			b4.render(g);
-			b5.render(g);
-//			b6.render(g);
-//			b7.render(g);
       
 		} else if (game.gameState == STATE.Help) {// if the user clicks on
 			// "help"
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 			handler.render(g);
-
 			img = null;
 
 			try {
@@ -196,18 +163,7 @@ public class Menu {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//			try {
-//				URL imageURL = Game.class.getResource("images/drawing.png");
-//				raytracing = Toolkit.getDefaultToolkit().getImage(imageURL);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			try {
-//				URL imageURL = Game.class.getResource("images/hoffmanpic.jpg");
-//				hoffmanpic = Toolkit.getDefaultToolkit().getImage(imageURL);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
+
 			
 			
 			Font font = new Font("arial black", 1, 33);
@@ -334,6 +290,24 @@ public class Menu {
 			g.drawString("Left/Right: Two enemies that will move in ", 825, 415);
 			g.drawString("opposite directions", 825, 435);
 			
+		} else if (game.gameState == STATE.gameMode) {
+			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+			handler.render(g);	
+			img = null;
+			
+			try {
+				URL imageURL = Game.class.getResource("images/gameModeMenu.png");
+				img = Toolkit.getDefaultToolkit().getImage(imageURL);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Font font2 = new Font("arial", 1, 33);
+			
+			g.setFont(font2);
+			g.setColor(Color.white);
+			g.drawRect(566, 590, 133, 42);
+			g.drawString("Back", 595, 620);
 		}
 	}
 }
