@@ -141,7 +141,7 @@ public class Player extends GameObject {
 				if (getBounds().intersects(tempObject.getBounds())) {// player hit an enemy
 					hud.health -= damage;
 					if (game.isMusicPlaying) {
-						game.soundClip.play();
+						game.damageSound.play();
 					}
 					hud.updateScoreColor(Color.red);
 				}
@@ -152,7 +152,7 @@ public class Player extends GameObject {
 				// boss starts moving
 				if (this.y <= 96 && tempObject.isMoving) {
 					hud.health -= 2;
-					game.soundClip.play();
+					game.damageSound.play();
 					hud.updateScoreColor(Color.red);
 				}
 
@@ -184,6 +184,9 @@ public class Player extends GameObject {
 			if (tempPickup.getId() == ID.PickupHealth) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					if(hud.getHealthMax() - hud.health > 25) {
+						if (game.isMusicPlaying) {
+							game.healthSound.play();
+						}
 						hud.health += 25;
 					} else {
 						hud.health = hud.getHealthMax();
@@ -192,16 +195,25 @@ public class Player extends GameObject {
 				}
 			} else if (tempPickup.getId() == ID.PickupSpeed) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.speedSound.play();
+					}
 					playerSpeed += 1;
 					handler.removePickup(tempPickup);
 				}
 			} else if (tempPickup.getId() == ID.PickupScore) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.scoreSound.play();
+					}
 					hud.setScore(hud.getScore()+1000);
 					handler.removePickup(tempPickup);
 				}
 			} else if (tempPickup.getId() == ID.PickupDoublePoints) {
 				if (getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.dpSound.play();
+					}
 					if (doublePointsActive = true) {
 						HUD.doublePointsTimer = 1000;
 					} else {
@@ -211,6 +223,9 @@ public class Player extends GameObject {
 				}
 			} else if (tempPickup.getId() == ID.PickupNuke) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.nukeSound.play();
+					}
 					handler.clearEnemies();
 					handler.removePickup(tempPickup);
 				}
