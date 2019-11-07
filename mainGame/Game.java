@@ -49,7 +49,7 @@ public class Game extends Canvas implements Runnable {
 	private PauseMenu pauseMenu;
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
-	public SoundClip soundClip;
+	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound;
 	private Leaderboard leaderboard;
 
 	private WonWaves wonWaves;
@@ -115,7 +115,13 @@ public class Game extends Canvas implements Runnable {
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		JFXPanel jfxp = new JFXPanel(); // trust
 		soundplayer = new SoundPlayer("sounds/main.mp3", true);
-		soundClip = new SoundClip("sounds/damage.mp3", 1.0);
+		damageSound = new SoundClip("sounds/damage.mp3", 1.0);
+		healthSound = new SoundClip("sounds/health.mp3", 1.0);
+		speedSound = new SoundClip("sounds/speed.mp3", 1.0);
+		scoreSound = new SoundClip("sounds/points.mp3", 1.0);
+		dpSound = new SoundClip("sounds/doublepoints.mp3", 1.0);
+		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
+		
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
 		colorScreen = new ColorPickerScreen(player, this);	
