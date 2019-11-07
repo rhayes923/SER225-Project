@@ -11,7 +11,7 @@ import mainGame.gui.*;
 
 public class Spawn1to5 {
 
-	public static int LEVEL_SET = 2;
+	public static int LEVEL_SET = 1;
 	private Handler handler;
 	private HUD hud;
 	private Game game;

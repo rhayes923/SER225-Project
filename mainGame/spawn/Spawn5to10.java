@@ -50,7 +50,7 @@ public class Spawn5to10 {
 		levelTimer = 150;
 		levelsLeft = 5;
 		tempCounter = 0;
-		levelNumber = 8;
+		levelNumber = -1;
 		trackerColor = Color.blue;
 		trackerTimer = 1000;
 		differentEnemies = 9;
