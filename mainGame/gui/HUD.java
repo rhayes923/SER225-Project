@@ -34,6 +34,7 @@ public class HUD {
 	public Game game;
 	private Handler handler;
 	private double levelTimer;
+	private double leveTimer2;
 	
 	public HUD(Game game, Handler handler) {
 		this.game = game;
@@ -72,7 +73,9 @@ public class HUD {
 			}
 		}
 		
-		if (level != 101) {
+		if (level == 101) {
+			levelTimer = 23;
+		} else {
 			levelTimer = levelTimer - .016666666;
 			if (Math.ceil(levelTimer) == -1) {
 				levelTimer = 19;
