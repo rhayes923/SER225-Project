@@ -183,10 +183,10 @@ public class Player extends GameObject {
 
 			if (tempPickup.getId() == ID.PickupHealth) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.healthSound.play();
+					}
 					if(hud.getHealthMax() - hud.health > 25) {
-						if (game.isMusicPlaying) {
-							game.healthSound.play();
-						}
 						hud.health += 25;
 					} else {
 						hud.health = hud.getHealthMax();
