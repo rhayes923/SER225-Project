@@ -75,7 +75,7 @@ public class Game extends Canvas implements Runnable {
 	 * Used to switch between each of the screens shown to the user
 	 */
 	public enum STATE {
-		Menu, Help, Join, Host, Wave, GameOver, Upgrade, Bosses, Survival, Multiplayer, 
+		Menu, gameMode, Help, Join, Host, Wave, GameOver, Upgrade, Bosses, Survival, Multiplayer, 
 		Leaderboard, Color, LeaderboardDisplay, Credits, WonWaves, EnemyJournal
 	};
 
@@ -310,7 +310,7 @@ public class Game extends Canvas implements Runnable {
 						|| gameState == STATE.Bosses || gameState == STATE.Survival) {
 					// user is playing game, draw game objects
 					hud.render(g);
-				} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Credits || gameState == STATE.EnemyJournal) {
+				} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Credits || gameState == STATE.EnemyJournal || gameState == STATE.gameMode) {
 					// user is in the main menu, help, credits, or enemy journal, draw the menu and help objects
 					menu.render(g);
 				} else if (gameState == STATE.Upgrade) {// user is on the upgrade

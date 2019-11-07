@@ -103,51 +103,64 @@ public class MouseListener extends MouseAdapter {
 			}
 
 			else if (game.gameState == STATE.Menu) {
-				// Waves Button
-				if (mouseOver(mx, my, 50, 150, 350, 100)) {
-					handler.object.clear();
-					game.gameState = STATE.Wave;
-					handler.addObject(player);
-				}
-				// Bosses Mode
-				else if (mouseOver(mx, my, 50, 300, 350, 100)) {
-					handler.object.clear();
-					game.gameState = STATE.Bosses;
-					handler.addObject(player);
-				}
-				// Survival Mode
-				else if (mouseOver(mx, my, 50, 450, 350, 100)) {
-					hud.setScore(0);
-					handler.object.clear();
-					game.gameState = STATE.Survival;
-					handler.addObject(player);
-				}
+
 				// Credits Button
-				else if (mouseOver(mx, my, 450, 150, 350, 100)) {
+				 if (mouseOver(mx, my, 680, 400, 290, 145)) {
 					game.gameState = STATE.Credits;
+					
 				} 
 				// Help Button
-				else if (mouseOver(mx, my, 450, 300, 350, 100)) {
+				else if (mouseOver(mx, my, 300, 400, 290, 145 )) {
 					game.gameState = STATE.Help;
 				}
 				// Quit Button
-				else if (mouseOver(mx, my, 350, 400, 295, 125)) {
+				else if (mouseOver(mx, my, 475, 535, 290, 145)) {
 					System.exit(1);
 				}
 				// Color Picker Mode
-				else if (mouseOver(mx, my, 830, 200, 280, 160)) {
+				else if (mouseOver(mx, my, 840, 215, 290, 145)) {
 					handler.object.clear();
 					game.gameState = STATE.Color;
 					handler.addObject(player);
 				}
 				// Enemy Journal Button
-				else if (mouseOver(mx, my, 600, 450, 290, 85)) {
+				else if (mouseOver(mx, my, 495, 215, 290, 145)) {
 					game.gameState = STATE.EnemyJournal;
 				}
+				//Play button
+				else if(mouseOver(mx, my, 150, 215, 290, 145)) {
+					game.gameState = STATE.gameMode;
+				}
+				
 			}
 			// Back Button for Help screen
 			else if (game.gameState == STATE.Help) {
 				if (mouseOver(mx, my, 566, 590, 133, 42)) {
+					game.gameState = STATE.Menu;
+					return;
+				}
+			}
+			else if (game.gameState == STATE.gameMode) {
+				//waves button
+				if (mouseOver(mx,my, 80, 230, 290, 145 )) {
+					game.gameState = STATE.Wave;
+					handler.object.clear();
+					handler.addObject(player);
+					
+				} //bosses button	
+				else if (mouseOver(mx, my, 495, 230, 290, 145)) {
+						handler.object.clear();
+						game.gameState = STATE.Bosses;
+						handler.addObject(player);
+				}
+				else if (mouseOver(mx, my, 890, 230, 290, 145)) {
+					hud.setScore(0);
+					handler.object.clear();
+					game.gameState = STATE.Survival;
+					handler.addObject(player);
+				}//back button for game mode screen
+				
+				else if (mouseOver(mx, my, 566, 590, 133, 42)) {
 					game.gameState = STATE.Menu;
 					return;
 				}
