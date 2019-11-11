@@ -36,9 +36,7 @@ public class Spawn5to10 {
 	private int trackerTimer;
 	private int differentEnemies;
 	private Player player;
-	private int randomInt;
-	private int tempRandomInt;
-	private int checkRandomInt;
+	private int randIntHolder;
 	
 	public Spawn5to10(Handler handler, HUD hud, Spawn1to5 spawner, Game game, Player player) {
 		restart();
@@ -56,6 +54,7 @@ public class Spawn5to10 {
 		differentEnemies = 9;
 		addLevels();
 		this.player = player;
+		randIntHolder = 50;
 	}
 
 	public void addLevels() {
@@ -378,14 +377,17 @@ public class Spawn5to10 {
 	}
 	
 	public int rand() {
-		randomInt=r.nextInt(differentEnemies);
-		tempRandomInt=randomInt;
-		checkRandomInt=tempRandomInt;
-		if(checkRandomInt==randomInt) {
-			return r.nextInt(differentEnemies);
+		int randomInt = r.nextInt(differentEnemies);
+		if (randIntHolder == randomInt) {
+			randIntHolder = r.nextInt(differentEnemies);
+			while (randIntHolder == randomInt) {
+				randIntHolder = r.nextInt(differentEnemies);
+			}
+			return randIntHolder;
 		}
-		else{
-			return randomInt;	
+		else {
+			randIntHolder = randomInt;
+			return randIntHolder;
 		}
 	}
 
