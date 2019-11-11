@@ -62,7 +62,6 @@ public class Game extends Canvas implements Runnable {
 	public String [][] leaderboardList;
 	private Image spaceBackground1, spaceBackground2;
 	private int spaceYValue = 0;
-	
 
 	/* NOBODY TOUCH THESE VARS, THEY ARE FOR TESTING NETWORKING */
 	private String op;
@@ -111,6 +110,7 @@ public class Game extends Canvas implements Runnable {
 				this.upgrades, leaderboard, this.spawnBosses, this.leaderboardDisplay);
 		this.addKeyListener(new KeyInput(this.handler, this, this.hud, this.player, this.spawner, this.upgrades, this.leaderboard));
 		this.addMouseListener(mouseListener);
+		
 		// technically, this is bad practice but I don't care right now
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		JFXPanel jfxp = new JFXPanel(); // trust
@@ -123,7 +123,7 @@ public class Game extends Canvas implements Runnable {
 		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
 		
 		soundplayer.start();
-		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
+		new Window(WIDTH, HEIGHT, "Space Matrix", this);
 		colorScreen = new ColorPickerScreen(player, this);	
 		
 		try {
