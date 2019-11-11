@@ -40,10 +40,12 @@ public class SpawnSurvival {
 		hud.health = 100;
 		hud.setScore(0);
 		hud.setLevel(1);
+		Player.doublePointsActive = false;
+		
 		spawnTimer = 0;
 		r = new Random();
 		//different types of enemies added
-		differentEntities = 13;	
+		differentEntities = 15;	
 		trackerTimer = 1000;
 		trackerColor = Color.blue;
 		count = 0;
@@ -68,7 +70,7 @@ public class SpawnSurvival {
 		}
 		if(spawnNum == -1) {
 			if(!textThere) {
-				handler.addObject(new LevelText((Game.WIDTH - 50) / 2 - 675, Game.HEIGHT / 2 - 200, "Good luck!",
+				handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, "Good luck!",
 							ID.SurvivalText));
 				textThere = true;
 			}
@@ -124,8 +126,9 @@ public class SpawnSurvival {
 				//spawns Shooter enemy
 
 				handler.addObject(
-						new EnemyShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100,-20, ID.EnemyShooter, this.handler));
+						new EnemyShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100,-20, 10, ID.EnemyShooter, this.handler));
 				spawnTimer = 0;
+        
 			} else if(spawnNum == 5) {
 				//spawns Tracker enemy
 
@@ -141,35 +144,53 @@ public class SpawnSurvival {
 			} else if (spawnNum == 7) {
 				//spawns Minishooter enemy
 
-				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -10, ID.EnemyMiniShooter, this.handler, this.game));
-				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -10, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -10, 50, ID.EnemyMiniShooter, this.handler, this.game));
+				handler.addObject(new EnemyMiniShooter(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, -10, 50, ID.EnemyMiniShooter, this.handler, this.game));
 				spawnTimer = 0;
+        
 			} else if (spawnNum == 8) {
 				//spawns Porcupine enemy
 				
-				handler.addObject(new EnemyPorcupine(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, this.game));
+				handler.addObject(new EnemyPorcupine(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 100, 100, ID.EnemyPorcupine, this.handler, -1, -2, 10, this.game));
 				spawnTimer = 0;
+				
 			} else if (spawnNum == 9) {
-				//spawns Health pickup
-
-				handler.addPickup(new PickupHealth(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.HealthPickup, "images/ham.png", this.handler));
-				spawnTimer = 0;
-			} else if (spawnNum == 10) {
-				//spawns Health pickup
-
-				handler.addPickup(new PickupSpeed(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.SpeedPickup, "images/ham.png", this.handler));
-				spawnTimer = 0;
-			} else if (spawnNum == 11) {
-				//spawns Health pickup
-
-				handler.addPickup(new PickupScore(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.ScorePickup, "images/coin.png", this.handler));
-				spawnTimer = 0;
-			} else if (spawnNum == 12) {
 				//spawns enemy move left and right
 				
 				handler.addObject(new EnemyMoveLeft(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, ID.EnemyMove, this.handler));
 				handler.addObject(new EnemyMoveRight(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, 75, 75, ID.EnemyMove, this.handler));
 				spawnTimer = 0;
+				
+			} else if (spawnNum == 10) {
+				//spawns Health pickup
+
+				handler.addPickup(new PickupHealth(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupHealth, "images/ham.png", this.handler));
+				spawnTimer = 0;
+			} else if (spawnNum == 11) {
+				//spawns Speed pickup
+
+				handler.addPickup(new PickupSpeed(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupSpeed, "images/shoesAreForCasuals.png", this.handler));
+				spawnTimer = 0;
+			} else if (spawnNum == 12) {
+				//spawns Score pickup
+
+				handler.addPickup(new PickupScore(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupScore, "images/coin.png", this.handler));
+				spawnTimer = 0;
+				
+				
+			} else if (spawnNum == 13) {
+				//spawns Double Points pickup
+
+				handler.addPickup(new PickupDoublePoints(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupDoublePoints, "images/doublepoints.png", this.handler));
+				spawnTimer = 0;
+
+		
+			} else if (spawnNum == 14) {
+				//spawns Nuke pickup
+
+				handler.addPickup(new PickupNuke(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupNuke, "images/nuke.png", this.handler));
+				spawnTimer = 0;
+
 			}
 		}
 		spawnTimer++;
@@ -187,5 +208,6 @@ public class SpawnSurvival {
 		hud.health=100;
 		player.resetVel();
 		player.resetLoc();
+		Player.doublePointsActive = false;
 	}
 }

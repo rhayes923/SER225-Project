@@ -19,7 +19,6 @@ public class MouseListener extends MouseAdapter {
 	private Spawn5to10 spawner2;
 	private SpawnSurvival spawnSurvival;
 	private SpawnBosses spawnBosses;
-	private SpawnMultiplayer spawnMulti;
 	private UpgradeScreen upgradeScreen;
 	private Upgrades upgrades;
 	private Player player;
@@ -68,7 +67,6 @@ public class MouseListener extends MouseAdapter {
 					spawnBosses.restart();
 					game.gameState = STATE.Menu;
 				} else if (handler.isMulti()) {
-					spawnMulti.reset();
 					game.gameState = STATE.Menu;
 				}
 			} else if (game.gameState == STATE.WonWaves) {
@@ -105,43 +103,35 @@ public class MouseListener extends MouseAdapter {
 			}
 
 			else if (game.gameState == STATE.Menu) {
-				// Waves Button
-				if (mouseOver(mx, my, 50, 150, 350, 100)) {
-					handler.object.clear();
-					game.gameState = STATE.Wave;
-					handler.addObject(player);
-				}
-				// Bosses Mode
-				else if (mouseOver(mx, my, 50, 300, 350, 100)) {
-					handler.object.clear();
-					game.gameState = STATE.Bosses;
-					handler.addObject(player);
-				}
-				// Survival Mode
-				else if (mouseOver(mx, my, 50, 450, 350, 100)) {
-					hud.setScore(0);
-					handler.object.clear();
-					game.gameState = STATE.Survival;
-					handler.addObject(player);
-				}
+
 				// Credits Button
-				else if (mouseOver(mx, my, 450, 150, 350, 100)) {
+				 if (mouseOver(mx, my, 680, 400, 290, 145)) {
 					game.gameState = STATE.Credits;
+					
 				} 
 				// Help Button
-				else if (mouseOver(mx, my, 450, 300, 350, 100)) {
+				else if (mouseOver(mx, my, 300, 400, 290, 145 )) {
 					game.gameState = STATE.Help;
 				}
 				// Quit Button
-				else if (mouseOver(mx, my, 450, 450, 350, 100)) {
+				else if (mouseOver(mx, my, 475, 535, 290, 145)) {
 					System.exit(1);
 				}
 				// Color Picker Mode
-				else if (mouseOver(mx, my, 850, 450, 100, 100)) {
+				else if (mouseOver(mx, my, 840, 215, 290, 145)) {
 					handler.object.clear();
 					game.gameState = STATE.Color;
 					handler.addObject(player);
 				}
+				// Enemy Journal Button
+				else if (mouseOver(mx, my, 495, 215, 290, 145)) {
+					game.gameState = STATE.EnemyJournal;
+				}
+				//Play button
+				else if(mouseOver(mx, my, 150, 215, 290, 145)) {
+					game.gameState = STATE.gameMode;
+				}
+				
 			}
 			// Back Button for Help screen
 			else if (game.gameState == STATE.Help) {
@@ -150,6 +140,41 @@ public class MouseListener extends MouseAdapter {
 					return;
 				}
 			}
+			else if (game.gameState == STATE.gameMode) {
+				//waves button
+				if (mouseOver(mx,my, 80, 230, 290, 145 )) {
+					game.gameState = STATE.Wave;
+					handler.object.clear();
+					handler.addObject(player);
+					
+				} //bosses button	
+				else if (mouseOver(mx, my, 495, 230, 290, 145)) {
+						handler.object.clear();
+						game.gameState = STATE.Bosses;
+						handler.addObject(player);
+				}
+				else if (mouseOver(mx, my, 890, 230, 290, 145)) {
+					hud.setScore(0);
+					handler.object.clear();
+					game.gameState = STATE.Survival;
+					handler.addObject(player);
+				}
+				//back button for game mode screen
+				
+				else if (mouseOver(mx, my, 566, 590, 133, 42)) {
+					game.gameState = STATE.Menu;
+					return;
+				}
+			}
+			
+			// Back Button for Enemy Journal
+			else if (game.gameState == STATE.EnemyJournal) {
+				if (mouseOver(mx, my, 566, 590, 133, 42)) {
+					game.gameState = STATE.Menu;
+					return;
+				}
+			}
+			
 			// Leaderboard screen
 			else if (game.gameState == STATE.Leaderboard) {
 				if(leaderboard.getUser() != "") {
@@ -160,6 +185,8 @@ public class MouseListener extends MouseAdapter {
 						return;
 					}
 				}
+				
+			//Back button for credits
 			} else if (game.gameState == STATE.Credits) {
 				if (mouseOver(mx, my, 566, 650, 133, 42)) {
 					game.gameState = STATE.Menu;
@@ -169,25 +196,16 @@ public class MouseListener extends MouseAdapter {
 				int x = 0;
 				int y = 0;
 				if(mouseOver(mx, my,x+70, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/test_pixelart.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/ship.png")), null);
 				} else if(mouseOver(mx, my, x+320, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/mario.gif")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/purpleShip.png")), null);
 				} else if(mouseOver(mx, my, x+570, y+75, 160, 160)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/saitamaONE.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/orangeShip1.png")), null);
 				} else if(mouseOver(mx, my,x+820, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/pikachu.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redGrayShip.png")), null);
 				} else if(mouseOver(mx, my,x+1070, y+75, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/octocat.png")), null);
-				} else if(mouseOver(mx, my,x+70, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redit.png")), null);
-				} else if(mouseOver(mx, my,x+320, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/abra.gif")), null);
-				} else if(mouseOver(mx, my,x+570, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/giphy.gif")), null);
-				} else if(mouseOver(mx, my,x+820, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/kingdom.png")), null);
-				} else if(mouseOver(mx, my,x+1070, y+215, 125, 125)) {
-					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/cat.png")), null);
+					player.updateColors(Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/greenShip.png")), null);
+//				}  	
 				} else if(mouseOver(mx, my,x+70, y+440, 125, 125)) {
 					player.updateColors(null, new Color(255,255,255,90));
 				} else if(mouseOver(mx, my, x+320, y+440, 125, 125)) {
@@ -234,6 +252,7 @@ public class MouseListener extends MouseAdapter {
 				handler.clearEnemies();
 				handler.clearPlayer();
 				handler.pickups.clear();
+				Player.doublePointsActive = false;
 				// These methods reset all of the HUD items
 				hud.setScore(0);
 				hud.updateScoreColor(Color.white);

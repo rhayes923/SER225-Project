@@ -69,22 +69,18 @@ public class KeyInput extends KeyAdapter {
 			if ((key == KeyEvent.VK_UP || key == KeyEvent.VK_W) && Handler.getTimer() <= 0) {
 				player.setVelY(-(this.speed));
 				keyDown[0] = true;
-				game.updatePlayerPosition();
 			}
 			if ((key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) && Handler.getTimer() <= 0) {
 				player.setVelX(-(this.speed));
 				keyDown[1] = true;
-				game.updatePlayerPosition();
 			}
 			if ((key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) && Handler.getTimer() <= 0) {
 				player.setVelY(this.speed);
 				keyDown[2] = true;
-				game.updatePlayerPosition();
 			}
 			if ((key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) && Handler.getTimer() <= 0) {
 				player.setVelX(this.speed);
 				keyDown[3] = true;
-				game.updatePlayerPosition();
 			}
 			if (key == KeyEvent.VK_SPACE && Handler.getTimer() <= 0) {
 				upgrades.levelSkipAbility();
@@ -315,7 +311,6 @@ public class KeyInput extends KeyAdapter {
 				if (!keyDown[1] && !keyDown[3]) {
 					tempObject.setVelX(0);
 				}
-				game.updatePlayerPosition();
 			}
 
 		}

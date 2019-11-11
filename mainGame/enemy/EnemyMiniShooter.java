@@ -25,10 +25,11 @@ public class EnemyMiniShooter extends GameObject {
 	private double bulletVelX;
 	private double bulletVelY;
 	private int bulletSpeed;
+	private int fireRate;
 	private Game game;
 
 	public EnemyMiniShooter(double x, double y, int sizeX, int sizeY, 
-			int bulletSpeed, ID id, Handler handler, Game game) {
+			int bulletSpeed, int fireRate, ID id, Handler handler, Game game) {
 		super(x, y, id);
 		this.handler = handler;
 		this.velX = 0;
@@ -37,6 +38,7 @@ public class EnemyMiniShooter extends GameObject {
 		this.sizeY = sizeY;
 		this.timer = 60;
 		this.bulletSpeed = bulletSpeed;
+		this.fireRate = fireRate;
 		this.game = game;
 
 		for (int i = 0; i < handler.object.size(); i++) {
@@ -55,7 +57,7 @@ public class EnemyMiniShooter extends GameObject {
 			shoot();
 			if (handler.isMulti() || game.gameState == STATE.Survival)
 				updateEnemy();
-			timer = 50;
+			timer = fireRate;
 		}
 
 	}
@@ -70,7 +72,7 @@ public class EnemyMiniShooter extends GameObject {
 		bulletVelX = ((this.bulletSpeed / distance) * diffX); // numerator affects speed of enemy
 		bulletVelY = ((this.bulletSpeed / distance) * diffY);// numerator affects speed of enemy
 
-		handler.addObject(new EnemyMiniShooterBullet(this.x, this.y, bulletVelX, bulletVelY, ID.EnemyMiniShooterBullet, this.handler));
+		handler.addObject(new EnemyMiniShooterBullet(this.x+(this.sizeX/2), this.y+(this.sizeY/2), bulletVelX, bulletVelY, ID.EnemyMiniShooterBullet, this.handler));
 		
 		// if we are playing multiplayer, just go ahead and make another bullet to fire at the other player. This is going to be quite resource-intensive, so we need to make sure enemies aren't TOO cluttered on the screen.
 		if (handler.isMulti()) {

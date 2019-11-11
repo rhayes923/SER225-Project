@@ -3,7 +3,10 @@ package mainGame;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
+import java.net.URL;
 import java.awt.Dimension;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.JFrame;
@@ -46,19 +49,20 @@ public class Game extends Canvas implements Runnable {
 	private PauseMenu pauseMenu;
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
-	public SoundClip soundClip;
+	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound;
 	private Leaderboard leaderboard;
 
 	private WonWaves wonWaves;
 	private SpawnBosses spawnBosses;
-	private SpawnMultiplayer spawnMultiplayer;
 	private JFrame frame;
 	private boolean isPaused = false;
-	private boolean isMusicPlaying = true;
+	public static boolean isMusicPlaying = true;
 	private ColorPickerScreen colorScreen;
 	private LeaderboardDisplay leaderboardDisplay;
 	public String [][] leaderboardList;
-
+	private Image spaceBackground1, spaceBackground2;
+	private int spaceYValue = 0;
+	
 
 	/* NOBODY TOUCH THESE VARS, THEY ARE FOR TESTING NETWORKING */
 	private String op;
@@ -71,8 +75,8 @@ public class Game extends Canvas implements Runnable {
 	 * Used to switch between each of the screens shown to the user
 	 */
 	public enum STATE {
-		Menu, Help, Join, Host, Wave, GameOver, Upgrade, Bosses, Survival, Multiplayer, 
-		Leaderboard, Color, LeaderboardDisplay, Credits, WonWaves
+		Menu, gameMode, Help, Join, Host, Wave, GameOver, Upgrade, Bosses, Survival, Multiplayer, 
+		Leaderboard, Color, LeaderboardDisplay, Credits, WonWaves, EnemyJournal
 	};
 
 	/**
@@ -93,7 +97,6 @@ public class Game extends Canvas implements Runnable {
 		spawner4 = new Spawn15to20(this.handler, this.hud, this, player);
 		spawnSurvival = new SpawnSurvival(this.handler, this.hud, this, player);
 		spawnBosses = new SpawnBosses(this.handler, this.hud, this, this.player);
-		spawnMultiplayer = new SpawnMultiplayer(this.handler, this.hud, this, this.player);
 		menu = new Menu(this, this.handler, this.hud, this.spawner);
 		upgradeScreen = new UpgradeScreen(this, this.handler, this.hud);
 		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawner, this.spawner2, this.spawner3, this.spawner4);
@@ -112,10 +115,24 @@ public class Game extends Canvas implements Runnable {
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		JFXPanel jfxp = new JFXPanel(); // trust
 		soundplayer = new SoundPlayer("sounds/main.mp3", true);
-		soundClip = new SoundClip("sounds/damage.mp3", 1.0);
+		damageSound = new SoundClip("sounds/damage.mp3", 1.0);
+		healthSound = new SoundClip("sounds/health.mp3", 1.0);
+		speedSound = new SoundClip("sounds/speed.mp3", 1.0);
+		scoreSound = new SoundClip("sounds/points.mp3", 1.0);
+		dpSound = new SoundClip("sounds/doublepoints.mp3", 1.0);
+		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
+		
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
-		colorScreen = new ColorPickerScreen(player, this);		
+		colorScreen = new ColorPickerScreen(player, this);	
+		
+		try {
+			URL imgURL = Game.class.getResource("images/space.jpg");
+			spaceBackground1 = Toolkit.getDefaultToolkit().getImage(imgURL);
+			spaceBackground2 = Toolkit.getDefaultToolkit().getImage(imgURL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		this.op = op;
 		this.addr = addr;
@@ -168,7 +185,8 @@ public class Game extends Canvas implements Runnable {
 			if (running)
 				render();// 60 times a second, objects are being drawn
 			frames++;
-
+			//System.out.println(frames); DEBUG
+			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				frames = 0;
@@ -184,23 +202,6 @@ public class Game extends Canvas implements Runnable {
 	 * health, appearance, etc).
 	 */
 	private void tick() {
-	//	// if the arguments are given, go straight for multiplayer
-	//	if (!op.equals("none")) {
-	//		try {
-	//			spawnMultiplayer.createClient(addr, port);
-	//			if (op.equals("host")) {
-	//				spawnMultiplayer.getClient().host_game(room, pass);
-	//			} else if (op.equals("join")) {
-	//				spawnMultiplayer.getClient().join_game(room, pass);
-	//			}
-	//			gameState = STATE.Multiplayer;
-	//			op = "none";
-	//		} catch (Exception e) {
-	//			gameState = STATE.Menu;
-	//			op = "none";
-	//		}
-	//	}
-
 		if (!isPaused()) { // only tick the game modes and stuff if the game is not paused
 			handler.tick();// ALWAYS TICK HANDLER, NO MATTER IF MENU OR GAME
 			// SCREEN
@@ -238,14 +239,6 @@ public class Game extends Canvas implements Runnable {
 			} else if (gameState == STATE.GameOver) {// game is over, update the
 				// game over screen
 				gameOver.tick();
-			} else if (gameState == STATE.Join) { // entering connection info for MP
-				// TODO: add a connect screen @chieco
-			} else if (gameState == STATE.Host) { // entering connection info for MP
-				// TODO: add a connect screen @chieco
-			} else if (gameState == STATE.Multiplayer) {
-				if (!handler.isMulti()) handler.setMulti(true);
-				// do not use HUD::tick() here, it's used inside the spawner
-				spawnMultiplayer.tick();
 			} else if (gameState == STATE.Bosses) {
 				hud.tick();
 				spawnBosses.tick();
@@ -267,13 +260,8 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 
-		if(isMusicPlaying) {
-			if (soundplayer.isPaused())
-				soundplayer.play();
-		} else {
-			if (!soundplayer.isPaused())
-				soundplayer.pause();
-		}
+		SoundPlayer.setVolume();
+		
 	}
 
 	/**
@@ -302,19 +290,28 @@ public class Game extends Canvas implements Runnable {
 			}
 			Graphics g = bs.getDrawGraphics();
 
-			///////// Draw things below this/////////////
+			///////// Draw things below this /////////
 
-			g.setColor(Color.black);
-			g.fillRect(0, 0, WIDTH, HEIGHT);
-
+			if (gameState == STATE.Wave || gameState == STATE.Bosses || gameState == STATE.Survival) {
+				if (spaceYValue > HEIGHT) {
+					spaceYValue = 0;
+				}
+				g.drawImage(spaceBackground1, 0, spaceYValue, WIDTH, HEIGHT, null);
+				g.drawImage(spaceBackground2, 0, spaceYValue - HEIGHT, WIDTH, HEIGHT, null);
+				spaceYValue++;
+			} else {
+				g.setColor(Color.black);
+				g.fillRect(0, 0, WIDTH, HEIGHT);
+			}
+			
 			// SCREEN
 			if (!isPaused()) {
 				if (gameState == STATE.Wave || gameState == STATE.Multiplayer 
 						|| gameState == STATE.Bosses || gameState == STATE.Survival) {
 					// user is playing game, draw game objects
 					hud.render(g);
-				} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Credits) {
-					// user is in help or the menu or the credits, draw the menu and help objects
+				} else if (gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.Credits || gameState == STATE.EnemyJournal || gameState == STATE.gameMode) {
+					// user is in the main menu, help, credits, or enemy journal, draw the menu and help objects
 					menu.render(g);
 				} else if (gameState == STATE.Upgrade) {// user is on the upgrade
 					// screen, draw the upgrade
@@ -418,14 +415,6 @@ public class Game extends Canvas implements Runnable {
 		isMusicPlaying = !isMusicPlaying;
 	}
 
-	/**
-	 * Updates the server with the player's position (only in multiplayer).
-	 */
-	public void updatePlayerPosition() {
-		if (gameState == STATE.Multiplayer) {
-			spawnMultiplayer.sendPos();
-		}
-	}
 
 	public void popup(String text) {
 		JOptionPane.showMessageDialog(this, text);

@@ -32,8 +32,9 @@ public class Player extends GameObject {
 	private Color color;
 	private Color tailcolor;
 	private boolean isOpponent;
+	public static boolean doublePointsActive = false;
 	int count;
-	private static Image img = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/test_pixelart.png"));
+	private static Image img = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/ship.png"));
 
 	/**
 	 * Use the other constructor unless this is an opponent in multiplayer.
@@ -139,7 +140,9 @@ public class Player extends GameObject {
 				// collision code
 				if (getBounds().intersects(tempObject.getBounds())) {// player hit an enemy
 					hud.health -= damage;
-					game.soundClip.play();
+					if (game.isMusicPlaying) {
+						game.damageSound.play();
+					}
 					hud.updateScoreColor(Color.red);
 				}
 
@@ -149,7 +152,7 @@ public class Player extends GameObject {
 				// boss starts moving
 				if (this.y <= 96 && tempObject.isMoving) {
 					hud.health -= 2;
-					game.soundClip.play();
+					game.damageSound.play();
 					hud.updateScoreColor(Color.red);
 				}
 
@@ -163,7 +166,6 @@ public class Player extends GameObject {
 				if( getBounds().intersects(tempObject.getBounds()) && count > 120) {
 					hud.health -= damage;
 				}
-
 			}
 
 			if (tempObject.getId() == ID.BossEye) {
@@ -178,9 +180,11 @@ public class Player extends GameObject {
 		for (int i = 0; i < handler.pickups.size(); i++) {
 			Pickup tempPickup = handler.pickups.get(i);
 
-			if (tempPickup.getId() == ID.HealthPickup) {
-
+			if (tempPickup.getId() == ID.PickupHealth) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.healthSound.play();
+					}
 					if(hud.getHealthMax() - hud.health > 25) {
 						hud.health += 25;
 					} else {
@@ -188,14 +192,40 @@ public class Player extends GameObject {
 					}
 					handler.removePickup(tempPickup);
 				}
-			} else if (tempPickup.getId() == ID.SpeedPickup) {
+			} else if (tempPickup.getId() == ID.PickupSpeed) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.speedSound.play();
+					}
 					playerSpeed += 1;
 					handler.removePickup(tempPickup);
 				}
-			} else if (tempPickup.getId() == ID.ScorePickup) {
+			} else if (tempPickup.getId() == ID.PickupScore) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.scoreSound.play();
+					}
 					hud.setScore(hud.getScore()+1000);
+					handler.removePickup(tempPickup);
+				}
+			} else if (tempPickup.getId() == ID.PickupDoublePoints) {
+				if (getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.dpSound.play();
+					}
+					if (doublePointsActive = true) {
+						HUD.doublePointsTimer = 1000;
+					} else {
+						doublePointsActive = true;
+					}
+					handler.removePickup(tempPickup);
+				}
+			} else if (tempPickup.getId() == ID.PickupNuke) {
+				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.nukeSound.play();
+					}
+					handler.clearEnemies();
 					handler.removePickup(tempPickup);
 				}
 			}
@@ -275,4 +305,3 @@ public class Player extends GameObject {
 	}
 
 }
-

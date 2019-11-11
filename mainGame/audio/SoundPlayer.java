@@ -37,7 +37,7 @@ public class SoundPlayer extends Thread {
 			File f = new File(Game.class.getResource(soundfile).toURI().toString());
 			Media song = new Media(f.toString().replaceAll("\\\\", "/"));
 			player = new MediaPlayer(song);
-			player.setVolume(0.25);
+			setVolume();
 			// this will make the player repeat
 			player.setOnEndOfMedia(() -> {
 				if (repeats) {
@@ -93,5 +93,13 @@ public class SoundPlayer extends Thread {
 	public boolean isPaused() {
 		if (player == null) return false;
 		return (player.getStatus() == MediaPlayer.Status.PAUSED);
+	}
+	
+	public static void setVolume() {
+		if (Game.isMusicPlaying) {
+			player.setVolume(0.25);
+		} else {
+			player.setVolume(0.00);
+		}
 	}
 }
