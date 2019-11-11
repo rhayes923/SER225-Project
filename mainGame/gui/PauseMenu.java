@@ -23,7 +23,8 @@ public class PauseMenu {
 		try {
 			URL imageURL = Game.class.getResource("images/PauseMenu.png");
 			img = Toolkit.getDefaultToolkit().getImage(imageURL);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -188,7 +188,7 @@ public class Menu {
 			g.drawString("Will Varsalona: Scrum Master, Art and UI", 100, 330);				
 			g.drawString("Ryan Hayes: Programming and Bug Fixing", 100, 350);						
 			g.drawString("Henry Staunton: Level Balancing and Bug Fixing", 100, 370);			
-			g.drawString("Neel Bains: Programming and Bug Fixing", 100, 390);			
+			g.drawString("Neel Bains: Programming, Bug Fixing, Character Art", 100, 390);			
 			g.drawString("Rishi Parikh: Programming and Bug Fixing", 100, 410);
 	
 			
