@@ -72,7 +72,7 @@ public class HUD {
 				doublePointsTimer = 1000;
 			}
 		}
-		
+		//Hi
 		if (level == 101) {
 			levelTimer = 23;
 		} else {
