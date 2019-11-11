@@ -33,8 +33,7 @@ public class HUD {
 	private int extraLives;
 	public Game game;
 	private Handler handler;
-	private double levelTimer;
-	private double leveTimer2;
+	private int levelTimer;
 	
 	public HUD(Game game, Handler handler) {
 		this.game = game;
@@ -72,15 +71,6 @@ public class HUD {
 				doublePointsTimer = 1000;
 			}
 		}
-		//Hi
-		if (level == 101) {
-			levelTimer = 23;
-		} else {
-			levelTimer = levelTimer - .016666666;
-			if (Math.ceil(levelTimer) == -1) {
-				levelTimer = 19;
-			}
-		}
 
 		if (regen) {// regenerates health if that ability has been unlocked
 			timer--;
@@ -103,7 +93,8 @@ public class HUD {
 
 		g.setFont(font);
 
-		g.drawString("Time left: " + (int)Math.ceil(levelTimer), 15, 215);
+		if(level != 101)
+			g.drawString("Time left: " + levelTimer, 15, 215);
 		
 		if (!Player.doublePointsActive) {
 			g.drawString("Score: " + score, 15, 115);
@@ -160,6 +151,10 @@ public class HUD {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	
+	public void setLevelTimer(int levelTimer) {
+		this.levelTimer = levelTimer;
 	}
 
 	public void setHealth(int health) {

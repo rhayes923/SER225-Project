@@ -366,6 +366,10 @@ public class Spawn1to5 {
 				}
 			}
 		}
+		
+		if(levelTimer%60 == 0 && levelNumber != 101)
+			hud.setLevelTimer(levelTimer/60);
+		
 	}
 
 
