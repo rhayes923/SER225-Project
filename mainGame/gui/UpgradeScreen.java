@@ -63,7 +63,7 @@ public class UpgradeScreen {
 
 	}
 
-	/**
+	/*
 	 * Reset the paths to each picture
 	 */
 	public void resetPaths() {
@@ -127,6 +127,8 @@ public class UpgradeScreen {
 			return paths[index1];
 		} else if (x == 2) {
 			return paths[index2];
+		/*} else if (x == 3) {
+			return paths[index2];*/
 		} else {
 			return paths[index3];
 		}
@@ -142,11 +144,14 @@ public class UpgradeScreen {
 	 */
 	public void removeUpgradeOption(int x) {
 		if (x == 1) {
-			paths[index1] = null;
+			paths[index1] = getPath(r.nextInt()); //null;
+			//paths[index1] = getPath(r.nextInt());
 		} else if (x == 2) {
-			paths[index2] = null;
+			paths[index2] = getPath(r.nextInt());//null;
+			//paths[index2] = getPath(r.nextInt());
 		} else {
-			paths[index3] = null;
+			paths[index3] = getPath(r.nextInt()); //null;
+			//paths[index3] = getPath(r.nextInt());
 		}
 	}
 
@@ -163,33 +168,38 @@ public class UpgradeScreen {
 		index1 = (int) (Math.random()*(differentUpgrades));
 		if(paths[index1] == null) {
 			index1 = (int) (Math.random()*(differentUpgrades));
-
+		//return "hi_1"; //DEBUG
 		}
 		index2 = (int) (Math.random()*(differentUpgrades));
 		if(paths[index2] == null) {
 			index2 = (int) (Math.random()*(differentUpgrades));
-
+		//return "hi_2"; //DEBUG
 		}
 		while(index1 == index2) {
 			index2 = (int) (Math.random()*(differentUpgrades));
 			if(paths[index2] == null) {
 				index2 = (int) (Math.random()*(differentUpgrades));
+			//return "hi_3"; //DEBUG
 			}
 		}
 		index3 = (int) (Math.random()*(differentUpgrades));
 		if(paths[index3] == null) {
 			index3 = (int) (Math.random()*(differentUpgrades));
-
+		//return "hi_4"; //DEBUG
 		}
 		while(index1 == index3 || index2 == index3) {
 			index3 = (int) (Math.random()*(differentUpgrades));
 			if(paths[index3] == null) {
 				index3 = (int) (Math.random()*(differentUpgrades));
-
+			//return "hi_5"; //DEBUG
 			}
 		}
 
 	}
+	
+	/*public void newUpgrades() {
+		
+	}*/
 
 	public void resetUpgradeScreen() {
 		this.setIndex();
