@@ -123,7 +123,7 @@ public class Game extends Canvas implements Runnable {
 		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
 		
 		soundplayer.start();
-		new Window(WIDTH, HEIGHT, "PlayerKnown's Battleground", this);
+		new Window(WIDTH, HEIGHT, "Space Matrix", this);
 		colorScreen = new ColorPickerScreen(player, this);	
 		
 		try {
