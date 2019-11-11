@@ -62,7 +62,6 @@ public class Game extends Canvas implements Runnable {
 	public String [][] leaderboardList;
 	private Image spaceBackground1, spaceBackground2;
 	private int spaceYValue = 0;
-	
 
 	/* NOBODY TOUCH THESE VARS, THEY ARE FOR TESTING NETWORKING */
 	private String op;
