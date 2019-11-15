@@ -180,11 +180,10 @@ public class Game extends Canvas implements Runnable {
 			lastTime = now;
 			while (delta >= 1) {
 				tick();// 60 times a second, objects are being updated
-				render();
 				delta--;
 			}
 			if (running)
-				//render();// 60 times a second, objects are being drawn
+				render();// 60 times a second, objects are being drawn
 			frames++;
 			//System.out.println(frames); DEBUG
 			
