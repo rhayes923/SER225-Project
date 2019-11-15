@@ -180,10 +180,11 @@ public class Game extends Canvas implements Runnable {
 			lastTime = now;
 			while (delta >= 1) {
 				tick();// 60 times a second, objects are being updated
+				render();
 				delta--;
 			}
 			if (running)
-				render();// 60 times a second, objects are being drawn
+				//render();// 60 times a second, objects are being drawn
 			frames++;
 			//System.out.println(frames); DEBUG
 			
@@ -208,6 +209,7 @@ public class Game extends Canvas implements Runnable {
 			if (gameState == STATE.Wave) {// game is running
 				if (!handler.isPaused()) {
 					hud.tick();
+					spaceYValue++;
 					if (Spawn1to5.LEVEL_SET == 1) {// user is on levels 1 thru 5, update them
 						spawner.tick();
 					} else if (Spawn1to5.LEVEL_SET == 2) {// user is on levels 5 thru 10, update them
@@ -241,6 +243,7 @@ public class Game extends Canvas implements Runnable {
 				gameOver.tick();
 			} else if (gameState == STATE.Bosses) {
 				hud.tick();
+				spaceYValue++;
 				spawnBosses.tick();
 				if (!soundplayer.getSong().equals("sounds/bosses.mp3")) {
 					soundplayer.stop_playing();
@@ -249,6 +252,7 @@ public class Game extends Canvas implements Runnable {
 				}
 			} else if (gameState == STATE.Survival) {
 				hud.tick();
+				spaceYValue++;
 				spawnSurvival.tick();
 				if (!soundplayer.getSong().equals("sounds/135.mp3")) {
 					soundplayer.stop_playing();
@@ -257,6 +261,9 @@ public class Game extends Canvas implements Runnable {
 				}
 			} else if (gameState == STATE.WonWaves) {
 				wonWaves.tick();
+			}
+			if (spaceYValue > HEIGHT) {
+				spaceYValue = 0;
 			}
 		}
 
@@ -293,12 +300,8 @@ public class Game extends Canvas implements Runnable {
 			///////// Draw things below this /////////
 
 			if (gameState == STATE.Wave || gameState == STATE.Bosses || gameState == STATE.Survival) {
-				if (spaceYValue > HEIGHT) {
-					spaceYValue = 0;
-				}
 				g.drawImage(spaceBackground1, 0, spaceYValue, WIDTH, HEIGHT, null);
 				g.drawImage(spaceBackground2, 0, spaceYValue - HEIGHT, WIDTH, HEIGHT, null);
-				spaceYValue++;
 			} else {
 				g.setColor(Color.black);
 				g.fillRect(0, 0, WIDTH, HEIGHT);

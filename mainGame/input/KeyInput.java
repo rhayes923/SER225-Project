@@ -82,9 +82,6 @@ public class KeyInput extends KeyAdapter {
 				player.setVelX(this.speed);
 				keyDown[3] = true;
 			}
-			if (key == KeyEvent.VK_SPACE && Handler.getTimer() <= 0) {
-				upgrades.levelSkipAbility();
-			}
 			if (key == KeyEvent.VK_SHIFT && Handler.getTimer() <= 0) {
 				ability = upgrades.getAbility();
 				if (ability.equals("clearScreen")) {
