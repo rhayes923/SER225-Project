@@ -51,7 +51,7 @@ public class HUD {
 		ability = "";
 		abilityUses = 0;
 		scoreColor = Color.white;
-		extraLives = 0;
+		extraLives = 1;
 		levelTimer = 22;
 	}
 	public void tick() {
@@ -93,7 +93,7 @@ public class HUD {
 
 		g.setFont(font);
 
-		if(level != 101)
+		if(level != 101 && game.getGameState() == STATE.Wave)
 			g.drawString("Time left: " + levelTimer, 15, 215);
 		
 		if (!Player.doublePointsActive) {

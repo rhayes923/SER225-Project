@@ -30,6 +30,7 @@ public enum ID {
 	PickupNuke,
 	PickupSpeed,
 	PickupScore,
+	PickupShrink,
 	SurvivalText,
 	RollBoss1,
 	RollBoss2,

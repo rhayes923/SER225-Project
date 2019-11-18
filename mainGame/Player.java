@@ -197,7 +197,8 @@ public class Player extends GameObject {
 					if (game.isMusicPlaying) {
 						game.speedSound.play();
 					}
-					playerSpeed += 1;
+					if(playerSpeed <= 20)
+						playerSpeed += 1;
 					handler.removePickup(tempPickup);
 				}
 			} else if (tempPickup.getId() == ID.PickupScore) {
@@ -226,6 +227,15 @@ public class Player extends GameObject {
 						game.nukeSound.play();
 					}
 					handler.clearEnemies();
+					handler.removePickup(tempPickup);
+				}
+			} else if (tempPickup.getId() == ID.PickupShrink) {
+				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						//Play shrink sound
+					}
+					if(this.playerWidth >= 15) 
+						this.setPlayerSize(this.playerWidth-2);
 					handler.removePickup(tempPickup);
 				}
 			}
