@@ -104,18 +104,20 @@ public class Menu {
 			g.drawString("Controls:", 100, 130);
 			g.setFont(font2);
 			g.drawString(" Move: WASD or Arrow keys", 100, 160);
-			g.drawString(" ESC: pause", 100, 180);
-			g.drawString(" Shift: use item", 100, 200);
+			g.drawString(" ESC: Pause", 100, 180);
+			g.drawString(" Shift: Use item", 100, 200);
 			g.drawString(" Mute sounds: M " , 100, 220);
 			
 			g.setFont(font);
 			g.drawString("Power-ups(Survival only): ", 900, 130);
 			g.setFont(font2);
 			g.drawString(" Ham bone: Increased health", 900, 160);
-			g.drawString(" Shoes: speed boost", 900, 180);
+			g.drawString(" Shoes: Speed boost", 900, 180);
 			g.drawString(" Coin: +1000 points", 900, 200);
-			g.drawString(" x2: double points for a short time", 900, 220);
-			g.drawString(" Nuke: clears the screen", 900, 240);
+			g.drawString(" x2: Double points for a short time", 900, 220);
+			g.drawString(" Nuke: Clears the screen", 900, 240);
+			g.drawString(" Mushroom: Shrinks the player", 900, 260);
+			g.drawString(" Heart: Increased max health", 900, 280);
 			
 			g.setFont(font);
 			g.drawString("Waves:", 100, 350);
