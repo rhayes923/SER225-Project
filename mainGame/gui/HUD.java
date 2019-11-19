@@ -51,7 +51,7 @@ public class HUD {
 		ability = "";
 		abilityUses = 0;
 		scoreColor = Color.white;
-		extraLives = 1;
+		extraLives = 0;
 		levelTimer = 22;
 	}
 	public void tick() {
@@ -107,10 +107,9 @@ public class HUD {
 			} else if (level == 101) { 
 				g.drawString("Level: Boss", 15, 150);
 			}
-			g.drawString("Extra Lives: " + extraLives, 15, 185);
-		} else {
-			g.drawString("Extra Lives: " + extraLives, 15, 150);
 		}
+		if(game.getGameState() == STATE.Wave)
+			g.drawString("Extra Lives: " + extraLives, 15, 185);
 		
 		if (ability.equals("freezeTime")) {
 			g.drawString("Time Freezes: " + abilityUses, Game.WIDTH - 300, 64);
@@ -195,6 +194,12 @@ public class HUD {
 
 	public void restoreHealth() {
 		this.health = healthMax;
+	}
+	public void increaseMaxHealth(int newHealth) {
+		healthMax += newHealth;
+		healthBarWidth = (int) healthMax * 2;
+		if(healthMax >= 200)
+			healthBarModifier = 1;
 	}
 	public double getHealthMax() {
 		return healthMax;

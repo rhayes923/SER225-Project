@@ -232,13 +232,21 @@ public class Player extends GameObject {
 			} else if (tempPickup.getId() == ID.PickupShrink) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
 					if (game.isMusicPlaying) {
-						//Play shrink sound
+						game.shrinkSound.play();
 					}
 					if(this.playerWidth >= 15) 
 						this.setPlayerSize(this.playerWidth-2);
 					handler.removePickup(tempPickup);
 				}
-			}
+			} else if (tempPickup.getId() == ID.PickupHealthIncrease) {
+				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.healthIncreaseSound.play();
+					}
+					hud.increaseMaxHealth(10);
+					handler.removePickup(tempPickup);
+				}
+			} 
 		}
 	}
 

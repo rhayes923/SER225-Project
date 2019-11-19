@@ -50,7 +50,7 @@ public class SpawnSurvival {
 		r = new Random();
 		//different types of enemies added
 		differentEnemies = 10;
-		differentDrops = 6;
+		differentDrops = 7;
 		trackerTimer = 1000;
 		trackerColor = Color.blue;
 		count = 0;
@@ -170,7 +170,7 @@ public class SpawnSurvival {
 			} 
 		}
 		
-		if(DropSpawnTimer == 300) {
+		if(DropSpawnTimer == 240) {
 			
 			DropSpawnNum = randDrop();
 			
@@ -207,7 +207,12 @@ public class SpawnSurvival {
 			} else if (DropSpawnNum == 5) {
 				//spawns Shrink pickup
 				
-				handler.addPickup(new PickupShrink(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1)+ 50, ID.PickupShrink, "images/cat.png", this.handler));
+				handler.addPickup(new PickupShrink(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1)+ 50, ID.PickupShrink, "images/minimushroom.png", this.handler));
+				DropSpawnTimer = 0;
+			} else if (DropSpawnNum == 6) {
+				//spawns Max Health Increase pickup
+				
+				handler.addPickup(new PickupHealthIncrease(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1)+ 50, ID.PickupHealthIncrease, "images/heart.png", this.handler));
 				DropSpawnTimer = 0;
 			}
 		}
