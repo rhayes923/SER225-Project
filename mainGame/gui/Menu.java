@@ -109,15 +109,15 @@ public class Menu {
 			g.drawString(" Mute sounds: M " , 100, 220);
 			
 			g.setFont(font);
-			g.drawString("Power-ups(Survival only): ", 900, 130);
+			g.drawString("Power-ups: ", 900, 130);
 			g.setFont(font2);
 			g.drawString(" Ham bone: Increased health", 900, 160);
 			g.drawString(" Shoes: Speed boost", 900, 180);
 			g.drawString(" Coin: +1000 points", 900, 200);
 			g.drawString(" x2: Double points for a short time", 900, 220);
-			g.drawString(" Nuke: Clears the screen", 900, 240);
-			g.drawString(" Mushroom: Shrinks the player", 900, 260);
-			g.drawString(" Heart: Increased max health", 900, 280);
+			g.drawString(" Mushroom: Shrinks the player", 900, 240);
+			g.drawString(" Heart: Increased max health", 900, 260);
+			g.drawString(" Nuke: Clears the screen (Survival only)", 900, 280);
 			
 			g.setFont(font);
 			g.drawString("Waves:", 100, 350);
@@ -126,6 +126,7 @@ public class Menu {
 			g.drawString(" progress through the various waves", 100, 400);
 			g.drawString(" every 5 levels there will be a boss", 100, 420);
 			g.drawString(" beating the boss will earn you an upgrade", 100, 440);
+			g.drawString(" Power-ups will spawn to help you stay alive", 100, 460);
 			
 			g.setFont(font);
 			g.drawString("Bosses:", 550, 350);

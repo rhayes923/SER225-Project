@@ -74,7 +74,7 @@ public class HUD {
 
 		if (regen) {// regenerates health if that ability has been unlocked
 			timer--;
-			if (timer == 0 && health < 100) {
+			if (timer == 0 && health < healthMax) {
 				health += 1;
 				timer = 60;
 			}
@@ -178,7 +178,10 @@ public class HUD {
 
 	public void healthIncrease() {
 		doubleHealth = true;
-		healthMax = 200;
+		if(healthMax < 200)
+			healthMax = 200;
+		else
+			healthMax = 250;
 		this.health = healthMax;
 		healthBarModifier = 1;
 		healthBarWidth = 400;

@@ -272,6 +272,13 @@ public class Player extends GameObject {
 		this.playerWidth = size;
 		this.playerHeight = size;
 	}
+	
+	public void decreasePlayerSize() {
+		if(this.playerWidth > 21)
+			setPlayerSize(21);
+		else
+			setPlayerSize(15);
+	}
 	@Override
 	public double getVelX() {
 		return velX;

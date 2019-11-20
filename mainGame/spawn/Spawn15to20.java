@@ -7,6 +7,12 @@ import mainGame.Game.STATE;
 import mainGame.enemy.*;
 import mainGame.*;
 import mainGame.gui.*;
+import mainGame.pickup.PickupDoublePoints;
+import mainGame.pickup.PickupHealth;
+import mainGame.pickup.PickupHealthIncrease;
+import mainGame.pickup.PickupScore;
+import mainGame.pickup.PickupShrink;
+import mainGame.pickup.PickupSpeed;
 
 
 public class Spawn15to20 {
@@ -25,6 +31,8 @@ public class Spawn15to20 {
 	private Color trackerColor;
 	private int trackerTimer;
 	private int differentEnemies;
+	private int differentDrops;
+	private int dropSpawnNum;
 	private Player player;
 	private BossSeparates finalBoss;
 	private int randIntHolder;
@@ -47,6 +55,7 @@ public class Spawn15to20 {
 		trackerColor = Color.blue;
 		trackerTimer = 1000;
 		differentEnemies = 9;
+		differentDrops = 6;
 		addLevels();
 		this.player = player;
 		randIntHolder = 50;
@@ -118,6 +127,7 @@ public class Spawn15to20 {
 
 			if (levelTimer == 0) {// level is over
 				handler.clearEnemies();// clear the enemies
+				handler.pickups.clear();// clear the pickups
 				hud.setLevel(hud.getLevel() + 1);// Increment level number on HUD
 				spawnTimer = 40;
 				tempCounter = 0;// reset tempCounter
@@ -155,6 +165,7 @@ public class Spawn15to20 {
 
 			if (levelTimer == 0) {
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				tempCounter = 0;
 				if (levelsRemaining == 1) {
@@ -179,6 +190,7 @@ public class Spawn15to20 {
 			} 
 			if (levelTimer == 0) {
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				tempCounter = 0;
@@ -202,6 +214,7 @@ public class Spawn15to20 {
 
 			if (levelTimer == 0) {
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				tempCounter = 0;
@@ -237,6 +250,7 @@ public class Spawn15to20 {
 
 			if (levelTimer == 0) {
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				tempCounter = 0;
@@ -284,6 +298,7 @@ public class Spawn15to20 {
 			if (levelTimer == 0) {
 				tempCounter = 0;
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				trackerColor = Color.blue;
@@ -311,6 +326,7 @@ public class Spawn15to20 {
 			if (levelTimer == 0) {
 				tempCounter = 0;
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				if (levelsRemaining == 1) {
@@ -340,6 +356,7 @@ public class Spawn15to20 {
 			if (levelTimer == 0) {
 				tempCounter = 0;
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				if (levelsRemaining == 1) {
@@ -366,6 +383,7 @@ public class Spawn15to20 {
 			if (levelTimer == 0) {
 				tempCounter = 0;
 				handler.clearEnemies();
+				handler.pickups.clear();
 				hud.setLevel(hud.getLevel() + 1);
 				spawnTimer = 10;
 				if (levelsRemaining == 1) {
@@ -428,6 +446,38 @@ public class Spawn15to20 {
 			}
 		}
 		
+		if(levelTimer == 600) {
+			
+			dropSpawnNum = randDrop();
+			
+			if (dropSpawnNum == 0) {
+				//spawns Health pickup
+
+				handler.addPickup(new PickupHealth(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupHealth, "images/ham.png", this.handler));
+			} else if (dropSpawnNum == 1) {
+				//spawns Speed pickup
+
+				handler.addPickup(new PickupSpeed(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupSpeed, "images/shoesAreForCasuals.png", this.handler));
+			} else if (dropSpawnNum == 2) {
+				//spawns Score pickup
+
+				handler.addPickup(new PickupScore(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupScore, "images/coin.png", this.handler));
+			} else if (dropSpawnNum == 3) {
+				//spawns Double Points pickup
+
+				handler.addPickup(new PickupDoublePoints(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1 )+ 50, ID.PickupDoublePoints, "images/doublepoints.png", this.handler));
+			} else if (dropSpawnNum == 4) {
+				//spawns Shrink pickup
+				
+				handler.addPickup(new PickupShrink(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1)+ 50, ID.PickupShrink, "images/minimushroom.png", this.handler));
+			} else if (dropSpawnNum == 5) {
+				//spawns Max Health Increase pickup
+				
+				handler.addPickup(new PickupHealthIncrease(r.nextInt(((Game.WIDTH - 50) - 50) + 1 )+ 50, r.nextInt(((Game.HEIGHT - 50) - 50) + 1)+ 50, ID.PickupHealthIncrease, "images/heart.png", this.handler));
+			}
+			
+		}
+		
 		if(levelTimer%60 == 0 && levelNumber != 101)
 			hud.setLevelTimer(levelTimer/60);
 		
@@ -466,6 +516,10 @@ public class Spawn15to20 {
 			randIntHolder = randomInt;
 			return randIntHolder;
 		}
+	}
+	
+	public int randDrop() {
+		return r.nextInt(differentDrops);
 	}
 
 }
