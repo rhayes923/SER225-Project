@@ -18,7 +18,6 @@ public class MenuFireworks extends GameObject {
 	private Handler handler;
 	private Random r;
 	private double velX;
-	private double veyY;
 	private double x;
 	private double y;
 	private int sizeX;

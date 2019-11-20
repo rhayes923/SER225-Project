@@ -20,8 +20,8 @@ public class EnemyTracker extends GameObject {
 	private GameObject player;
 	private int speed;
 	private Color enemyColor;
+	@SuppressWarnings("unused")
 	private int timer;
-	private Game game;
 
 	public EnemyTracker(double x, double y, int speed, ID id, Handler handler, Color enemyColor, int timer, Game game) {
 		super(x, y, id);
@@ -29,7 +29,6 @@ public class EnemyTracker extends GameObject {
 		this.speed = speed;
 		this.enemyColor = enemyColor;
 		this.timer = timer;
-		this.game = game;
 
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player)

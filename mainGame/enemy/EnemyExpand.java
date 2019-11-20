@@ -19,6 +19,7 @@ public class EnemyExpand extends GameObject {
 	private int sizeX;
 	private int sizeY;
 	private int timer;
+	@SuppressWarnings("unused")
 	private GameObject player;
 
 	public EnemyExpand(double x, double y, int sizeX, int sizeY, ID id, Handler handler) {

@@ -26,17 +26,16 @@ public class HUD {
 	public static int doublePointsTimer;
 	private int healthBarWidth;
 	private int healthBarModifier;
+	@SuppressWarnings("unused")
 	private boolean doubleHealth;
 	private String ability;
 	private int abilityUses;
 	private Color scoreColor;
 	private int extraLives;
 	public Game game;
-	private Handler handler;
 	private double levelTimer;
-	private double leveTimer2;
 	
-	public HUD(Game game, Handler handler) {
+	public HUD(Game game) {
 		this.game = game;
 		health = 100;
 		healthMax = 100;

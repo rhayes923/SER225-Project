@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.net.URL;
 import java.util.Random;
 
 import mainGame.Game.STATE;
@@ -140,7 +139,7 @@ public class Player extends GameObject {
 				// collision code
 				if (getBounds().intersects(tempObject.getBounds())) {// player hit an enemy
 					hud.health -= damage;
-					if (game.isMusicPlaying) {
+					if (Game.isMusicPlaying) {
 						game.damageSound.play();
 					}
 					hud.updateScoreColor(Color.red);
@@ -182,7 +181,7 @@ public class Player extends GameObject {
 
 			if (tempPickup.getId() == ID.PickupHealth) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
-					if (game.isMusicPlaying) {
+					if (Game.isMusicPlaying) {
 						game.healthSound.play();
 					}
 					if(hud.getHealthMax() - hud.health > 25) {
@@ -194,7 +193,7 @@ public class Player extends GameObject {
 				}
 			} else if (tempPickup.getId() == ID.PickupSpeed) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
-					if (game.isMusicPlaying) {
+					if (Game.isMusicPlaying) {
 						game.speedSound.play();
 					}
 					playerSpeed += 1;
@@ -202,7 +201,7 @@ public class Player extends GameObject {
 				}
 			} else if (tempPickup.getId() == ID.PickupScore) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
-					if (game.isMusicPlaying) {
+					if (Game.isMusicPlaying) {
 						game.scoreSound.play();
 					}
 					hud.setScore(hud.getScore()+1000);
@@ -210,7 +209,7 @@ public class Player extends GameObject {
 				}
 			} else if (tempPickup.getId() == ID.PickupDoublePoints) {
 				if (getBounds().intersects(tempPickup.getBounds())) {
-					if (game.isMusicPlaying) {
+					if (Game.isMusicPlaying) {
 						game.dpSound.play();
 					}
 					if (doublePointsActive = true) {
@@ -222,7 +221,7 @@ public class Player extends GameObject {
 				}
 			} else if (tempPickup.getId() == ID.PickupNuke) {
 				if(getBounds().intersects(tempPickup.getBounds())) {
-					if (game.isMusicPlaying) {
+					if (Game.isMusicPlaying) {
 						game.nukeSound.play();
 					}
 					handler.clearEnemies();

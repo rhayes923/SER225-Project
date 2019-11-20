@@ -18,7 +18,7 @@ public class EnemyMoveRight extends GameObject {
 	private Handler handler;
 	private int sizeX;
 	private int sizeY;
-	private int timer;
+	@SuppressWarnings("unused")
 	private GameObject player;
 
 	public EnemyMoveRight(double x, double y, int sizeX, int sizeY, ID id, Handler handler) {
@@ -28,7 +28,6 @@ public class EnemyMoveRight extends GameObject {
 		this.velY = 0;
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
-		this.timer = 3;
 
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player)

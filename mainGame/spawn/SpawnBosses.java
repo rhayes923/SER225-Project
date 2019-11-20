@@ -12,7 +12,6 @@ public class SpawnBosses {
 
 	private Handler handler;
 	private HUD hud;
-	private Game game;
 	public static int LEVEL_SET = 1;
 	private int differentEnemies;
 	private Random r;
@@ -22,10 +21,9 @@ public class SpawnBosses {
 	private Player player;
 	private int levelTimer;
 
-	public SpawnBosses(Handler handler, HUD hud, Game game, Player player) {
+	public SpawnBosses(Handler handler, HUD hud, Player player) {
 		this.handler = handler;
 		this.hud = hud;
-		this.game = game;
 		handler.object.clear();
 		hud.health = 100;
 		hud.setScore(0);
@@ -101,8 +99,8 @@ public class SpawnBosses {
 		else if (levelNumber == 2) {
 			if (tempCounter < 1) {
 				tempCounter++;
-				handler.addObject(new RollBoss1(r.nextInt(Game.WIDTH-300), r.nextInt(Game.HEIGHT-300), r.nextInt(5)+10, r.nextInt(5)+10, ID.RollBoss1, handler));
-				handler.addObject(new RollBoss2(r.nextInt(Game.WIDTH-300), r.nextInt(Game.HEIGHT-300), r.nextInt(5)+10, r.nextInt(5)+10, ID.RollBoss2, handler));
+				handler.addObject(new RollBoss1(r.nextInt(Game.WIDTH-300), r.nextInt(Game.HEIGHT-300), r.nextInt(5)+10, r.nextInt(5)+10, ID.RollBoss1));
+				handler.addObject(new RollBoss2(r.nextInt(Game.WIDTH-300), r.nextInt(Game.HEIGHT-300), r.nextInt(5)+10, r.nextInt(5)+10, ID.RollBoss2));
 			} else if (tempCounter >= 1) {
 				for (int i = 0; i < handler.object.size(); i++) {
 					GameObject tempObject = handler.object.get(i);

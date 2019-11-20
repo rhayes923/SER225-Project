@@ -19,14 +19,12 @@ import mainGame.*;
 
 public class RollBoss2 extends GameObject {
 
-	private Handler handler;
 	private Image img;
 	private float alpha = 0;
 	private double life = 0.005;
 
-	public RollBoss2(double x, double y, int velX, int velY, ID id, Handler handler) {
+	public RollBoss2(double x, double y, int velX, int velY, ID id) {
 		super(x, y, id);
-		this.handler = handler;
 		this.velX = velX;
 		this.velY = velY;
 		img = getImage("images/Angry-Balls2.png");

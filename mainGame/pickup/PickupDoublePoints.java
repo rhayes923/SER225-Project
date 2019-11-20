@@ -16,12 +16,10 @@ import mainGame.*;
 
 public class PickupDoublePoints extends Pickup {
 
-	private Handler handler;
 	private Image img;
 	
-	public PickupDoublePoints(double x, double y, ID id, String path, Handler handler) {
+	public PickupDoublePoints(double x, double y, ID id, String path) {
 		super(x, y, id, path);
-		this.handler = handler;
 		
 		img = null;
 		try {

@@ -16,12 +16,10 @@ import mainGame.*;
 
 public class PickupSpeed extends Pickup {
 
-	private Handler handler;
 	private Image img;
 
-	public PickupSpeed(double x, double y, ID id, String path, Handler handler) {
+	public PickupSpeed(double x, double y, ID id, String path) {
 		super(x, y, id, path);
-		this.handler = handler;
 
 		img = null;
 		try {

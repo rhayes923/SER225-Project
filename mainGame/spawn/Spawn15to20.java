@@ -26,7 +26,6 @@ public class Spawn15to20 {
 	private int trackerTimer;
 	private int differentEnemies;
 	private Player player;
-	private BossSeparates finalBoss;
 	private int randIntHolder;
 
 	public Spawn15to20(Handler handler, HUD hud, Game game, Player player) {

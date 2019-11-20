@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.net.URL;
 import mainGame.Game.STATE;
 import mainGame.*;
 
@@ -18,7 +17,6 @@ import mainGame.*;
 
 public class ColorPickerScreen {
 
-	private Player player;
 	private Game game;
 	private int x,y;
 	private Image img;
@@ -29,7 +27,6 @@ public class ColorPickerScreen {
 	private Image redGrayShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/redGrayShip.png"));
 
 	public ColorPickerScreen(Player player, Game game) {
-		this.player = player;
 		this.game = game;
 		x = 0;
 		y = 0;

@@ -28,7 +28,6 @@ public class LevelText extends GameObject {
 	public LevelText(double x, double y, String text, ID id) {
 		super(x, y, id);
 		this.text = text;
-		AffineTransform at = new AffineTransform();
 		timer = 15;
 	}
 

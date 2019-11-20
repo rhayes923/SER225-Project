@@ -24,9 +24,6 @@ import mainGame.*;
 
 public class UpgradeScreen {
 
-	private Game game;
-	private Handler handler;
-	private HUD hud;
 	private String text;
 	private String[] paths = { "images/clearscreenability.png", "images/decreaseplayersize.png", "images/extralife.png",
 		"images/healthincrease.png", "images/healthregeneration.png", "images/improveddamageresistance.png",
@@ -36,10 +33,7 @@ public class UpgradeScreen {
 	private int index1, index2, index3;
 	private int differentUpgrades;
 
-	public UpgradeScreen(Game game, Handler handler, HUD hud) {
-		this.game = game;
-		this.handler = handler;
-		this.hud = hud;
+	public UpgradeScreen() {
 		differentUpgrades = 9;
 		setIndex();
 		addPaths();

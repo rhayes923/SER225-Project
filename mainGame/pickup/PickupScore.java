@@ -16,12 +16,10 @@ import mainGame.*;
 
 public class PickupScore extends Pickup {
 
-	private Handler handler;
 	private Image img;
 
-	public PickupScore(double x, double y, ID id, String path, Handler handler) {
+	public PickupScore(double x, double y, ID id, String path) {
 		super(x, y, id, path);
-		this.handler = handler;
 
 		img = null;
 		try {

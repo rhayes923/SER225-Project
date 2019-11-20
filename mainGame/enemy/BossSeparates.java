@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
-import java.awt.image.ImageObserver;
 import java.net.URL;
 import java.util.Random;
 import mainGame.*;
@@ -32,7 +30,6 @@ public class BossSeparates extends GameObject {
 	private boolean onPath = false;
 	private int target_x = 0;
 	private int target_y = 0;
-	private double angle;
 	private double speed = 10;
 	
 	public BossSeparates(double x, double y, ID id, Handler handler, Player player, int size, int health, int velX, int velY) {
@@ -115,7 +112,6 @@ public class BossSeparates extends GameObject {
 			target_y = (int) (Math.random()*(Game.HEIGHT - size));
 			double dist_x = target_x - this.x;
 			double dist_y = target_y - this.y;
-			angle = Math.atan(dist_y/dist_x);
 			double dist = Math.sqrt(dist_x*dist_x + dist_y*dist_y);
 			this.velX = speed*dist_x/dist;
 			this.velY = speed*dist_y/dist;

@@ -16,12 +16,10 @@ import mainGame.*;
 
 public class PickupHealth extends Pickup {
 
-	private Handler handler;
 	private Image img;
 
-	public PickupHealth(double x, double y, ID id, String path, Handler handler) {
+	public PickupHealth(double x, double y, ID id, String path) {
 		super(x, y, id, path);
-		this.handler = handler;
 
 		img = null;
 		try {

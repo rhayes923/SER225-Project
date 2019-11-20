@@ -16,7 +16,6 @@ import mainGame.*;
  */
 public class GameOver {
 
-	private Game game;
 	private Handler handler;
 	private HUD hud;
 	private Color retryColor;
@@ -25,8 +24,7 @@ public class GameOver {
 	private String backText;
 	private String message;
 
-	public GameOver(Game game, Handler handler, HUD hud, Player player) {
-		this.game = game;
+	public GameOver(Handler handler, HUD hud, Player player) {
 		this.handler = handler;
 		this.player = player;
 		this.hud = hud;
