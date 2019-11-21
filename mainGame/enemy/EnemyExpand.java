@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.gfx.*;
 
@@ -20,6 +23,7 @@ public class EnemyExpand extends GameObject {
 	private int sizeY;
 	private int timer;
 	private GameObject player;
+	private Image explosion = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/Explosion.gif"));
 
 	public EnemyExpand(double x, double y, int sizeX, int sizeY, ID id, Handler handler) {
 		super(x, y, id);
@@ -69,8 +73,7 @@ public class EnemyExpand extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.pink);
-		g.fillRect((int) x, (int) y, this.sizeX, this.sizeY);
+		g.drawImage(explosion, (int) x, (int) y, this.sizeX, this.sizeY, null);
 
 	}
 

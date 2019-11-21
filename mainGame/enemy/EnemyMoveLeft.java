@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.gfx.*;
 
@@ -20,6 +23,7 @@ public class EnemyMoveLeft extends GameObject {
 	private int sizeY;
 	private int timer;
 	private GameObject player;
+	private Image leftRight = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/LeftRight.png"));
 
 	public EnemyMoveLeft(double x, double y, int sizeX, int sizeY, ID id, Handler handler) {
 		super(x, y, id);
@@ -45,8 +49,6 @@ public class EnemyMoveLeft extends GameObject {
 			velY *= -1;
 		if (this.x <= 0 || this.x >= Game.WIDTH - 16)
 			velX *= -1;
-
-		handler.addObject(new Trail(x, y, ID.Trail, Color.yellow, this.sizeX, this.sizeY, 0.09, this.handler));
 		
 		
 		x -= 10;
@@ -54,8 +56,7 @@ public class EnemyMoveLeft extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect((int) x, (int) y, this.sizeX, this.sizeY);
+		g.drawImage(leftRight, (int) x, (int) y, this.sizeX, this.sizeY, null);
 	}
 
 	@Override

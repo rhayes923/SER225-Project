@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.Game.STATE;
 import mainGame.gfx.*;
@@ -31,6 +34,8 @@ public class EnemyPorcupine extends GameObject {
 	private double diffX;
 	private double diffY;
 	private Game game;
+	private Image porcupine = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/UFOPorcupine.png"));
+	
 
 	public EnemyPorcupine(double x, double y, int sizeX, int sizeY, ID id, 
 			Handler handler, int speed, int bulletSpeed, int fireRate, Game game) {
@@ -64,7 +69,6 @@ public class EnemyPorcupine extends GameObject {
 		if (this.x <= 0 || this.x >= Game.WIDTH - 16)
 			velX *= -1;
 
-		handler.addObject(new Trail(x, y, ID.Trail, Color.orange, this.sizeX, this.sizeY, 0.025, this.handler));
 
 		this.x += velX;
 		this.y += velY;
@@ -118,8 +122,7 @@ public class EnemyPorcupine extends GameObject {
 	}
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.orange);
-		g.fillRect((int) x, (int) y, this.sizeX, this.sizeY);
+		g.drawImage(porcupine, (int) x, (int) y, this.sizeX, this.sizeY, null);
 
 	}
 
