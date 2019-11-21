@@ -115,7 +115,6 @@ public class Game extends Canvas implements Runnable {
 		scoreSound = new SoundClip("sounds/points.mp3", 1.0);
 		dpSound = new SoundClip("sounds/doublepoints.mp3", 1.0);
 		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
-		
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "Space Matrix", this);
 		colorScreen = new ColorPickerScreen(player, this);	
