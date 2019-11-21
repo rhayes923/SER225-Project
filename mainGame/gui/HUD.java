@@ -33,8 +33,7 @@ public class HUD {
 	private int extraLives;
 	public Game game;
 	private Handler handler;
-	private double levelTimer;
-	private double leveTimer2;
+	private int levelTimer;
 	
 	public HUD(Game game, Handler handler) {
 		this.game = game;
@@ -72,19 +71,10 @@ public class HUD {
 				doublePointsTimer = 1000;
 			}
 		}
-		//Hi
-		if (level == 101) {
-			levelTimer = 23;
-		} else {
-			levelTimer = levelTimer - .016666666;
-			if (Math.ceil(levelTimer) == -1) {
-				levelTimer = 19;
-			}
-		}
 
 		if (regen) {// regenerates health if that ability has been unlocked
 			timer--;
-			if (timer == 0 && health < 100) {
+			if (timer == 0 && health < healthMax) {
 				health += 1;
 				timer = 60;
 			}
@@ -103,7 +93,8 @@ public class HUD {
 
 		g.setFont(font);
 
-		g.drawString("Time left: " + (int)Math.ceil(levelTimer), 15, 215);
+		if(level != 101 && game.getGameState() == STATE.Wave)
+			g.drawString("Time left: " + levelTimer, 15, 215);
 		
 		if (!Player.doublePointsActive) {
 			g.drawString("Score: " + score, 15, 115);
@@ -116,10 +107,9 @@ public class HUD {
 			} else if (level == 101) { 
 				g.drawString("Level: Boss", 15, 150);
 			}
-			g.drawString("Extra Lives: " + extraLives, 15, 185);
-		} else {
-			g.drawString("Extra Lives: " + extraLives, 15, 150);
 		}
+		if(game.getGameState() == STATE.Wave)
+			g.drawString("Extra Lives: " + extraLives, 15, 185);
 		
 		if (ability.equals("freezeTime")) {
 			g.drawString("Time Freezes: " + abilityUses, Game.WIDTH - 300, 64);
@@ -161,6 +151,10 @@ public class HUD {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	
+	public void setLevelTimer(int levelTimer) {
+		this.levelTimer = levelTimer;
+	}
 
 	public void setHealth(int health) {
 		this.health = health;
@@ -184,7 +178,10 @@ public class HUD {
 
 	public void healthIncrease() {
 		doubleHealth = true;
-		healthMax = 200;
+		if(healthMax < 200)
+			healthMax = 200;
+		else
+			healthMax = 250;
 		this.health = healthMax;
 		healthBarModifier = 1;
 		healthBarWidth = 400;
@@ -200,6 +197,12 @@ public class HUD {
 
 	public void restoreHealth() {
 		this.health = healthMax;
+	}
+	public void increaseMaxHealth(int newHealth) {
+		healthMax += newHealth;
+		healthBarWidth = (int) healthMax * 2;
+		if(healthMax >= 200)
+			healthBarModifier = 1;
 	}
 	public double getHealthMax() {
 		return healthMax;

@@ -197,7 +197,8 @@ public class Player extends GameObject {
 					if (game.isMusicPlaying) {
 						game.speedSound.play();
 					}
-					playerSpeed += 1;
+					if(playerSpeed <= 20)
+						playerSpeed += 1;
 					handler.removePickup(tempPickup);
 				}
 			} else if (tempPickup.getId() == ID.PickupScore) {
@@ -228,7 +229,24 @@ public class Player extends GameObject {
 					handler.clearEnemies();
 					handler.removePickup(tempPickup);
 				}
-			}
+			} else if (tempPickup.getId() == ID.PickupShrink) {
+				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.shrinkSound.play();
+					}
+					if(this.playerWidth >= 15) 
+						this.setPlayerSize(this.playerWidth-2);
+					handler.removePickup(tempPickup);
+				}
+			} else if (tempPickup.getId() == ID.PickupHealthIncrease) {
+				if(getBounds().intersects(tempPickup.getBounds())) {
+					if (game.isMusicPlaying) {
+						game.healthIncreaseSound.play();
+					}
+					hud.increaseMaxHealth(10);
+					handler.removePickup(tempPickup);
+				}
+			} 
 		}
 	}
 
@@ -253,6 +271,13 @@ public class Player extends GameObject {
 	public void setPlayerSize(int size) {
 		this.playerWidth = size;
 		this.playerHeight = size;
+	}
+	
+	public void decreasePlayerSize() {
+		if(this.playerWidth > 21)
+			setPlayerSize(21);
+		else
+			setPlayerSize(15);
 	}
 	@Override
 	public double getVelX() {
