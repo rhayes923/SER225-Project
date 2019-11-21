@@ -22,14 +22,11 @@ public class MouseListener extends MouseAdapter {
 	private UpgradeScreen upgradeScreen;
 	private Upgrades upgrades;
 	private Player player;
-	private Leaderboard leaderboard;
-	private LeaderboardDisplay leaderboardDisplay;
 
 	public MouseListener(Game game, Handler handler, HUD hud, Spawn1to5 spawner, 
 			Spawn5to10 spawner2, SpawnSurvival spawnSurvival, UpgradeScreen upgradeScreen
 			, Player player, Upgrades upgrades, 
-			Leaderboard leaderboard, SpawnBosses spawnBosses, 
-			LeaderboardDisplay leaderboardDisplay) {
+			SpawnBosses spawnBosses) {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
@@ -39,9 +36,7 @@ public class MouseListener extends MouseAdapter {
 		this.player = player;
 		this.upgrades = upgrades;
 		this.spawnSurvival = spawnSurvival;
-		this.leaderboard = leaderboard;
 		this.spawnBosses = spawnBosses;
-		this.leaderboardDisplay = leaderboardDisplay;
 	}
 
 	@Override
@@ -174,17 +169,6 @@ public class MouseListener extends MouseAdapter {
 					return;
 				}
 			}
-			
-			// Leaderboard screen
-			else if (game.gameState == STATE.Leaderboard) {
-				if(leaderboard.getUser() != "") {
-					if (mouseOver(mx, my, 353, 490, 566, 166)) {
-						leaderboard.loadLeaderboard();
-						leaderboardDisplay.refresh();
-						game.gameState = STATE.LeaderboardDisplay;
-						return;
-					}
-				}
 				
 			//Back button for credits
 			} else if (game.gameState == STATE.Credits) {
@@ -230,12 +214,6 @@ public class MouseListener extends MouseAdapter {
 					game.gameState = STATE.Menu;
 					handler.clearPlayer();
 				}
-			} else if(game.gameState == STATE.LeaderboardDisplay) {
-				if(mouseOver(mx,my,0,0,Game.WIDTH,Game.HEIGHT)) {
-					leaderboard.reset();
-					game.gameState = STATE.Menu;
-				}
-			}
 		} else { // game is paused
 			// PauseMenu-> Resume
 			if (mouseOver(mx, my, 445, 37, 390, 329)) {
@@ -271,7 +249,6 @@ public class MouseListener extends MouseAdapter {
 				return;
 			}
 		}
-
 	}
 
 	@Override

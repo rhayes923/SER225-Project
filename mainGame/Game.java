@@ -46,11 +46,9 @@ public class Game extends Canvas implements Runnable {
 	private Upgrades upgrades;
 	private Player player;
 	public STATE gameState = STATE.Menu;
-	private PauseMenu pauseMenu;
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
 	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound;
-	private Leaderboard leaderboard;
 
 	private WonWaves wonWaves;
 	private SpawnBosses spawnBosses;
@@ -58,7 +56,6 @@ public class Game extends Canvas implements Runnable {
 	private boolean isPaused = false;
 	public static boolean isMusicPlaying = true;
 	private ColorPickerScreen colorScreen;
-	private LeaderboardDisplay leaderboardDisplay;
 	public String [][] leaderboardList;
 	private Image spaceBackground1, spaceBackground2;
 	private int spaceYValue = 0;
@@ -101,14 +98,11 @@ public class Game extends Canvas implements Runnable {
 		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawner, this.spawner2, this.spawner3, this.spawner4);
 		gameOver = new GameOver(this, this.handler, this.hud, player);
 		wonWaves = new WonWaves(this.handler, this.hud);
-		pauseMenu = new PauseMenu();
 		leaderboardList = new String[6][2];
-		leaderboard = new Leaderboard(this, hud, leaderboardList);
-		leaderboardDisplay = new LeaderboardDisplay(this.leaderboard, this);
 		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawner, 
 				this.spawner2, this.spawnSurvival, this.upgradeScreen, this.player, 
-				this.upgrades, leaderboard, this.spawnBosses, this.leaderboardDisplay);
-		this.addKeyListener(new KeyInput(this.handler, this, this.hud, this.player, this.spawner, this.upgrades, this.leaderboard));
+				this.upgrades, this.spawnBosses);
+		this.addKeyListener(new KeyInput(this.handler, this, this.hud, this.player, this.spawner, this.upgrades));
 		this.addMouseListener(mouseListener);
 		
 		// technically, this is bad practice but I don't care right now
@@ -324,21 +318,16 @@ public class Game extends Canvas implements Runnable {
 					gameOver.render(g);
 				} else if (gameState == STATE.WonWaves) {// game is over, draw the game
 					wonWaves.render(g);
-				} else if (gameState == STATE.Leaderboard) {
-					leaderboard.paint(g);
 				} else if (gameState == STATE.Color) {
 					colorScreen.render(g);
-				} else if (gameState == STATE.LeaderboardDisplay) {
-					leaderboardDisplay.paint(g);
-				}
 			} else {
-				pauseMenu.render(g);
 			}
 			if(!isPaused()){
 				handler.render(g);} // ALWAYS RENDER HANDLER, NO MATTER IF MENU OR GAME
 			///////// Draw things above this//////////////
 			g.dispose();
 			bs.show();
+			}
 		}
 	}
 
