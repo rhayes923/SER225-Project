@@ -129,7 +129,7 @@ public class Game extends Canvas implements Runnable {
 		colorScreen = new ColorPickerScreen(player, this);	
 		
 		try {
-			URL imgURL = Game.class.getResource("images/space.jpg");
+			URL imgURL = Game.class.getResource("images/spaceloop.jpg");
 			spaceBackground1 = Toolkit.getDefaultToolkit().getImage(imgURL);
 			spaceBackground2 = Toolkit.getDefaultToolkit().getImage(imgURL);
 		} catch (Exception e) {
