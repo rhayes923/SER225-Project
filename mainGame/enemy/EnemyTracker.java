@@ -2,7 +2,9 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 
 import mainGame.*;
 import mainGame.gfx.*;
@@ -22,6 +24,8 @@ public class EnemyTracker extends GameObject {
 	private Color enemyColor;
 	private int timer;
 	private Game game;
+	private Image trackerBlack = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlack.png"));
+	private Image trackerBlue = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlue.png"));
 
 	public EnemyTracker(double x, double y, int speed, ID id, Handler handler, Color enemyColor, int timer, Game game) {
 		super(x, y, id);
@@ -61,8 +65,7 @@ public class EnemyTracker extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(enemyColor);
-		g.fillRect((int) x, (int) y, 16, 16);
+		g.drawImage(trackerBlue, (int) x, (int) y, 16, 16, null);
 
 	}
 	@Override
