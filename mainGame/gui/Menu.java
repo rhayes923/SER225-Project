@@ -35,7 +35,14 @@ public class Menu {
 	private ArrayList<Color> colorPick = new ArrayList<Color>();
 	private int colorIndex;
 	private Spawn1to5 spawner;
-
+	
+	private Image trackerBlack = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlack.png"));
+	private Image trackerBlue = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlue.png"));
+	private Image ufoPorcupine = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/UFOPorcupine.png"));
+	private Image leftRight = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/LeftRight.png"));
+	private Image miniShooter = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/MiniShooter.png"));
+	private Image explosion = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/Explosion.gif"));
+	
 
 	public Menu(Game game, Handler handler, HUD hud, Spawn1to5 spawner) {
 		this.game = game;
@@ -237,22 +244,15 @@ public class Menu {
 			g.setColor(Color.yellow);
 			g.fillRect(50, 470, 75, 75);
 			//Enemy Tracker
-			g.setColor(Color.blue);
-			g.fillRect(100, 600, 16, 16);
+			g.drawImage(trackerBlue, 75, 575, 50,50, null);
 			//Enemy Expansion
-			g.setColor(Color.pink);
-			g.fillRect(700, 65, 100, 100);
+			g.drawImage(explosion, 700, 65, 100, 100, null);
 			//Enemy Minishooter
-			g.setColor(Color.magenta);
-			g.fillRect(735, 200, 30, 30);
+			g.drawImage(miniShooter, 715, 175, 75,75, null);
 			//Enemy Porcupine
-			g.setColor(Color.orange);
-			g.fillRect(715, 275, 75, 75);
+			g.drawImage(ufoPorcupine, 715, 275, 75, 75, null);
 			//Enemy LeftRight
-			g.setColor(Color.yellow);
-			g.fillRect(705, 400, 40, 40);
-			g.setColor(Color.blue);
-			g.fillRect(755, 400, 40, 40);
+			g.drawImage(leftRight, 715, 375, 75, 75, null);
 			
 			//Draw the text
 			g.setFont(font2);

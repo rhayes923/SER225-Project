@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.Game.STATE;
 import mainGame.gfx.*;
@@ -27,6 +30,7 @@ public class EnemyMiniShooter extends GameObject {
 	private int bulletSpeed;
 	private int fireRate;
 	private Game game;
+	private Image miniShooter = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/MiniShooter.png"));
 
 	public EnemyMiniShooter(double x, double y, int sizeX, int sizeY, 
 			int bulletSpeed, int fireRate, ID id, Handler handler, Game game) {
@@ -52,7 +56,6 @@ public class EnemyMiniShooter extends GameObject {
 	@Override
 	public void tick() {
 		timer--;
-		handler.addObject(new Trail(x, y, ID.Trail, Color.magenta, this.sizeX, this.sizeY, 0.025, this.handler));
 		if (timer <= 0) {
 			shoot();
 			if (handler.isMulti() || game.gameState == STATE.Survival)
@@ -100,8 +103,8 @@ public class EnemyMiniShooter extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.magenta);
-		g.fillRect((int) x, (int) y, this.sizeX, this.sizeY);
+		g.drawImage(miniShooter,(int) x, (int) y, this.sizeX, this.sizeY, null);
+
 
 	}
 
