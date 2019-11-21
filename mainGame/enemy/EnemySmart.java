@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.gfx.*;
 
@@ -18,6 +21,8 @@ public class EnemySmart extends GameObject {
 	private Handler handler;
 	private GameObject player;
 	private int speed;
+	
+	private Image smartShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/smartShip.png"));
 
 	public EnemySmart(double x, double y, int speed, ID id, Handler handler) {
 		super(x, y, id);
@@ -49,15 +54,15 @@ public class EnemySmart extends GameObject {
 		// if (this.y <= 0 || this.y >= Game.HEIGHT - 40) velY *= -1;
 		// if (this.x <= 0 || this.x >= Game.WIDTH - 16) velX *= -1;
 
-		handler.addObject(new Trail(x, y, ID.Trail, Color.green, 16, 16, 0.025, this.handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.green, 16, 16, 0.025, this.handler));
 
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.green);
-		g.fillRect((int) x, (int) y, 16, 16);
-
+//		g.setColor(Color.green);
+//		g.fillRect((int) x, (int) y, 16, 16);
+		g.drawImage(smartShip, (int) x, (int) y, 75, 75, null);
 	}
 
 	@Override

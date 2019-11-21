@@ -236,18 +236,9 @@ public class MouseListener extends MouseAdapter {
 					game.gameState = STATE.Menu;
 				}
 			}
-		} else { // game is paused
-			// PauseMenu-> Resume
-			if (mouseOver(mx, my, 445, 37, 390, 329)) {
-				game.unPause();
-				return;
-				//PauseMenu-> Main Menu
-			} if (mouseOver(mx, my, 445, 372, 390, 337)) {
+		} else if (mouseOver(mx, my, 445, 372, 390, 337)) {
 				// TODO: make one method in the handler for resetGame() that does all of the following things
-				// If the user clicks on "Resume" the game unpauses
-				game.unPause();
-				// If the user clicks on "Quit" the game takes you to the Main Menu Page
-				game.gameState = STATE.Menu;
+
 				// After the user quits survival, these methods clear the enemies, a player and resets the pickups
 				handler.clearEnemies();
 				handler.clearPlayer();
@@ -272,7 +263,6 @@ public class MouseListener extends MouseAdapter {
 			}
 		}
 
-	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {

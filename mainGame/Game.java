@@ -46,7 +46,6 @@ public class Game extends Canvas implements Runnable {
 	private Upgrades upgrades;
 	private Player player;
 	public STATE gameState = STATE.Menu;
-	private PauseMenu pauseMenu;
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
 	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound;
@@ -70,6 +69,8 @@ public class Game extends Canvas implements Runnable {
 	private String room;
 	private String pass;
 	
+
+
 	/**
 	 * Used to switch between each of the screens shown to the user
 	 */
@@ -101,7 +102,6 @@ public class Game extends Canvas implements Runnable {
 		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawner, this.spawner2, this.spawner3, this.spawner4);
 		gameOver = new GameOver(this, this.handler, this.hud, player);
 		wonWaves = new WonWaves(this.handler, this.hud);
-		pauseMenu = new PauseMenu();
 		leaderboardList = new String[6][2];
 		leaderboard = new Leaderboard(this, hud, leaderboardList);
 		leaderboardDisplay = new LeaderboardDisplay(this.leaderboard, this);
@@ -329,8 +329,10 @@ public class Game extends Canvas implements Runnable {
 				} else if (gameState == STATE.LeaderboardDisplay) {
 					leaderboardDisplay.paint(g);
 				}
-			} else {
-				pauseMenu.render(g);
+			} 
+			else {
+				player.render(g);
+				hud.render(g);			
 			}
 			if(!isPaused()){
 				handler.render(g);} // ALWAYS RENDER HANDLER, NO MATTER IF MENU OR GAME
