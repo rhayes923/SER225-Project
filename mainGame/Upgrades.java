@@ -49,7 +49,7 @@ public class Upgrades {
 	}
 
 	public void decreasePlayerSize() {
-		player.setPlayerSize(21);
+		player.decreasePlayerSize();
 	}
 
 	public void extraLife() {
@@ -102,7 +102,10 @@ public class Upgrades {
 	}
 
 	public void speedBoost() {
-		Player.playerSpeed *= 1.5;
+		if(Player.playerSpeed < 15)
+			Player.playerSpeed = 15;
+		else
+			Player.playerSpeed = 20;
 	}
 
 	public String getAbility() {

@@ -48,7 +48,8 @@ public class Game extends Canvas implements Runnable {
 	public STATE gameState = STATE.Menu;
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
-	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound;
+	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound, shrinkSound, healthIncreaseSound;
+	private Leaderboard leaderboard;
 
 	private WonWaves wonWaves;
 	private SpawnBosses spawnBosses;
@@ -115,12 +116,15 @@ public class Game extends Canvas implements Runnable {
 		scoreSound = new SoundClip("sounds/points.mp3", 1.0);
 		dpSound = new SoundClip("sounds/doublepoints.mp3", 1.0);
 		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
+		shrinkSound = new SoundClip("sounds/shrink.mp3", 1.0);
+		healthIncreaseSound = new SoundClip("sounds/healthincrease.mp3", 1.0);
+		
 		soundplayer.start();
 		new Window(WIDTH, HEIGHT, "Epstein's Death Was Not A Suicide!", this);
 		colorScreen = new ColorPickerScreen(player, this);	
 		
 		try {
-			URL imgURL = Game.class.getResource("images/space.jpg");
+			URL imgURL = Game.class.getResource("images/spaceloop.jpg");
 			spaceBackground1 = Toolkit.getDefaultToolkit().getImage(imgURL);
 			spaceBackground2 = Toolkit.getDefaultToolkit().getImage(imgURL);
 		} catch (Exception e) {
@@ -253,6 +257,10 @@ public class Game extends Canvas implements Runnable {
 				}
 			} else if (gameState == STATE.WonWaves) {
 				wonWaves.tick();
+			} else if (gameState == STATE.gameMode) {
+				hud.resetHealth();
+				player.playerSpeed = 10;
+				player.setPlayerSize(31);
 			}
 			if (spaceYValue > HEIGHT) {
 				spaceYValue = 0;
