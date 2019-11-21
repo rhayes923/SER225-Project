@@ -16,12 +16,10 @@ import mainGame.*;
 
 public class PickupNuke extends Pickup {
 
-	private Handler handler;
 	private Image img;
 	
-	public PickupNuke(double x, double y, ID id, String path, Handler handler) {
+	public PickupNuke(double x, double y, ID id, String path) {
 		super(x, y, id, path);
-		this.handler = handler;
 		
 		img = null;
 		try {

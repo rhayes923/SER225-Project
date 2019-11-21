@@ -49,7 +49,6 @@ public class Game extends Canvas implements Runnable {
 	public static int TEMP_COUNTER;
 	private SoundPlayer soundplayer;
 	public SoundClip damageSound, healthSound, speedSound, scoreSound, dpSound, nukeSound, shrinkSound, healthIncreaseSound;
-	private Leaderboard leaderboard;
 
 	private WonWaves wonWaves;
 	private SpawnBosses spawnBosses;
@@ -57,57 +56,44 @@ public class Game extends Canvas implements Runnable {
 	private boolean isPaused = false;
 	public static boolean isMusicPlaying = true;
 	private ColorPickerScreen colorScreen;
-	public String [][] leaderboardList;
 	private Image spaceBackground1, spaceBackground2;
 	private int spaceYValue = 0;
-
-	/* NOBODY TOUCH THESE VARS, THEY ARE FOR TESTING NETWORKING */
-	private String op;
-	private String addr;
-	private int port;
-	private String room;
-	private String pass;
 	
 	/**
 	 * Used to switch between each of the screens shown to the user
 	 */
 	public enum STATE {
 		Menu, gameMode, Help, Join, Host, Wave, GameOver, Upgrade, Bosses, Survival, Multiplayer, 
-		Leaderboard, Color, LeaderboardDisplay, Credits, WonWaves, EnemyJournal
+		Color, Credits, WonWaves, EnemyJournal
 	};
 
 	/**
 	 * Initialize the core mechanics of the game
-	 * @param op The operation (join/host/none) to use
-	 * @param addr The address to use
-	 * @param port The port
-	 * @param room The roomname
-	 * @param pass The password
 	 */
-	public Game(String op, String addr, int port, String room, String pass) {
+	public Game() {
 		handler = new Handler(this);
-		hud = new HUD(this, handler);
+		hud = new HUD(this);
 		player = new Player(WIDTH / 2 - 42, HEIGHT / 2 - 42, ID.Player, handler, this.hud, this);
 		spawner = new Spawn1to5(this.handler, this.hud, this, player);
 		spawner2 = new Spawn5to10(this.handler, this.hud, this.spawner, this, player);
 		spawner3 = new Spawn10to15(this.handler, this.hud, this, player);
 		spawner4 = new Spawn15to20(this.handler, this.hud, this, player);
 		spawnSurvival = new SpawnSurvival(this.handler, this.hud, this, player);
-		spawnBosses = new SpawnBosses(this.handler, this.hud, this, this.player);
-		menu = new Menu(this, this.handler, this.hud, this.spawner);
-		upgradeScreen = new UpgradeScreen(this, this.handler, this.hud);
+		spawnBosses = new SpawnBosses(this.handler, this.hud, this.player);
+		menu = new Menu(this, this.handler);
+		upgradeScreen = new UpgradeScreen();
 		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawner, this.spawner2, this.spawner3, this.spawner4);
-		gameOver = new GameOver(this, this.handler, this.hud, player);
+		gameOver = new GameOver(this.handler, this.hud, player);
 		wonWaves = new WonWaves(this.handler, this.hud);
-		leaderboardList = new String[6][2];
 		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawner, 
 				this.spawner2, this.spawnSurvival, this.upgradeScreen, this.player, 
 				this.upgrades, this.spawnBosses);
-		this.addKeyListener(new KeyInput(this.handler, this, this.hud, this.player, this.spawner, this.upgrades));
+		this.addKeyListener(new KeyInput(this.handler, this, this.player, this.upgrades));
 		this.addMouseListener(mouseListener);
 		
 		// technically, this is bad practice but I don't care right now
 		this.setSize(new Dimension(WIDTH, HEIGHT));
+		@SuppressWarnings("unused")
 		JFXPanel jfxp = new JFXPanel(); // trust
 		soundplayer = new SoundPlayer("sounds/main.mp3", true);
 		damageSound = new SoundClip("sounds/damage.mp3", 1.0);
@@ -120,7 +106,7 @@ public class Game extends Canvas implements Runnable {
 		healthIncreaseSound = new SoundClip("sounds/healthincrease.mp3", 1.0);
 		
 		soundplayer.start();
-		new Window(WIDTH, HEIGHT, "Epstein's Death Was Not A Suicide!", this);
+		new Window(WIDTH, HEIGHT, "Space Matrix", this);
 		colorScreen = new ColorPickerScreen(player, this);	
 		
 		try {
@@ -130,12 +116,6 @@ public class Game extends Canvas implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		this.op = op;
-		this.addr = addr;
-		this.port = port;
-		this.room = room;
-		this.pass = pass;
 	}
 
 	/**
@@ -168,6 +148,7 @@ public class Game extends Canvas implements Runnable {
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
+		@SuppressWarnings("unused")
 		int frames = 0;
 		while (running) {
 			long now = System.nanoTime();
@@ -327,7 +308,7 @@ public class Game extends Canvas implements Runnable {
 					wonWaves.render(g);
 				} else if (gameState == STATE.Color) {
 					colorScreen.render(g);
-			} else {
+				}
 			}
 			if(!isPaused()){
 				handler.render(g);} // ALWAYS RENDER HANDLER, NO MATTER IF MENU OR GAME
@@ -336,7 +317,6 @@ public class Game extends Canvas implements Runnable {
 			bs.show();
 			}
 		}
-	}
 
 	/**
 	 * 
@@ -369,19 +349,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		String op = "none";
-		String address = "none";
-		int port = 0;
-		String room = "";
-		String pass = "";
-		if (args.length == 5) {
-			op = args[0];
-			address = args[1];
-			port = Integer.parseInt(args[2]);
-			room = args[3];
-			pass = args[4];
-		}
-		new Game(op, address, port, room, pass);
+		new Game();
 	}
 
 	public void setFrame(JFrame frame) {

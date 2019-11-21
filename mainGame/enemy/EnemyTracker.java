@@ -22,6 +22,7 @@ public class EnemyTracker extends GameObject {
 	private GameObject player;
 	private int speed;
 	private Color enemyColor;
+	@SuppressWarnings("unused")
 	private int timer;
 	private Game game;
 	private Image trackerBlack = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlack.png"));
@@ -33,7 +34,6 @@ public class EnemyTracker extends GameObject {
 		this.speed = speed;
 		this.enemyColor = enemyColor;
 		this.timer = timer;
-		this.game = game;
 
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player)

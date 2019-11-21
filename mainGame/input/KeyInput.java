@@ -1,13 +1,9 @@
 package mainGame.input;
 
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import mainGame.Game.STATE;
-import mainGame.audio.SoundPlayer;
-import mainGame.spawn.*;
 import mainGame.*;
-import mainGame.gui.*;
 
 /**
  * Handles key input from the user
@@ -22,23 +18,16 @@ public class KeyInput extends KeyAdapter {
 	private boolean[] keyDown = new boolean[5];
 	private int speed;
 	private Game game;
-	private HUD hud;
 	private Player player;
-	private Spawn1to5 spawner;
 	private Upgrades upgrades;
 	private String ability;
-	private Object object;
-	private Image pauseMenu;
-	private SoundPlayer soundplayer;
 
 	// uses current handler created in Game as parameter
-	public KeyInput(Handler handler, Game game, HUD hud, Player player, Spawn1to5 spawner, Upgrades upgrades) {
+	public KeyInput(Handler handler, Game game, Player player, Upgrades upgrades) {
 		this.handler = handler;
 		this.speed = Player.playerSpeed;
 		this.game = game;
 		this.player = player;
-		this.hud = hud;
-		this.spawner = spawner;
 		this.upgrades = upgrades;
 
 		keyDown[0] = false;
@@ -57,6 +46,7 @@ public class KeyInput extends KeyAdapter {
 
 		// finds what key strokes associate with Player
 		for (int i = 0; i < handler.object.size(); i++) {
+			@SuppressWarnings("unused")
 			GameObject tempObject = handler.object.get(i);
 
 			// using only if's allows multiple keys to be triggered at once

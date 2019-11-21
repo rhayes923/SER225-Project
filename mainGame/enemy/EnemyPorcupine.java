@@ -21,7 +21,6 @@ public class EnemyPorcupine extends GameObject {
 	private Handler handler;
 	private int sizeX;
 	private int sizeY;
-	private int size;
 	private int updateTimer;
 	private int shootTimer;
 	private GameObject player;
@@ -48,7 +47,6 @@ public class EnemyPorcupine extends GameObject {
 		this.updateTimer = 60;
 		this.shootTimer = 60;
 		this.speed = speed;
-		this.size = sizeX;
 		this.bulletSpeed = bulletSpeed;
 		this.fireRate = fireRate;
 		this.game = game;
@@ -98,8 +96,6 @@ public class EnemyPorcupine extends GameObject {
 	}
 
 	private void move() {
-		// TODO Auto-generated method stub
-
 		velX = ((this.speed / distance) * diffX); // numerator affects speed of enemy
 		velY = ((this.speed / distance) * diffY);// numerator affects speed of enemy
 	}

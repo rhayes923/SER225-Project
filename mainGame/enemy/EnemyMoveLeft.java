@@ -21,7 +21,7 @@ public class EnemyMoveLeft extends GameObject {
 	private Handler handler;
 	private int sizeX;
 	private int sizeY;
-	private int timer;
+	@SuppressWarnings("unused")
 	private GameObject player;
 	private Image leftRight = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/LeftRight.png"));
 
@@ -32,7 +32,6 @@ public class EnemyMoveLeft extends GameObject {
 		this.velY = 0;
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
-		this.timer = 3;
 
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player)

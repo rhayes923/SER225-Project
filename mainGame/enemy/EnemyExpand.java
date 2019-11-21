@@ -22,6 +22,7 @@ public class EnemyExpand extends GameObject {
 	private int sizeX;
 	private int sizeY;
 	private int timer;
+	@SuppressWarnings("unused")
 	private GameObject player;
 	private Image explosion = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/Explosion.gif"));
 

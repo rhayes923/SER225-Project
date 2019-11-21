@@ -6,13 +6,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
 
 import mainGame.Game.STATE;
-import mainGame.spawn.*;
 import mainGame.*;
-import mainGame.gfx.*;
 
 /**
  * The main menu
@@ -25,16 +21,11 @@ public class Menu {
 
 	private Game game;
 	private Handler handler;
-	private HUD hud;
 	private Image img;
 	private Image img2;
 	private Image raytracing;
 	private Image hoffmanpic;
 	private int timer;
-	private Random r;
-	private ArrayList<Color> colorPick = new ArrayList<Color>();
-	private int colorIndex;
-	private Spawn1to5 spawner;
 	
 	private Image trackerBlack = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlack.png"));
 	private Image trackerBlue = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlue.png"));
@@ -44,13 +35,11 @@ public class Menu {
 	private Image explosion = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/Explosion.gif"));
 	
 
-	public Menu(Game game, Handler handler, HUD hud, Spawn1to5 spawner) {
+
+	public Menu(Game game, Handler handler) {
 		this.game = game;
 		this.handler = handler;
-		this.hud = hud;
-		this.spawner = spawner;
 		timer = 10;
-		r = new Random();
 		img = null;
 		img2 = null;
 
@@ -66,7 +55,6 @@ public class Menu {
 		timer--;
 		if (timer <= 0) {
 			handler.object.clear();
-			colorIndex = r.nextInt(6);
 			timer = 300;
 		}
 		handler.tick();
