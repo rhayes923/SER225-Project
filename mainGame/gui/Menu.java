@@ -289,7 +289,7 @@ public class Menu {
 			
 			g.drawString("Left/Right: Two enemies that will move in ", 825, 415);
 			g.drawString("opposite directions", 825, 435);
-			
+			//sup
 		} else if (game.gameState == STATE.gameMode) {
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 			handler.render(g);	
