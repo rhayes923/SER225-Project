@@ -30,18 +30,15 @@ public class UpgradeScreen {
 	private String text;
 	private String[] paths = { "images/clearscreenability.png", "images/decreaseplayersize.png", "images/extralife.png",
 		"images/healthincrease.png", "images/healthregeneration.png", "images/improveddamageresistance.png",
-		"images/levelskipability.png", "images/freezetimeability.png", "images/speedboost.png" };
+		"images/levelskipability.png", "images/freezetimeability.png", "images/speedboost.png" }; //array of the different upgrade images
+																									//the different images are linked to the different effects of the upgrades
 	private ArrayList<String> imagePaths = new ArrayList<String>();
 	private Random r = new Random();
-	private int index1, index2, index3;
-	private int differentUpgrades;
 
 	public UpgradeScreen(Game game, Handler handler, HUD hud) {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
-		differentUpgrades = 9;
-		setIndex();
 		addPaths();
 		text = "";
 	}
@@ -50,50 +47,37 @@ public class UpgradeScreen {
 
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics g) { //renders the actual buttons and images for the upgrades on the upgrade screen
 		Font font = new Font("Amoebic", 1, 116);
 		text = "Select an Upgrade!";
 		g.setFont(font);
 		g.setColor(Color.WHITE);
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font, text) / 2, 133);
 
-		g.drawImage(getImage(imagePaths.get(index1)), 210, 200, 860, 150, null);
-		g.drawImage(getImage(imagePaths.get(index2)), 210, 200 + 150, 860, 150, null);
-		g.drawImage(getImage(imagePaths.get(index3)), 210, 200 + 2 * 150, 860, 150, null);
-
+		g.drawImage(getImage(imagePaths.get(0)), 210, 200, 860, 150, null);
+		g.drawImage(getImage(imagePaths.get(1)), 210, 200 + 150, 860, 150, null);
+		g.drawImage(getImage(imagePaths.get(2)), 210, 200 + 2 * 150, 860, 150, null);
 	}
 
 	/*
 	 * Reset the paths to each picture
 	 */
-	public void resetPaths() {
-		paths[0] = "images/clearscreenability.png";
-		paths[1] = "images/decreaseplayersize.png";
-		paths[2] = "images/extralife.png";
-		paths[3] = "images/healthincrease.png";
-		paths[4] = "images/healthregeneration.png";
-		paths[5] = "images/improveddamageresistance.png";
-		paths[6] = "images/levelskipability.png";
-		paths[7] = "images/freezetimeability.png";
-		paths[8] = "images/speedboost.png";
-
-	}
-
-	public void addPaths() {
-		for (int i = 0; i < 9; i++) {
-			imagePaths.add(paths[i]);
+	public void resetPaths() { //randomizes the upgrades in the array so that the same ones are not used in the same order every time
+		for (int i = 0; i < paths.length; i++) {
+			int random = r.nextInt(paths.length);
+			String temp = paths[i];
+			paths[i] = paths[random];
+			paths[random] = temp;
 		}
 	}
 
-	public int getIndex(int maxIndex) {
-		int index = r.nextInt(maxIndex);
-		return index;
+	public void addPaths() { //adds more upgrades and their paths to the array when all the upgrades are used up
+								//this is not really used right now as we only get to the upgrade screen twice a game, and we have 9 upgrades
+									//adds the new upgrade to the upgrade screen as the upgrades are used
+		for (int i = 0; i < paths.length; i++) {
+			imagePaths.add(paths[i]);
+		}
 	}
-
-	/**
-	 * Gets 3 indices of pictures, and ensures that they are all different. These 3
-	 * indices will load 3 different upgrade options for the user
-	 */
 
 	public Image getImage(String path) {
 		Image image = null;
@@ -113,46 +97,13 @@ public class UpgradeScreen {
 		int textWidth = (int) (font.getStringBounds(text, frc).getWidth());
 		return textWidth;
 	}
-
-	/**
-	 * Get the path of the image.
-	 * 
-	 * @param x
-	 *            can be either a 1, 2, or 3 (as there are only three upgrade
-	 *            options shown at one time)
-	 * @return String path of image
-	 */
+	
 	public String getPath(int x) {
-		if (x == 1) {
-			return paths[index1];
-		} else if (x == 2) {
-			return paths[index2];
-		/*} else if (x == 3) {
-			return paths[index2];*/
-		} else {
-			return paths[index3];
-		}
+		return imagePaths.remove(x);
 	}
 
-	/**
-	 * Removes the path of the image that is chosen by the user, so that it is never
-	 * offered again
-	 * 
-	 * @param x
-	 *            can be either a 1, 2, or 3 (as there are only three upgrade
-	 *            options shown at one time)
-	 */
-	public void removeUpgradeOption(int x) {
-		if (x == 1) {
-			paths[index1] = getPath(r.nextInt()); //null;
-			//paths[index1] = getPath(r.nextInt());
-		} else if (x == 2) {
-			paths[index2] = getPath(r.nextInt());//null;
-			//paths[index2] = getPath(r.nextInt());
-		} else {
-			paths[index3] = getPath(r.nextInt()); //null;
-			//paths[index3] = getPath(r.nextInt());
-		}
+	public void removeUpgradeOption(int x) { //removes the upgrade option after it is selected
+		imagePaths.remove(x);
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -162,48 +113,10 @@ public class UpgradeScreen {
 	public void mouseReleased(MouseEvent e) {
 
 	}
-
-
-	public void setIndex() {
-		index1 = (int) (Math.random()*(differentUpgrades));
-		if(paths[index1] == null) {
-			index1 = (int) (Math.random()*(differentUpgrades));
-		//return "hi_1"; //DEBUG
-		}
-		index2 = (int) (Math.random()*(differentUpgrades));
-		if(paths[index2] == null) {
-			index2 = (int) (Math.random()*(differentUpgrades));
-		//return "hi_2"; //DEBUG
-		}
-		while(index1 == index2) {
-			index2 = (int) (Math.random()*(differentUpgrades));
-			if(paths[index2] == null) {
-				index2 = (int) (Math.random()*(differentUpgrades));
-			//return "hi_3"; //DEBUG
-			}
-		}
-		index3 = (int) (Math.random()*(differentUpgrades));
-		if(paths[index3] == null) {
-			index3 = (int) (Math.random()*(differentUpgrades));
-		//return "hi_4"; //DEBUG
-		}
-		while(index1 == index3 || index2 == index3) {
-			index3 = (int) (Math.random()*(differentUpgrades));
-			if(paths[index3] == null) {
-				index3 = (int) (Math.random()*(differentUpgrades));
-			//return "hi_5"; //DEBUG
-			}
-		}
-
-	}
 	
-	/*public void newUpgrades() {
-		
-	}*/
-
 	public void resetUpgradeScreen() {
-		this.setIndex();
 		this.resetPaths();
 		this.addPaths();
 	}
+
 }
