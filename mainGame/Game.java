@@ -214,9 +214,9 @@ public class Game extends Canvas implements Runnable {
 					}
 				}
 				// switch the sound that's playing if the mode is waves
-				if (!soundplayer.getSong().equals("sounds/memories.mp3")) {
+				if (!soundplayer.getSong().equals("sounds/Megalovania.mp3")) {
 					soundplayer.stop_playing();
-					soundplayer = new SoundPlayer("sounds/memories.mp3", true);
+					soundplayer = new SoundPlayer("sounds/Megalovania.mp3", true);
 					soundplayer.start();
 				}
 			} else if (gameState == STATE.Menu || gameState == STATE.Help) {// user is on menu, update the menu items
@@ -247,9 +247,9 @@ public class Game extends Canvas implements Runnable {
 				hud.tick();
 				spaceYValue++;
 				spawnSurvival.tick();
-				if (!soundplayer.getSong().equals("sounds/135.mp3")) {
+				if (!soundplayer.getSong().equals("sounds/Survival.mp3")) {
 					soundplayer.stop_playing();
-					soundplayer = new SoundPlayer("sounds/135.mp3", true);
+					soundplayer = new SoundPlayer("sounds/Survival.mp3", true);
 					soundplayer.start();
 				}
 			} else if (gameState == STATE.WonWaves) {
