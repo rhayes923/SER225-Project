@@ -256,7 +256,7 @@ public class Menu {
 			g.setFont(font2);
 			g.setColor(Color.white);
 			
-			g.drawString("Basic: An enemy that will move diagonally and bounce off ", 150, 110);
+			g.drawString("Basic: An enemy that will move diagonally and bounces off ", 150, 110);
 			g.drawString("of the sides of the screen", 150, 130);
 			
 			g.drawString("Burst: A large enemy that will come from a random direction.", 150, 200);
