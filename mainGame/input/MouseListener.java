@@ -83,16 +83,13 @@ public class MouseListener extends MouseAdapter {
 			else if (game.gameState == STATE.Survival) {
 			}
 
-			else if (game.gameState == STATE.Upgrade) {
+			else if (game.gameState == STATE.Upgrade) { //looks to see if the mouse clicks on one of the upgrades, and if it does, then the upgrade effect is activated
 				if (mouseOver(mx, my, 210, 210, 860, 150)) {
-					upgrades.activateUpgrade(upgradeScreen.getPath(1));
-					upgradeScreen.removeUpgradeOption(1);
+					upgrades.activateUpgrade(upgradeScreen.getPath(0));
 				} else if (mouseOver(mx, my, 210, 200 + 150, 860, 150)) {
-					upgrades.activateUpgrade(upgradeScreen.getPath(2));
-					upgradeScreen.removeUpgradeOption(2);
+					upgrades.activateUpgrade(upgradeScreen.getPath(1));
 				} else if (mouseOver(mx, my, 100, 200 + 2 * 150, 860, 150)) {
-					upgrades.activateUpgrade(upgradeScreen.getPath(3));
-					upgradeScreen.removeUpgradeOption(3);
+					upgrades.activateUpgrade(upgradeScreen.getPath(2));
 				}
 				game.gameState = STATE.Wave;
 			}

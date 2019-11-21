@@ -115,7 +115,7 @@ public class Upgrades {
 	 * @param path
 	 *            is to the image of the upgrade that was pressed by the user
 	 */
-	public void activateUpgrade(String path) {
+	public void activateUpgrade(String path) { //sets the upgrade images to the upgrade effects
 		if (path.equals("images/clearscreenability.png")) {
 			ability = "clearScreen";
 			hud.setAbility(ability);
@@ -144,7 +144,7 @@ public class Upgrades {
 
 	}
 
-	public void resetUpgrades() {
+	public void resetUpgrades() { //sets player back to normal (without upgrades)
 		Player.playerSpeed = 10;
 		hud.resetHealth();
 		hud.resetRegen();

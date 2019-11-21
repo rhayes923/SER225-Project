@@ -116,7 +116,7 @@ public class Game extends Canvas implements Runnable {
 		dpSound = new SoundClip("sounds/doublepoints.mp3", 1.0);
 		nukeSound = new SoundClip("sounds/nuke.mp3", 1.0);
 		soundplayer.start();
-		new Window(WIDTH, HEIGHT, "Space Matrix", this);
+		new Window(WIDTH, HEIGHT, "Epstein's Death Was Not A Suicide!", this);
 		colorScreen = new ColorPickerScreen(player, this);	
 		
 		try {
