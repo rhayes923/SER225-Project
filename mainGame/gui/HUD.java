@@ -33,7 +33,7 @@ public class HUD {
 	private Color scoreColor;
 	private int extraLives;
 	public Game game;
-	private double levelTimer;
+	private int levelTimer;
 	
 	public HUD(Game game) {
 		this.game = game;
