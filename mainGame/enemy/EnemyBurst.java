@@ -2,7 +2,9 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.util.Random;
 import mainGame.*;
 import mainGame.gfx.*;
@@ -22,7 +24,8 @@ public class EnemyBurst extends GameObject {
 	private String side;
 	private Random r = new Random();
 	private boolean isMultiplayer;
-
+	private Image bigShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/bigShip.png"));
+	
 	/**
 	 * Constructor.
 	 */
@@ -58,7 +61,7 @@ public class EnemyBurst extends GameObject {
 	@Override
 	public void tick() {
 
-		handler.addObject(new Trail(x, y, ID.Trail, Color.orange, this.size, this.size, 0.025, this.handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.orange, this.size, this.size, 0.025, this.handler));
 
 		timer--;
 		if (timer <= 0) {
@@ -128,8 +131,10 @@ public class EnemyBurst extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.orange);
-		g.fillRect((int) x, (int) y, this.size, this.size);
+//		g.setColor(Color.orange);
+//		g.fillRect((int) x, (int) y, this.size, this.size);
+		g.drawImage(bigShip, (int) x, (int) y, 75, 75, null);
+		
 	}
 
 	@Override

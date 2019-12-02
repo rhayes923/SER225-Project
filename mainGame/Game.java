@@ -59,6 +59,8 @@ public class Game extends Canvas implements Runnable {
 	private Image spaceBackground1, spaceBackground2;
 	private int spaceYValue = 0;
 	
+
+
 	/**
 	 * Used to switch between each of the screens shown to the user
 	 */
@@ -309,6 +311,13 @@ public class Game extends Canvas implements Runnable {
 				} else if (gameState == STATE.Color) {
 					colorScreen.render(g);
 				}
+
+			} 
+			
+			else {
+				player.render(g);
+				hud.render(g);			
+
 			}
 			if(!isPaused()){
 				handler.render(g);} // ALWAYS RENDER HANDLER, NO MATTER IF MENU OR GAME

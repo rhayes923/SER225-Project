@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.gfx.*;
 
@@ -16,6 +19,7 @@ import mainGame.gfx.*;
 public class EnemySweep extends GameObject {
 
 	private Handler handler;
+	private Image sweepShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/sweepShip.png"));
 
 	public EnemySweep(double x, double y, double velX, double velY, ID id, Handler handler) {
 		super(x, y, id);
@@ -33,7 +37,7 @@ public class EnemySweep extends GameObject {
 		if (this.x <= 0 || this.x >= Game.WIDTH - 16)
 			velX *= -1;
 
-		handler.addObject(new Trail(x, y, ID.Trail, Color.cyan, 16, 16, 0.025, this.handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.cyan, 16, 16, 0.025, this.handler));
 
 		// remove this from the handler. this makes a HUGE reduction in memory usage by the handler (something like 75% reduction at times)
 		if (this.y <= -16 || this.y >= Game.HEIGHT) {
@@ -44,9 +48,9 @@ public class EnemySweep extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.cyan);
-		g.fillRect((int) x, (int) y, 16, 16);
-
+//		g.setColor(Color.cyan);
+//		g.fillRect((int) x, (int) y, 16, 16);
+		g.drawImage(sweepShip, (int) x, (int) y, 75, 75, null);
 	}
 
 	@Override
