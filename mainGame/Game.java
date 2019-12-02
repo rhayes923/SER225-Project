@@ -313,7 +313,6 @@ public class Game extends Canvas implements Runnable {
 				}
 
 			} 
-			
 			else {
 				player.render(g);
 				hud.render(g);			
