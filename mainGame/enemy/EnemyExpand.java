@@ -51,8 +51,6 @@ public class EnemyExpand extends GameObject {
 		if (this.x <= 0 || this.x >= Game.WIDTH - 16)
 			velX *= -1;
 
-		handler.addObject(new Trail(x, y, ID.Trail, Color.pink, this.sizeX, this.sizeY, 0.025, this.handler));
-
 		timer--;
 		if (timer <= 0) {
 			updateEnemy();
