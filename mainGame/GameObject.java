@@ -23,7 +23,6 @@ public abstract class GameObject {
 		this.x = x;
 		this.y = y;
 		this.id = id;
-
 	}
 
 	// abstract classes are needed in subclasses (need to be explicitly implemented)
