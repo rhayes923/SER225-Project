@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.gfx.*;
 
@@ -26,6 +29,8 @@ public class EnemyShooter extends GameObject {
 	private double bulletVelY;
 	private int bulletSpeed;
 	private int fireRate;
+	
+	private Image shooterShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/shooterShip.png"));
 
 	public EnemyShooter(double x, double y, int sizeX, int sizeY, int bulletSpeed, int fireRate, ID id, Handler handler) {
 		super(Game.clampX(x, sizeX + 1), Game.clampY(y, sizeY + 1), id);
@@ -52,7 +57,7 @@ public class EnemyShooter extends GameObject {
 	public void tick() {
 		updateTimer--;
 		shootTimer--;
-		handler.addObject(new Trail(x, y, ID.Trail, Color.yellow, this.sizeX, this.sizeY, 0.025, this.handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.yellow, this.sizeX, this.sizeY, 0.025, this.handler));
 		if (shootTimer <= 0) {
 			shoot();
 			shootTimer = fireRate;
@@ -100,9 +105,10 @@ public class EnemyShooter extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect((int) x, (int) y, this.sizeX, this.sizeY);
-
+//		g.setColor(Color.yellow);
+//		g.fillRect((int) x, (int) y, this.sizeX, this.sizeY);
+		g.drawImage(shooterShip, (int) x, (int) y, 75, 75, null);
+		
 	}
 
 	@Override

@@ -2,7 +2,10 @@ package mainGame.enemy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+
 import mainGame.*;
 import mainGame.gfx.*;
 
@@ -16,6 +19,7 @@ import mainGame.gfx.*;
 public class EnemyBasic extends GameObject {
 
 	private Handler handler;
+	private Image basicShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/basicShip.png"));
 
 	public EnemyBasic(double x, double y, int velX, int velY, ID id, Handler handler) {
 		super(x, y, id);
@@ -34,14 +38,15 @@ public class EnemyBasic extends GameObject {
 		if (this.x <= 0 || this.x >= Game.WIDTH - 11)
 			velX *= -1;
 
-		handler.addObject(new Trail(x, y, ID.Trail, Color.red, 11, 11, 0.025, this.handler));
+		//handler.addObject(new Trail(x, y, ID.Trail, Color.red, 11, 11, 0.025, this.handler));
 
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect((int) x, (int) y, 11, 11);
+//		g.setColor(Color.red);
+//		g.fillRect((int) x, (int) y, 11, 11);
+		g.drawImage(basicShip, (int) x, (int) y, 75, 75, null);
 
 	}
 

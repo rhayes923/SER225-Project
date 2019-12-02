@@ -24,7 +24,6 @@ public class Menu {
 	private Image img;
 	private Image img2;
 	private Image raytracing;
-	private Image hoffmanpic;
 	private int timer;
 	
 	private Image trackerBlack = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/TrackerBlack.png"));
@@ -35,6 +34,11 @@ public class Menu {
 	private Image explosion = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/Explosion.gif"));
 	
 
+	private Image basicShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/basicShip.png"));
+	private Image bigShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/bigShip.png"));
+	private Image shooterShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/shooterShip.png"));
+	private Image smartShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/smartShip.png"));
+	private Image sweepShip = Toolkit.getDefaultToolkit().getImage(Game.class.getResource("images/sweepShip.png"));
 
 	public Menu(Game game, Handler handler) {
 		this.game = game;
@@ -148,12 +152,11 @@ public class Menu {
 			
 			g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 			g.drawImage(raytracing, 852, 0, 426 , 360, null);
-			g.drawImage(hoffmanpic, 852, 360, 426 , 360, null);
 			handler.render(g);
 
 			img = null;
 			raytracing = null;
-			hoffmanpic = null;
+		
 
 			try {
 				URL imageURL = Game.class.getResource("images/dust-particles.png");
@@ -186,7 +189,7 @@ public class Menu {
 			g.drawString("Will Varsalona: Scrum Master, Art and UI", 100, 330);				
 			g.drawString("Ryan Hayes: Programming and Bug Fixing", 100, 350);						
 			g.drawString("Henry Staunton: Level Balancing and Bug Fixing", 100, 370);			
-			g.drawString("Neel Bains: Programming and Bug Fixing", 100, 390);			
+			g.drawString("Neel Bains: Programming, Bug Fixing, Character Art", 100, 390);			
 			g.drawString("Rishi Parikh: Programming and Bug Fixing", 100, 410);
 	
 			
@@ -216,24 +219,19 @@ public class Menu {
 			g.drawString("Enemy Journal", 540, 46);
 					
 			g.setFont(font2);
-			g.drawRect(566, 590, 133, 42);
+			g.drawRect(566, 590, 140, 50);
 			g.drawString("Back", 613, 620);
 			
 			//Enemy Basic
-			g.setColor(Color.red);
-			g.fillRect(100, 100, 11, 11);
+			g.drawImage(basicShip, 60, 70, 75, 75, null);	
 			//Enemy Burst
-			g.setColor(Color.orange);
-			g.fillRect(50, 175, 75, 75);
+			g.drawImage(bigShip, 60, 170, 75, 75, null);
 			//Enemy Sweep
-			g.setColor(Color.cyan);
-			g.fillRect(100, 290, 16, 16);
+			g.drawImage(sweepShip, 60, 270, 75, 75, null);
 			//Enemy Smart
-			g.setColor(Color.green);
-			g.fillRect(100, 400, 16, 16);
+			g.drawImage(smartShip, 60, 365, 75, 75, null);
 			//Enemy Shooter
-			g.setColor(Color.yellow);
-			g.fillRect(50, 470, 75, 75);
+			g.drawImage(shooterShip, 60, 480, 75, 75, null);
 			//Enemy Tracker
 			g.drawImage(trackerBlue, 75, 575, 50,50, null);
 			//Enemy Expansion
@@ -249,20 +247,20 @@ public class Menu {
 			g.setFont(font2);
 			g.setColor(Color.white);
 			
-			g.drawString("Basic: An enemy that will move diagonally and bounce off ", 150, 100);
-			g.drawString("of the sides of the screen", 150, 120);
+			g.drawString("Basic: An enemy that will move diagonally and bounces off ", 150, 110);
+			g.drawString("of the sides of the screen", 150, 130);
 			
 			g.drawString("Burst: A large enemy that will come from a random direction.", 150, 200);
 			g.drawString("The edge of the screen that it comes from will flash orange ", 150, 220);
 			g.drawString("as a warning", 150, 240);
 			
-			g.drawString("Sweep: An enemy that will sweep side to side across the ", 150, 300);
-			g.drawString("screen and move vertically", 150, 320);
+			g.drawString("Sweep: An enemy that will sweep side to side across the ", 150, 310);
+			g.drawString("screen and move vertically", 150, 330);
 			
 			g.drawString("Smart: An enemy that will follow the player", 150, 415);
 			
-			g.drawString("Shooter: A large stationary enemy that will shoot ", 150, 500);
-			g.drawString("projectiles at the player", 150, 520);
+			g.drawString("Shooter: A large stationary enemy that will shoot ", 150, 515);
+			g.drawString("projectiles at the player", 150, 535);
 			
 			g.drawString("Tracker: An enemy that will follow the player", 150, 600);
 			g.drawString("but will either be blue or black", 150, 620);
