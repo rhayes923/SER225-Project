@@ -1,4 +1,6 @@
 # WaveGame - Space Matrix
+<b> SER225 Fall 2019 Completed Project </b>
+
 <b> Team B2 - Neel Bains, Ryan Hayes, Rishi Parikh, Henry Staunton, Will Varsalona </b>
 
 <h2>Story</h2>
