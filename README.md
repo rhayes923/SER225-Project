@@ -1,4 +1,5 @@
-# Wavegame B2
+# WaveGame - Space Matrix
+<b> Team B2 - Neel Bains, Ryan Hayes, Rishi Parikh, Henry Staunton, Will Varsalona
 
 <h2>Story</h2>
 <p>
